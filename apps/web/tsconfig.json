@@ -4,8 +4,13 @@
     "plugins": [
       {
         "name": "next"
-      }
-    ]
+      },
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@repo/ui/*": ["../../packages/ui/src/*"],
+      "@repo/db/*": ["../../packages/db/src/*"]
+    }
   },
   "include": [
     "**/*.ts",

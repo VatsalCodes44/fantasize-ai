@@ -1,0 +1,18 @@
+{
+    // This is the master switch for the suggestions widget.
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": false
+    },
+    "editor.inlineSuggest.enabled": true,
+  
+    // Show suggestions as you type, without needing a trigger character.
+    "editor.suggestOnTriggerCharacters": true,
+  
+    // How long to wait before showing suggestions (in ms)
+    "editor.quickSuggestionsDelay": 10,
+  
+    // Control the behavior of the suggestion popup
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+  }

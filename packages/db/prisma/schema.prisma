@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id              String   @id @default(uuid())
+  username        String  
+  outputImages    OutputImages[] 
+  model           Model[]
+}
+
+model Model {
+  id              String   @id @default(uuid())
+  name            String
+  type            ModelTypeEnum
+  age             Int
+  ethinicity      EthinicityEnum
+  blad            Boolean
+  eyeColor        EyeColorEnum
+  userId          String
+  falAiRequestId  String?
+  trainingStatus  ModelTrainingStatusEnum   @default(Pending)
+  images          String[]
+  triggerWord     String?
+  tensorPath      String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  user            User        @relation(fields: [userId], references: [id])
+  // trainingImages  TrainingImages[] 
+  zipUrl          String 
+  outputImages    OutputImages[]
+}
+
+// model TrainingImages {
+//   id        String   @id @default(uuid())
+//   imageUrl  String
+//   modelId   String
+//   model     Model    @relation(fields:[modelId], references:[id] )
+// }
+
+model OutputImages {
+  id              String   @id @default(uuid())
+  imageUrl        String   @default("")
+  prompt          String
+  status          OutputImagesStatusEnum    @default(Pending)
+  userId          String
+  modelId         String
+  falAiRequestId  String?
+  model           Model    @relation(fields:[modelId], references:[id])
+  user            User     @relation(fields:[userId], references:[id])
+}
+
+model Packs {
+  id            String   @id @default(uuid())
+  name          String
+  packPrompts   PackPrompts[]
+}
+
+model PackPrompts {
+  id        String  @id @default(uuid())
+  prompt    String
+  packId    String
+  pack      Packs   @relation(fields:[packId], references:[id])
+}
+
+enum ModelTrainingStatusEnum {
+  Pending
+  generated 
+  Failed
+}
+
+enum ModelTypeEnum {
+  Man
+  Women
+  Couple
+  Dog
+  Cat
+  Other
+}
+
+enum EthinicityEnum {
+    White
+    Black
+    Asian
+    American
+    EastAsian         
+    SouthEastAsian    
+    SouthAsian        
+    MiddleEastern     
+    Pacific
+    Hispanic
+}
+
+enum EyeColorEnum {
+  Brown
+  Blue
+  Green
+  Hazel
+  Other
+}
+
+enum OutputImagesStatusEnum {
+  Pending
+  generated 
+  Failed
+}

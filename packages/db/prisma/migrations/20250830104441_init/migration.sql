@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "public"."Model" ALTER COLUMN "triggerWord" DROP NOT NULL,
+ALTER COLUMN "triggerWord" SET DATA TYPE TEXT,
+ALTER COLUMN "tensorPath" DROP NOT NULL,
+ALTER COLUMN "tensorPath" SET DATA TYPE TEXT;
