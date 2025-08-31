@@ -9,7 +9,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@repo/db/*": ["../../packages/db/src/*"]
+      "@repo/db/*": ["../../packages/db/src/*"],
+      "@components/ui/*": ["./components/ui/*"],
+      "@components/magicui/*": ["./components/magicui/*"],
+      "@components/manualComponents/*": ["./components/manualComponents/*"],
     }
   },
   "include": [

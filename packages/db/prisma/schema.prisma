@@ -105,6 +105,7 @@ enum EthinicityEnum {
 }
 
 enum EyeColorEnum {
+  Black
   Brown
   Blue
   Green
