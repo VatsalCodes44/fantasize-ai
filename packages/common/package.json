@@ -7,7 +7,8 @@
     "@types/bun": "latest"
   },
   "exports": {
-    "./types": "./src/index.ts"
+    "./types": "./src/index.ts",
+    "./inferred-types": "./src/inferred-types.ts"
   },
   "peerDependencies": {
     "typescript": "^5"

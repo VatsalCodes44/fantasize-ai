@@ -6,6 +6,9 @@
   "exports": {
     "./client": "./src/index.ts"
   },
+  "prisma": {
+    "seed": "bun run prisma/seed.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "prisma": "^6.15.0"

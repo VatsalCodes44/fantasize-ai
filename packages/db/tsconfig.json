@@ -35,5 +35,5 @@
   "include": [
     "src/**/*",
     "src/generated/client/**/*"
-  ]
+, "prisma/seed.ts"  ]
 }

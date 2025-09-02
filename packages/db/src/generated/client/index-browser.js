@@ -120,18 +120,13 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  username: 'username'
-};
-
 exports.Prisma.ModelScalarFieldEnum = {
   id: 'id',
   name: 'name',
   type: 'type',
   age: 'age',
   ethinicity: 'ethinicity',
-  blad: 'blad',
+  bald: 'bald',
   eyeColor: 'eyeColor',
   userId: 'userId',
   falAiRequestId: 'falAiRequestId',
@@ -202,6 +197,7 @@ exports.EthinicityEnum = exports.$Enums.EthinicityEnum = {
 };
 
 exports.EyeColorEnum = exports.$Enums.EyeColorEnum = {
+  Black: 'Black',
   Brown: 'Brown',
   Blue: 'Blue',
   Green: 'Green',
@@ -222,7 +218,6 @@ exports.OutputImagesStatusEnum = exports.$Enums.OutputImagesStatusEnum = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User',
   Model: 'Model',
   OutputImages: 'OutputImages',
   Packs: 'Packs',

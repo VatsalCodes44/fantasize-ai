@@ -18,13 +18,13 @@ export class FalAiModel extends BaseModel {
         return {request_id, response_url};
     }
 
-    public override async trainModel(zipUrl: string, triggerWord: string) {
+    public override async trainModel(zipUrl: string, triggerWord?: string) {
         const {request_id, response_url} = await fal.queue.submit("fal-ai/flux-lora-fast-training", {
             input: {
               images_data_url: zipUrl,
               trigger_word: triggerWord
             },
-            webhookUrl: `${process.env.WEKHOOK_URL}` + "api/fal-ai/webhook",
+            webhookUrl: `${process.env.WEKHOOK_URL}` + "/api/fal-ai/webhook",
           });
           return {request_id, response_url}
     }

@@ -21,7 +21,7 @@ export async function POST (req: NextRequest) {
         },
         data: {
             trainingStatus: "generated",
-            tensorPath: tensor_path.split(",")
+            tensorPath: tensor_path
         }
     })
 }

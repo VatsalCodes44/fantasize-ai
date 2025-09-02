@@ -15,12 +15,12 @@ datasource db {
 }
 
 
-model User {
-  id              String   @id @default(uuid())
-  username        String  
-  outputImages    OutputImages[] 
-  model           Model[]
-}
+// model User {
+//   id              String   @id @default(uuid())
+//   username        String  
+//   outputImages    OutputImages[] 
+//   model           Model[]
+// }
 
 model Model {
   id              String   @id @default(uuid())
@@ -28,7 +28,7 @@ model Model {
   type            ModelTypeEnum
   age             Int
   ethinicity      EthinicityEnum
-  blad            Boolean
+  bald            Boolean
   eyeColor        EyeColorEnum
   userId          String
   falAiRequestId  String?
@@ -38,7 +38,7 @@ model Model {
   tensorPath      String?
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
-  user            User        @relation(fields: [userId], references: [id])
+  // user            User        @relation(fields: [userId], references: [id])
   // trainingImages  TrainingImages[] 
   zipUrl          String 
   outputImages    OutputImages[]
@@ -60,7 +60,7 @@ model OutputImages {
   modelId         String
   falAiRequestId  String?
   model           Model    @relation(fields:[modelId], references:[id])
-  user            User     @relation(fields:[userId], references:[id])
+  // user            User     @relation(fields:[userId], references:[id])
 }
 
 model Packs {
@@ -73,7 +73,7 @@ model PackPrompts {
   id        String  @id @default(uuid())
   prompt    String
   packId    String
-  pack      Packs   @relation(fields:[packId], references:[id])
+  pack      Packs   @relation(fields:[packId], references:[id], onDelete: Cascade)
 }
 
 enum ModelTrainingStatusEnum {

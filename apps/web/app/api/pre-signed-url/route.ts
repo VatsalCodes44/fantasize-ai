@@ -19,13 +19,16 @@ export async function GET(req: NextRequest) {
     const presignedUrl = await getSignedUrl(
       s3Client,
       new PutObjectCommand({
-        Bucket: process.env.bucket!,  // ← Matches your env var
-        Key ,
+        Bucket: process.env.bucket, 
+        Key,
+        ContentType: "application/zip"
       }),
-      { expiresIn: 3600 }
+      { 
+        expiresIn: 90,
+      }
     );
 
-    console.log("Presigned URL generated");
+    console.log("Presigned URL generated", presignedUrl);
     return NextResponse.json({ url: presignedUrl, Key });
 
   } catch (error) {

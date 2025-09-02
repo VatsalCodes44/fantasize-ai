@@ -1,5 +1,6 @@
 "use client";
-
+import axios from "axios"
+import JSZip from "jszip"
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -36,6 +37,13 @@ export function TrainCard() {
     console.log(files);
   };
 
+  const [modelName, setModelName] = useState("")
+  const [type, setType] = useState("")
+  const [ethinicity, setEthinicity] = useState("")
+  const [eyeColor, setEyeColor] = useState("")
+  const [age, setAge] = useState(0)
+  const [bald, setBald] = useState(false)
+
 
   return (
     <Card className="p-0 max-w-xl w-full shadow-none border-none">
@@ -54,7 +62,9 @@ export function TrainCard() {
                 <div className="">
                     <div className="">
                         <Label htmlFor="name">Name</Label>
-                        <Input id="name" type="text" placeholder="Name of the model" />
+                        <Input id="name" type="text" onChange={(e) => {
+                            setModelName(e.target.value)
+                        }} placeholder="Name of the model" />
                     </div>
 
 
@@ -62,7 +72,9 @@ export function TrainCard() {
                         <div className="pt-2 col-span-1 w-full">
                             <Label htmlFor="type">Type</Label>
                             <div id="type">
-                                <Select onValueChange={() => {}}>
+                                <Select onValueChange={(value) => {
+                                    setType(value)
+                                }}>
                                     <SelectTrigger className="w-full" >
                                         <SelectValue placeholder="Select" />
                                     </SelectTrigger>
@@ -84,7 +96,9 @@ export function TrainCard() {
                         <div className="pt-2 col-span-1 w-full">
                             <Label htmlFor="Ethinicity">Ethinicity</Label>
                             <div id="Ethinicity">
-                                <Select onValueChange={() => {}}>
+                                <Select onValueChange={(value) => {
+                                    setEthinicity(value)
+                                }}>
                                     <SelectTrigger className="w-full" >
                                         <SelectValue placeholder="Select" />
                                     </SelectTrigger>
@@ -113,7 +127,9 @@ export function TrainCard() {
                         <div className="pt-2 col-span-1">
                             <Label htmlFor="Eye Color">Eye Color</Label>
                             <div id="Eye Color">
-                                <Select onValueChange={() => {}}>
+                                <Select onValueChange={(value) => {
+                                    setEyeColor(value)
+                                }}>
                                     <SelectTrigger className="w-full" >
                                         <SelectValue placeholder="Select" />
                                     </SelectTrigger>
@@ -135,12 +151,16 @@ export function TrainCard() {
                         <div className="col-span-1 pt-2 flex justify-between">
                             <div className="">
                                 <Label htmlFor="Age">Age</Label>
-                                <Input id="Age" type="number" placeholder="Age" />
+                                <Input id="Age" type="number" onChange={(e) => {
+                                    setAge(parseInt(e.target.value))
+                                }} placeholder="Age" />
                             </div>
-                            <div>
+                            <div className="">
                                 <Label htmlFor="Bald">Bald</Label>
                                 <div id="Bald" className="flex flex-col justify-center min-h-9">
-                                    <Switch />
+                                    <Switch onCheckedChange={(value) => {
+                                        setBald(value)
+                                    }} />
                                 </div>
                             </div>
                         </div>
@@ -154,10 +174,42 @@ export function TrainCard() {
           </form>
         </CardContent>
         <CardFooter className="p-4 border-t border-border [.border-t]:pt-4">
-          <Button onClick={() => {
-            console.log(files)
-            const res = await ax.get(`${BACKEND_URL}/api/pre-signed-url`)
-          }} className="w-full">Generate</Button>
+          <Button disabled={modelName === "" || ethinicity === "" || eyeColor === "" || type === "" || age === 0} onClick={async () => {
+            const res = await axios.get(`${BACKEND_URL}/api/pre-signed-url`);
+            const presignedUrl = res.data.url;
+            const key: string = res.data.Key;
+
+
+            const zip = new JSZip();
+
+            files.forEach( file => {
+                zip.file(file.name,  file)
+            })
+
+            const content = await zip.generateAsync({type:"blob"});
+
+            const res2 = await axios.put(presignedUrl, content, {
+                headers: {
+                    "Content-Type": content.type
+                }
+            })
+
+
+            
+            const res3 = await axios.post(BACKEND_URL+"/api/ai/training", {
+                name: modelName,
+                age,
+                type,
+                ethinicity,
+                bald: bald.toString(),
+                eyeColor,
+                key,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            })
+
+
+          }} className="w-full hover:cursor-pointer">Generate</Button>
         </CardFooter>
       </MagicCard>
     </Card>
