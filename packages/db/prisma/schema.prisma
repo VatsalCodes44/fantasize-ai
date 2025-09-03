@@ -59,6 +59,7 @@ model OutputImages {
   userId          String
   modelId         String
   falAiRequestId  String?
+  createdAt       DateTime    @default(now())
   model           Model    @relation(fields:[modelId], references:[id])
   // user            User     @relation(fields:[userId], references:[id])
 }
@@ -66,6 +67,7 @@ model OutputImages {
 model Packs {
   id            String   @id @default(uuid())
   name          String
+  url           String
   packPrompts   PackPrompts[]
 }
 

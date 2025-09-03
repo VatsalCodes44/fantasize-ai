@@ -1,17 +1,13 @@
-import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
-import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler"
 import { AuroraText } from "@/components/magicui/aurora-text";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { GridBackground } from "@/components/manualComponents/GridBackground";
-import { HowTOGenerateImage } from "@/components/manualComponents/HowTOGenerateImage.tsx";
+import { HowTOGenerateImage } from "@/components/manualComponents/HowTOGenerateImage";
 import { HowTOGenerateVideo } from "@/components/manualComponents/HowToGenerateVideo";
 import { TrainCard } from "@/components/manualComponents/TrainCard"
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { FlipWords } from "@/components/ui/flip-words";
 
 import { ModeToggle } from "@/components/ui/ToggleMode"
-import { IconHome, IconMessage, IconUser } from "@tabler/icons-react";
-import { redirect } from "next/navigation";
 
 export default () => {
   const projects = [
@@ -55,16 +51,20 @@ export default () => {
   return (
     <div className="">
       {/* <AnimatedThemeToggler /> */}
+      <div className="fixed bottom-8 right-8 lg:bottom-12 lg:right-12 z-50">
+        <ModeToggle/>
+      </div>
        <div className="relative flex justify-center items-center w-full overflow-hidden min-h-60 sm:h-60 rounded-b-2xl">
         <GridBackground />
         <div className="relative z-10">
-          <div className="mb-4 flex justify-center">
-            <AnimatedGradientText className="text-4xl flex gap-2 sm:text-7xl font-bold ">
+          <div className="mb-4 flex justify-center text-4xl sm:text-7xl gap-2 font-bold">
+            {/* <AnimatedGradientText className="text-4xl sm:text-7xl flex gap-2 font-bold ">
             <div className="">
-              <img src="/fantasizeico.ico" className="h-10 sm:h-20" alt="" />
             </div>
-              Fantasize AI
-            </AnimatedGradientText>
+            Fantasize AI
+            </AnimatedGradientText> */}
+            <img src="/fantasizeico.ico" className="h-10 sm:h-20" alt="" />
+            <AuroraText speed={1} colors={["#2f0874" ,"#872d9b", "#e903f9", "#08f9fb", "#068fe0"]}>Fantasize Ai</AuroraText>
           </div>
           <div className="flex justify-start">
             <FlipWords duration={1500} words={["Generate", "Unleash", "Imagine"]} className="text-2xl font-bold relative left-2 text-cyan-500 dark:text-cyan-500" />

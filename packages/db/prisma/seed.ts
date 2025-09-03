@@ -7,43 +7,53 @@ const main = async () => {
         data:[
             {
             name: "Valentine's Day",
-            id: "dbda4193-7b18-48ca-912f-a64b910e4bea"
+            id: "dbda4193-7b18-48ca-912f-a64b910e4bea",
+            url: "https://cdn.pixabay.com/photo/2021/01/26/14/30/rose-5951728_1280.jpg"
             },
             {
                 name: "Iconic Locations",
-                id: "80ff8474-08b8-4654-abd8-0bfc54ae5284"
+                id: "80ff8474-08b8-4654-abd8-0bfc54ae5284",
+                url: "https://cdn.pixabay.com/photo/2013/04/13/18/42/tower-103417_1280.jpg"
             }, 
             {
                 name: "Lifestyle & Aesthetic",
-                id: "9d9ea785-4ebb-4d2a-8ec2-0c4b21d9bda2"
+                id: "9d9ea785-4ebb-4d2a-8ec2-0c4b21d9bda2",
+                url: "https://cdn.pixabay.com/photo/2020/11/04/15/29/latte-art-5712778_1280.jpg"
             },
             {
                 name: "Nature & Outdoors",
-                id: "c11e92a5-3822-4831-9b42-c7d1b2b1d63f"
+                id: "c11e92a5-3822-4831-9b42-c7d1b2b1d63f",
+                url: "https://cdn.pixabay.com/photo/2019/08/12/10/03/tourist-4400871_1280.jpg"
             },
-            {
-                name: "Travel & Lifestyle",
-                id: "499d3951-7dda-4981-990f-861f001fb8fd"
-            },
+            // {
+            //     name: "Travel & Lifestyle",
+            //     id: "499d3951-7dda-4981-990f-861f001fb8fd",
+            //     url: "https://cdn.pixabay.com/photo/2023/05/07/11/57/surfboard-7976219_1280.jpg"
+            // },
             {
                 name: "Tech & Futuristic",
-                id: "776ea084-2c99-4110-9780-f8cba82e2d61"
+                id: "776ea084-2c99-4110-9780-f8cba82e2d61",
+                url: "https://images.pexels.com/photos/2007647/pexels-photo-2007647.jpeg"
             }, 
             {
                 name: "Gaming & Pop Culture",
-                id: "f7b93926-9fe8-4294-943c-49b68eee4199"
+                id: "f7b93926-9fe8-4294-943c-49b68eee4199",
+                url: "https://images.pexels.com/photos/7047537/pexels-photo-7047537.jpeg"
             },
             {
                 name: "Modern Lifestyle",
-                id: "b68ee39c-41bd-41c2-8032-e4c3c6dcc31d"
+                id: "b68ee39c-41bd-41c2-8032-e4c3c6dcc31d",
+                url: "https://cdn.pixabay.com/photo/2025/04/24/05/23/woman-9554464_1280.jpg"
             },
             {
                 name: "Trending Global Spots",
-                id: "05d218ba-e603-4fd1-8709-cd095ef10440"
+                id: "05d218ba-e603-4fd1-8709-cd095ef10440",
+                url: "https://cdn.pixabay.com/photo/2020/09/10/15/19/woman-5560647_1280.jpg"
             },
             {
                 name: "Creative & Artistic",
-                id: "2aef6826-c9d4-43fc-9e99-4cad3d6c01be"
+                id: "2aef6826-c9d4-43fc-9e99-4cad3d6c01be",
+                url: "https://cdn.pixabay.com/photo/2023/07/12/17/23/activity-8122959_1280.jpg"
             },
         ]
     })
@@ -71,27 +81,27 @@ const main = async () => {
             packId: "dbda4193-7b18-48ca-912f-a64b910e4bea",
             prompt: "user anime-style illustration, holding a box of chocolates, surrounded by pastel pink hearts, kawaii aesthetic, soft colors, dreamy atmosphere"
             },
-            // 🌍 Travel & Lifestyle
-            {
-                packId: "499d3951-7dda-4981-990f-861f001fb8fd",
-                prompt: "user relaxing on a tropical beach, palm trees, waves, cocktails, golden sunset, cinematic vacation vibes"
-            },
-            {
-                packId: "499d3951-7dda-4981-990f-861f001fb8fd",
-                prompt: "user hiking through snowy mountain peaks, wearing outdoor gear, cinematic adventure photography, campfire in the background"
-            },
-            {
-                packId: "499d3951-7dda-4981-990f-861f001fb8fd",
-                prompt: "user swimming in a rooftop infinity pool at a luxury hotel, panoramic city skyline view, sunset lighting, cinematic lifestyle"
-            },
-            {
-                packId: "499d3951-7dda-4981-990f-861f001fb8fd",
-                prompt: "user exploring a neon-lit city street at night, cinematic urban street photography, vibrant nightlife atmosphere"
-            },
-            {
-                packId: "499d3951-7dda-4981-990f-861f001fb8fd",
-                prompt: "user driving a convertible car on a desert highway, cinematic golden hour lighting, open road travel aesthetic"
-            },
+            // // 🌍 Travel & Lifestyle
+            // {
+            //     packId: "499d3951-7dda-4981-990f-861f001fb8fd",
+            //     prompt: "user relaxing on a tropical beach, palm trees, waves, cocktails, golden sunset, cinematic vacation vibes"
+            // },
+            // {
+            //     packId: "499d3951-7dda-4981-990f-861f001fb8fd",
+            //     prompt: "user hiking through snowy mountain peaks, wearing outdoor gear, cinematic adventure photography, campfire in the background"
+            // },
+            // {
+            //     packId: "499d3951-7dda-4981-990f-861f001fb8fd",
+            //     prompt: "user swimming in a rooftop infinity pool at a luxury hotel, panoramic city skyline view, sunset lighting, cinematic lifestyle"
+            // },
+            // {
+            //     packId: "499d3951-7dda-4981-990f-861f001fb8fd",
+            //     prompt: "user exploring a neon-lit city street at night, cinematic urban street photography, vibrant nightlife atmosphere"
+            // },
+            // {
+            //     packId: "499d3951-7dda-4981-990f-861f001fb8fd",
+            //     prompt: "user driving a convertible car on a desert highway, cinematic golden hour lighting, open road travel aesthetic"
+            // },
 
             // 🌅 Nature & Outdoors
             {

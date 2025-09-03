@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { MagicCard } from "@/components/magicui/magic-card";
 import { useTheme } from "next-themes";
 import { FileUploadDemo } from "./FileUploadDemo";
 import {
@@ -27,6 +26,7 @@ import {
 import { Switch } from "@components/ui/switch";
 import { useState } from "react";
 import { BACKEND_URL } from "@/app/config";
+import { ShineBorder } from "../magicui/shine-border";
 
 export function TrainCard() {
   const { theme } = useTheme();
@@ -34,7 +34,6 @@ export function TrainCard() {
   const [files, setFiles] = useState<File[]>([]);
   const handleFileUpload = (files: File[]) => {
     setFiles(files);
-    console.log(files);
   };
 
   const [modelName, setModelName] = useState("")
@@ -46,14 +45,11 @@ export function TrainCard() {
 
 
   return (
-    <Card className="p-0 max-w-xl w-full shadow-none border-none">
-      <MagicCard
-        gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-        className="p-0"
-      >
+    <Card className="p-0 max-w-xl relative overflow-hidden w-full">
+      <ShineBorder shineColor={["#2f0874" ,"#872d9b", "#e903f9", "#08f9fb", "#068fe0"]} />
         <CardHeader className="border-b border-border p-4 [.border-b]:pb-4">
-          <CardTitle>Create Model</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-xl text-center">Create Model</CardTitle>
+          <CardDescription className="text-center">
             Create your face trained model
           </CardDescription>
         </CardHeader>
@@ -174,7 +170,7 @@ export function TrainCard() {
           </form>
         </CardContent>
         <CardFooter className="p-4 border-t border-border [.border-t]:pt-4">
-          <Button disabled={modelName === "" || ethinicity === "" || eyeColor === "" || type === "" || age === 0} onClick={async () => {
+          <Button disabled={modelName === "" || ethinicity === "" || eyeColor === "" || type === "" || age === 0 || files.length < 5} onClick={async () => {
             const res = await axios.get(`${BACKEND_URL}/api/pre-signed-url`);
             const presignedUrl = res.data.url;
             const key: string = res.data.Key;
@@ -211,7 +207,6 @@ export function TrainCard() {
 
           }} className="w-full hover:cursor-pointer">Generate</Button>
         </CardFooter>
-      </MagicCard>
     </Card>
   );
 }

@@ -6,7 +6,7 @@ export function HowTOGenerateVideo() {
     {
       title: "Upload a Photo",
       content: (
-        <div>
+        <div key="Upload a Photo">
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Choose any single picture — a selfie, a portrait, or even artwork. One image is all it takes
           </p>
@@ -46,7 +46,7 @@ export function HowTOGenerateVideo() {
     {
       title: "Add Your Prompt",
       content: (
-        <div>
+        <div key="Add Your Prompt">
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Describe the scene you want — “cinematic slow-motion with neon lights” or “anime hero walking through a futuristic city.” Fantasize AI gets it
           </p>
@@ -86,7 +86,7 @@ export function HowTOGenerateVideo() {
     {
       title: "Watch It Come Alive",
       content: (
-        <div>
+        <div key="Watch It Come Alive">
           <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Your still photo instantly transforms into a cinematic, dynamic video that feels like it was shot on a movie set.
           </p>

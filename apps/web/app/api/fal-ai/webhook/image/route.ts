@@ -21,7 +21,8 @@ export async function POST (req: NextRequest) {
         },
         data: {
             status: "generated",
-            imageUrl: image_url
+            imageUrl: image_url,
+            createdAt: new Date()
         }
     })
 }

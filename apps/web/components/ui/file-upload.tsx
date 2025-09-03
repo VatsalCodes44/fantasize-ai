@@ -76,8 +76,11 @@ export const FileUpload = ({
       const firstError = rejections[0]?.errors[0];
       if (firstError?.code === 'file-invalid-type') {
         setError("Please upload only image files (JPEG, PNG, GIF, etc.)");
-      } else if (firstError?.code === 'too-many-files') {
-        setError(`Maximum ${maxFiles} images allowed`);
+      } else if (files.length < 5) {
+        setError(`Upload atleast 5 images`);
+      }
+      else if (firstError?.code === 'too-many-files') {
+         setError(`Maximum ${maxFiles} images allowed`);
       } else {
         setError("Error uploading files");
       }
@@ -112,6 +115,9 @@ export const FileUpload = ({
           </p>
           <p className="relative z-20 text-sm text-neutral-500 dark:text-neutral-500 mt-1">
             Supported formats: JPEG, PNG, GIF, WEBP, SVG
+          </p>
+          <p className="relative z-20 text-sm text-neutral-500 dark:text-neutral-500 mt-1">
+            Upload atleast 5 images
           </p>
 
           {error && (

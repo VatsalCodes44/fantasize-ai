@@ -2534,6 +2534,7 @@ export namespace Prisma {
     userId: string | null
     modelId: string | null
     falAiRequestId: string | null
+    createdAt: Date | null
   }
 
   export type OutputImagesMaxAggregateOutputType = {
@@ -2544,6 +2545,7 @@ export namespace Prisma {
     userId: string | null
     modelId: string | null
     falAiRequestId: string | null
+    createdAt: Date | null
   }
 
   export type OutputImagesCountAggregateOutputType = {
@@ -2554,6 +2556,7 @@ export namespace Prisma {
     userId: number
     modelId: number
     falAiRequestId: number
+    createdAt: number
     _all: number
   }
 
@@ -2566,6 +2569,7 @@ export namespace Prisma {
     userId?: true
     modelId?: true
     falAiRequestId?: true
+    createdAt?: true
   }
 
   export type OutputImagesMaxAggregateInputType = {
@@ -2576,6 +2580,7 @@ export namespace Prisma {
     userId?: true
     modelId?: true
     falAiRequestId?: true
+    createdAt?: true
   }
 
   export type OutputImagesCountAggregateInputType = {
@@ -2586,6 +2591,7 @@ export namespace Prisma {
     userId?: true
     modelId?: true
     falAiRequestId?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -2669,6 +2675,7 @@ export namespace Prisma {
     userId: string
     modelId: string
     falAiRequestId: string | null
+    createdAt: Date
     _count: OutputImagesCountAggregateOutputType | null
     _min: OutputImagesMinAggregateOutputType | null
     _max: OutputImagesMaxAggregateOutputType | null
@@ -2696,6 +2703,7 @@ export namespace Prisma {
     userId?: boolean
     modelId?: boolean
     falAiRequestId?: boolean
+    createdAt?: boolean
     model?: boolean | ModelDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["outputImages"]>
 
@@ -2707,6 +2715,7 @@ export namespace Prisma {
     userId?: boolean
     modelId?: boolean
     falAiRequestId?: boolean
+    createdAt?: boolean
     model?: boolean | ModelDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["outputImages"]>
 
@@ -2718,6 +2727,7 @@ export namespace Prisma {
     userId?: boolean
     modelId?: boolean
     falAiRequestId?: boolean
+    createdAt?: boolean
     model?: boolean | ModelDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["outputImages"]>
 
@@ -2729,9 +2739,10 @@ export namespace Prisma {
     userId?: boolean
     modelId?: boolean
     falAiRequestId?: boolean
+    createdAt?: boolean
   }
 
-  export type OutputImagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "prompt" | "status" | "userId" | "modelId" | "falAiRequestId", ExtArgs["result"]["outputImages"]>
+  export type OutputImagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "prompt" | "status" | "userId" | "modelId" | "falAiRequestId" | "createdAt", ExtArgs["result"]["outputImages"]>
   export type OutputImagesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     model?: boolean | ModelDefaultArgs<ExtArgs>
   }
@@ -2755,6 +2766,7 @@ export namespace Prisma {
       userId: string
       modelId: string
       falAiRequestId: string | null
+      createdAt: Date
     }, ExtArgs["result"]["outputImages"]>
     composites: {}
   }
@@ -3186,6 +3198,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"OutputImages", 'String'>
     readonly modelId: FieldRef<"OutputImages", 'String'>
     readonly falAiRequestId: FieldRef<"OutputImages", 'String'>
+    readonly createdAt: FieldRef<"OutputImages", 'DateTime'>
   }
     
 
@@ -3613,16 +3626,19 @@ export namespace Prisma {
   export type PacksMinAggregateOutputType = {
     id: string | null
     name: string | null
+    url: string | null
   }
 
   export type PacksMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    url: string | null
   }
 
   export type PacksCountAggregateOutputType = {
     id: number
     name: number
+    url: number
     _all: number
   }
 
@@ -3630,16 +3646,19 @@ export namespace Prisma {
   export type PacksMinAggregateInputType = {
     id?: true
     name?: true
+    url?: true
   }
 
   export type PacksMaxAggregateInputType = {
     id?: true
     name?: true
+    url?: true
   }
 
   export type PacksCountAggregateInputType = {
     id?: true
     name?: true
+    url?: true
     _all?: true
   }
 
@@ -3718,6 +3737,7 @@ export namespace Prisma {
   export type PacksGroupByOutputType = {
     id: string
     name: string
+    url: string
     _count: PacksCountAggregateOutputType | null
     _min: PacksMinAggregateOutputType | null
     _max: PacksMaxAggregateOutputType | null
@@ -3740,6 +3760,7 @@ export namespace Prisma {
   export type PacksSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    url?: boolean
     packPrompts?: boolean | Packs$packPromptsArgs<ExtArgs>
     _count?: boolean | PacksCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packs"]>
@@ -3747,19 +3768,22 @@ export namespace Prisma {
   export type PacksSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    url?: boolean
   }, ExtArgs["result"]["packs"]>
 
   export type PacksSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    url?: boolean
   }, ExtArgs["result"]["packs"]>
 
   export type PacksSelectScalar = {
     id?: boolean
     name?: boolean
+    url?: boolean
   }
 
-  export type PacksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["packs"]>
+  export type PacksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url", ExtArgs["result"]["packs"]>
   export type PacksInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     packPrompts?: boolean | Packs$packPromptsArgs<ExtArgs>
     _count?: boolean | PacksCountOutputTypeDefaultArgs<ExtArgs>
@@ -3775,6 +3799,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
+      url: string
     }, ExtArgs["result"]["packs"]>
     composites: {}
   }
@@ -4201,6 +4226,7 @@ export namespace Prisma {
   interface PacksFieldRefs {
     readonly id: FieldRef<"Packs", 'String'>
     readonly name: FieldRef<"Packs", 'String'>
+    readonly url: FieldRef<"Packs", 'String'>
   }
     
 
@@ -5706,7 +5732,8 @@ export namespace Prisma {
     status: 'status',
     userId: 'userId',
     modelId: 'modelId',
-    falAiRequestId: 'falAiRequestId'
+    falAiRequestId: 'falAiRequestId',
+    createdAt: 'createdAt'
   };
 
   export type OutputImagesScalarFieldEnum = (typeof OutputImagesScalarFieldEnum)[keyof typeof OutputImagesScalarFieldEnum]
@@ -5714,7 +5741,8 @@ export namespace Prisma {
 
   export const PacksScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    name: 'name',
+    url: 'url'
   };
 
   export type PacksScalarFieldEnum = (typeof PacksScalarFieldEnum)[keyof typeof PacksScalarFieldEnum]
@@ -6017,6 +6045,7 @@ export namespace Prisma {
     userId?: StringFilter<"OutputImages"> | string
     modelId?: StringFilter<"OutputImages"> | string
     falAiRequestId?: StringNullableFilter<"OutputImages"> | string | null
+    createdAt?: DateTimeFilter<"OutputImages"> | Date | string
     model?: XOR<ModelScalarRelationFilter, ModelWhereInput>
   }
 
@@ -6028,6 +6057,7 @@ export namespace Prisma {
     userId?: SortOrder
     modelId?: SortOrder
     falAiRequestId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     model?: ModelOrderByWithRelationInput
   }
 
@@ -6042,6 +6072,7 @@ export namespace Prisma {
     userId?: StringFilter<"OutputImages"> | string
     modelId?: StringFilter<"OutputImages"> | string
     falAiRequestId?: StringNullableFilter<"OutputImages"> | string | null
+    createdAt?: DateTimeFilter<"OutputImages"> | Date | string
     model?: XOR<ModelScalarRelationFilter, ModelWhereInput>
   }, "id">
 
@@ -6053,6 +6084,7 @@ export namespace Prisma {
     userId?: SortOrder
     modelId?: SortOrder
     falAiRequestId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     _count?: OutputImagesCountOrderByAggregateInput
     _max?: OutputImagesMaxOrderByAggregateInput
     _min?: OutputImagesMinOrderByAggregateInput
@@ -6069,6 +6101,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"OutputImages"> | string
     modelId?: StringWithAggregatesFilter<"OutputImages"> | string
     falAiRequestId?: StringNullableWithAggregatesFilter<"OutputImages"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"OutputImages"> | Date | string
   }
 
   export type PacksWhereInput = {
@@ -6077,12 +6110,14 @@ export namespace Prisma {
     NOT?: PacksWhereInput | PacksWhereInput[]
     id?: StringFilter<"Packs"> | string
     name?: StringFilter<"Packs"> | string
+    url?: StringFilter<"Packs"> | string
     packPrompts?: PackPromptsListRelationFilter
   }
 
   export type PacksOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    url?: SortOrder
     packPrompts?: PackPromptsOrderByRelationAggregateInput
   }
 
@@ -6092,12 +6127,14 @@ export namespace Prisma {
     OR?: PacksWhereInput[]
     NOT?: PacksWhereInput | PacksWhereInput[]
     name?: StringFilter<"Packs"> | string
+    url?: StringFilter<"Packs"> | string
     packPrompts?: PackPromptsListRelationFilter
   }, "id">
 
   export type PacksOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    url?: SortOrder
     _count?: PacksCountOrderByAggregateInput
     _max?: PacksMaxOrderByAggregateInput
     _min?: PacksMinOrderByAggregateInput
@@ -6109,6 +6146,7 @@ export namespace Prisma {
     NOT?: PacksScalarWhereWithAggregatesInput | PacksScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Packs"> | string
     name?: StringWithAggregatesFilter<"Packs"> | string
+    url?: StringWithAggregatesFilter<"Packs"> | string
   }
 
   export type PackPromptsWhereInput = {
@@ -6300,6 +6338,7 @@ export namespace Prisma {
     status?: $Enums.OutputImagesStatusEnum
     userId: string
     falAiRequestId?: string | null
+    createdAt?: Date | string
     model: ModelCreateNestedOneWithoutOutputImagesInput
   }
 
@@ -6311,6 +6350,7 @@ export namespace Prisma {
     userId: string
     modelId: string
     falAiRequestId?: string | null
+    createdAt?: Date | string
   }
 
   export type OutputImagesUpdateInput = {
@@ -6320,6 +6360,7 @@ export namespace Prisma {
     status?: EnumOutputImagesStatusEnumFieldUpdateOperationsInput | $Enums.OutputImagesStatusEnum
     userId?: StringFieldUpdateOperationsInput | string
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     model?: ModelUpdateOneRequiredWithoutOutputImagesNestedInput
   }
 
@@ -6331,6 +6372,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     modelId?: StringFieldUpdateOperationsInput | string
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OutputImagesCreateManyInput = {
@@ -6341,6 +6383,7 @@ export namespace Prisma {
     userId: string
     modelId: string
     falAiRequestId?: string | null
+    createdAt?: Date | string
   }
 
   export type OutputImagesUpdateManyMutationInput = {
@@ -6350,6 +6393,7 @@ export namespace Prisma {
     status?: EnumOutputImagesStatusEnumFieldUpdateOperationsInput | $Enums.OutputImagesStatusEnum
     userId?: StringFieldUpdateOperationsInput | string
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OutputImagesUncheckedUpdateManyInput = {
@@ -6360,45 +6404,53 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     modelId?: StringFieldUpdateOperationsInput | string
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PacksCreateInput = {
     id?: string
     name: string
+    url: string
     packPrompts?: PackPromptsCreateNestedManyWithoutPackInput
   }
 
   export type PacksUncheckedCreateInput = {
     id?: string
     name: string
+    url: string
     packPrompts?: PackPromptsUncheckedCreateNestedManyWithoutPackInput
   }
 
   export type PacksUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     packPrompts?: PackPromptsUpdateManyWithoutPackNestedInput
   }
 
   export type PacksUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     packPrompts?: PackPromptsUncheckedUpdateManyWithoutPackNestedInput
   }
 
   export type PacksCreateManyInput = {
     id?: string
     name: string
+    url: string
   }
 
   export type PacksUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
   }
 
   export type PacksUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
   }
 
   export type PackPromptsCreateInput = {
@@ -6747,6 +6799,7 @@ export namespace Prisma {
     userId?: SortOrder
     modelId?: SortOrder
     falAiRequestId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type OutputImagesMaxOrderByAggregateInput = {
@@ -6757,6 +6810,7 @@ export namespace Prisma {
     userId?: SortOrder
     modelId?: SortOrder
     falAiRequestId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type OutputImagesMinOrderByAggregateInput = {
@@ -6767,6 +6821,7 @@ export namespace Prisma {
     userId?: SortOrder
     modelId?: SortOrder
     falAiRequestId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type EnumOutputImagesStatusEnumWithAggregatesFilter<$PrismaModel = never> = {
@@ -6792,16 +6847,19 @@ export namespace Prisma {
   export type PacksCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    url?: SortOrder
   }
 
   export type PacksMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    url?: SortOrder
   }
 
   export type PacksMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    url?: SortOrder
   }
 
   export type PacksScalarRelationFilter = {
@@ -7233,6 +7291,7 @@ export namespace Prisma {
     status?: $Enums.OutputImagesStatusEnum
     userId: string
     falAiRequestId?: string | null
+    createdAt?: Date | string
   }
 
   export type OutputImagesUncheckedCreateWithoutModelInput = {
@@ -7242,6 +7301,7 @@ export namespace Prisma {
     status?: $Enums.OutputImagesStatusEnum
     userId: string
     falAiRequestId?: string | null
+    createdAt?: Date | string
   }
 
   export type OutputImagesCreateOrConnectWithoutModelInput = {
@@ -7281,6 +7341,7 @@ export namespace Prisma {
     userId?: StringFilter<"OutputImages"> | string
     modelId?: StringFilter<"OutputImages"> | string
     falAiRequestId?: StringNullableFilter<"OutputImages"> | string | null
+    createdAt?: DateTimeFilter<"OutputImages"> | Date | string
   }
 
   export type ModelCreateWithoutOutputImagesInput = {
@@ -7423,11 +7484,13 @@ export namespace Prisma {
   export type PacksCreateWithoutPackPromptsInput = {
     id?: string
     name: string
+    url: string
   }
 
   export type PacksUncheckedCreateWithoutPackPromptsInput = {
     id?: string
     name: string
+    url: string
   }
 
   export type PacksCreateOrConnectWithoutPackPromptsInput = {
@@ -7449,11 +7512,13 @@ export namespace Prisma {
   export type PacksUpdateWithoutPackPromptsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
   }
 
   export type PacksUncheckedUpdateWithoutPackPromptsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
   }
 
   export type OutputImagesCreateManyModelInput = {
@@ -7463,6 +7528,7 @@ export namespace Prisma {
     status?: $Enums.OutputImagesStatusEnum
     userId: string
     falAiRequestId?: string | null
+    createdAt?: Date | string
   }
 
   export type OutputImagesUpdateWithoutModelInput = {
@@ -7472,6 +7538,7 @@ export namespace Prisma {
     status?: EnumOutputImagesStatusEnumFieldUpdateOperationsInput | $Enums.OutputImagesStatusEnum
     userId?: StringFieldUpdateOperationsInput | string
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OutputImagesUncheckedUpdateWithoutModelInput = {
@@ -7481,6 +7548,7 @@ export namespace Prisma {
     status?: EnumOutputImagesStatusEnumFieldUpdateOperationsInput | $Enums.OutputImagesStatusEnum
     userId?: StringFieldUpdateOperationsInput | string
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OutputImagesUncheckedUpdateManyWithoutModelInput = {
@@ -7490,6 +7558,7 @@ export namespace Prisma {
     status?: EnumOutputImagesStatusEnumFieldUpdateOperationsInput | $Enums.OutputImagesStatusEnum
     userId?: StringFieldUpdateOperationsInput | string
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PackPromptsCreateManyPackInput = {

@@ -6,7 +6,7 @@ export function HowTOGenerateImage() {
     {
       title: "Upload Your Photos",
       content: (
-        <div>
+        <div key="Upload Your Photos">
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Drop in 15–20 selfies with different angles and vibes. The more variety you give, the sharper and more realistic your AI model becomes
           </p>
@@ -46,7 +46,7 @@ export function HowTOGenerateImage() {
     {
       title: "Train Your AI Twin",
       content: (
-        <div>
+        <div key="Train Your AI Twin">
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             In just minutes, Fantasize AI builds a personal face model that looks exactly like you — ready to be styled in endless ways
           </p>
@@ -86,7 +86,7 @@ export function HowTOGenerateImage() {
     {
       title: "Turn Prompts into Magic",
       content: (
-        <div>
+        <div key="Turn Prompts into Magic">
           <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Type what you imagine — “anime warrior,” “Hollywood red carpet,” or “medieval king.” Your AI twin instantly steps into the role
           </p>
@@ -126,7 +126,7 @@ export function HowTOGenerateImage() {
     {
       title: "Create Stunning, Viral-Ready Images",
       content: (
-        <div>
+        <div key="Create Stunning, Viral-Ready Images">
           <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Generate jaw-dropping, hyper-realistic images of yourself in limitless styles. Perfect for Instagram, TikTok, or just blowing your friends’ minds
           </p>
