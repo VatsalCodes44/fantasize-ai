@@ -3619,46 +3619,82 @@ export namespace Prisma {
 
   export type AggregatePacks = {
     _count: PacksCountAggregateOutputType | null
+    _avg: PacksAvgAggregateOutputType | null
+    _sum: PacksSumAggregateOutputType | null
     _min: PacksMinAggregateOutputType | null
     _max: PacksMaxAggregateOutputType | null
   }
 
+  export type PacksAvgAggregateOutputType = {
+    noOfPrompts: number | null
+  }
+
+  export type PacksSumAggregateOutputType = {
+    noOfPrompts: number | null
+  }
+
   export type PacksMinAggregateOutputType = {
     id: string | null
-    name: string | null
+    title: string | null
+    description: string | null
     url: string | null
+    content: string | null
+    noOfPrompts: number | null
   }
 
   export type PacksMaxAggregateOutputType = {
     id: string | null
-    name: string | null
+    title: string | null
+    description: string | null
     url: string | null
+    content: string | null
+    noOfPrompts: number | null
   }
 
   export type PacksCountAggregateOutputType = {
     id: number
-    name: number
+    title: number
+    description: number
     url: number
+    content: number
+    noOfPrompts: number
     _all: number
   }
 
 
+  export type PacksAvgAggregateInputType = {
+    noOfPrompts?: true
+  }
+
+  export type PacksSumAggregateInputType = {
+    noOfPrompts?: true
+  }
+
   export type PacksMinAggregateInputType = {
     id?: true
-    name?: true
+    title?: true
+    description?: true
     url?: true
+    content?: true
+    noOfPrompts?: true
   }
 
   export type PacksMaxAggregateInputType = {
     id?: true
-    name?: true
+    title?: true
+    description?: true
     url?: true
+    content?: true
+    noOfPrompts?: true
   }
 
   export type PacksCountAggregateInputType = {
     id?: true
-    name?: true
+    title?: true
+    description?: true
     url?: true
+    content?: true
+    noOfPrompts?: true
     _all?: true
   }
 
@@ -3700,6 +3736,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: PacksAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PacksSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: PacksMinAggregateInputType
@@ -3730,15 +3778,22 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: PacksCountAggregateInputType | true
+    _avg?: PacksAvgAggregateInputType
+    _sum?: PacksSumAggregateInputType
     _min?: PacksMinAggregateInputType
     _max?: PacksMaxAggregateInputType
   }
 
   export type PacksGroupByOutputType = {
     id: string
-    name: string
+    title: string
+    description: string
     url: string
+    content: string
+    noOfPrompts: number
     _count: PacksCountAggregateOutputType | null
+    _avg: PacksAvgAggregateOutputType | null
+    _sum: PacksSumAggregateOutputType | null
     _min: PacksMinAggregateOutputType | null
     _max: PacksMaxAggregateOutputType | null
   }
@@ -3759,31 +3814,43 @@ export namespace Prisma {
 
   export type PacksSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    title?: boolean
+    description?: boolean
     url?: boolean
+    content?: boolean
+    noOfPrompts?: boolean
     packPrompts?: boolean | Packs$packPromptsArgs<ExtArgs>
     _count?: boolean | PacksCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packs"]>
 
   export type PacksSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    title?: boolean
+    description?: boolean
     url?: boolean
+    content?: boolean
+    noOfPrompts?: boolean
   }, ExtArgs["result"]["packs"]>
 
   export type PacksSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    title?: boolean
+    description?: boolean
     url?: boolean
+    content?: boolean
+    noOfPrompts?: boolean
   }, ExtArgs["result"]["packs"]>
 
   export type PacksSelectScalar = {
     id?: boolean
-    name?: boolean
+    title?: boolean
+    description?: boolean
     url?: boolean
+    content?: boolean
+    noOfPrompts?: boolean
   }
 
-  export type PacksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url", ExtArgs["result"]["packs"]>
+  export type PacksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "url" | "content" | "noOfPrompts", ExtArgs["result"]["packs"]>
   export type PacksInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     packPrompts?: boolean | Packs$packPromptsArgs<ExtArgs>
     _count?: boolean | PacksCountOutputTypeDefaultArgs<ExtArgs>
@@ -3798,8 +3865,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
+      title: string
+      description: string
       url: string
+      content: string
+      noOfPrompts: number
     }, ExtArgs["result"]["packs"]>
     composites: {}
   }
@@ -4225,8 +4295,11 @@ export namespace Prisma {
    */
   interface PacksFieldRefs {
     readonly id: FieldRef<"Packs", 'String'>
-    readonly name: FieldRef<"Packs", 'String'>
+    readonly title: FieldRef<"Packs", 'String'>
+    readonly description: FieldRef<"Packs", 'String'>
     readonly url: FieldRef<"Packs", 'String'>
+    readonly content: FieldRef<"Packs", 'String'>
+    readonly noOfPrompts: FieldRef<"Packs", 'Int'>
   }
     
 
@@ -5741,8 +5814,11 @@ export namespace Prisma {
 
   export const PacksScalarFieldEnum: {
     id: 'id',
-    name: 'name',
-    url: 'url'
+    title: 'title',
+    description: 'description',
+    url: 'url',
+    content: 'content',
+    noOfPrompts: 'noOfPrompts'
   };
 
   export type PacksScalarFieldEnum = (typeof PacksScalarFieldEnum)[keyof typeof PacksScalarFieldEnum]
@@ -6109,15 +6185,21 @@ export namespace Prisma {
     OR?: PacksWhereInput[]
     NOT?: PacksWhereInput | PacksWhereInput[]
     id?: StringFilter<"Packs"> | string
-    name?: StringFilter<"Packs"> | string
+    title?: StringFilter<"Packs"> | string
+    description?: StringFilter<"Packs"> | string
     url?: StringFilter<"Packs"> | string
+    content?: StringFilter<"Packs"> | string
+    noOfPrompts?: IntFilter<"Packs"> | number
     packPrompts?: PackPromptsListRelationFilter
   }
 
   export type PacksOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     url?: SortOrder
+    content?: SortOrder
+    noOfPrompts?: SortOrder
     packPrompts?: PackPromptsOrderByRelationAggregateInput
   }
 
@@ -6126,18 +6208,26 @@ export namespace Prisma {
     AND?: PacksWhereInput | PacksWhereInput[]
     OR?: PacksWhereInput[]
     NOT?: PacksWhereInput | PacksWhereInput[]
-    name?: StringFilter<"Packs"> | string
+    title?: StringFilter<"Packs"> | string
+    description?: StringFilter<"Packs"> | string
     url?: StringFilter<"Packs"> | string
+    content?: StringFilter<"Packs"> | string
+    noOfPrompts?: IntFilter<"Packs"> | number
     packPrompts?: PackPromptsListRelationFilter
   }, "id">
 
   export type PacksOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     url?: SortOrder
+    content?: SortOrder
+    noOfPrompts?: SortOrder
     _count?: PacksCountOrderByAggregateInput
+    _avg?: PacksAvgOrderByAggregateInput
     _max?: PacksMaxOrderByAggregateInput
     _min?: PacksMinOrderByAggregateInput
+    _sum?: PacksSumOrderByAggregateInput
   }
 
   export type PacksScalarWhereWithAggregatesInput = {
@@ -6145,8 +6235,11 @@ export namespace Prisma {
     OR?: PacksScalarWhereWithAggregatesInput[]
     NOT?: PacksScalarWhereWithAggregatesInput | PacksScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Packs"> | string
-    name?: StringWithAggregatesFilter<"Packs"> | string
+    title?: StringWithAggregatesFilter<"Packs"> | string
+    description?: StringWithAggregatesFilter<"Packs"> | string
     url?: StringWithAggregatesFilter<"Packs"> | string
+    content?: StringWithAggregatesFilter<"Packs"> | string
+    noOfPrompts?: IntWithAggregatesFilter<"Packs"> | number
   }
 
   export type PackPromptsWhereInput = {
@@ -6409,48 +6502,69 @@ export namespace Prisma {
 
   export type PacksCreateInput = {
     id?: string
-    name: string
+    title: string
+    description: string
     url: string
+    content: string
+    noOfPrompts: number
     packPrompts?: PackPromptsCreateNestedManyWithoutPackInput
   }
 
   export type PacksUncheckedCreateInput = {
     id?: string
-    name: string
+    title: string
+    description: string
     url: string
+    content: string
+    noOfPrompts: number
     packPrompts?: PackPromptsUncheckedCreateNestedManyWithoutPackInput
   }
 
   export type PacksUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    noOfPrompts?: IntFieldUpdateOperationsInput | number
     packPrompts?: PackPromptsUpdateManyWithoutPackNestedInput
   }
 
   export type PacksUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    noOfPrompts?: IntFieldUpdateOperationsInput | number
     packPrompts?: PackPromptsUncheckedUpdateManyWithoutPackNestedInput
   }
 
   export type PacksCreateManyInput = {
     id?: string
-    name: string
+    title: string
+    description: string
     url: string
+    content: string
+    noOfPrompts: number
   }
 
   export type PacksUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    noOfPrompts?: IntFieldUpdateOperationsInput | number
   }
 
   export type PacksUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    noOfPrompts?: IntFieldUpdateOperationsInput | number
   }
 
   export type PackPromptsCreateInput = {
@@ -6846,20 +6960,37 @@ export namespace Prisma {
 
   export type PacksCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     url?: SortOrder
+    content?: SortOrder
+    noOfPrompts?: SortOrder
+  }
+
+  export type PacksAvgOrderByAggregateInput = {
+    noOfPrompts?: SortOrder
   }
 
   export type PacksMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     url?: SortOrder
+    content?: SortOrder
+    noOfPrompts?: SortOrder
   }
 
   export type PacksMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     url?: SortOrder
+    content?: SortOrder
+    noOfPrompts?: SortOrder
+  }
+
+  export type PacksSumOrderByAggregateInput = {
+    noOfPrompts?: SortOrder
   }
 
   export type PacksScalarRelationFilter = {
@@ -7483,14 +7614,20 @@ export namespace Prisma {
 
   export type PacksCreateWithoutPackPromptsInput = {
     id?: string
-    name: string
+    title: string
+    description: string
     url: string
+    content: string
+    noOfPrompts: number
   }
 
   export type PacksUncheckedCreateWithoutPackPromptsInput = {
     id?: string
-    name: string
+    title: string
+    description: string
     url: string
+    content: string
+    noOfPrompts: number
   }
 
   export type PacksCreateOrConnectWithoutPackPromptsInput = {
@@ -7511,14 +7648,20 @@ export namespace Prisma {
 
   export type PacksUpdateWithoutPackPromptsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    noOfPrompts?: IntFieldUpdateOperationsInput | number
   }
 
   export type PacksUncheckedUpdateWithoutPackPromptsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    noOfPrompts?: IntFieldUpdateOperationsInput | number
   }
 
   export type OutputImagesCreateManyModelInput = {

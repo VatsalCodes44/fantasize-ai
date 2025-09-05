@@ -25,4 +25,7 @@ export async function POST (req: NextRequest) {
             createdAt: new Date()
         }
     })
+    return NextResponse.json({
+        message: "web hook recieved"
+    })
 }

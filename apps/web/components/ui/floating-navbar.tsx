@@ -211,9 +211,9 @@ export const FloatingNav = ({
       icon: <IconTextCaption className={`${pathname.endsWith("generate") ? "text-cyan-500" : "text-neutral-500 dark:text-white"} h-4 w-4`} />,
     },
     {
-      name: "Train",
-      link: "/dashboard/train",
-      icon: <IconFaceId className={`${pathname.endsWith("train") ? "text-cyan-500" : "text-neutral-500 dark:text-white"} h-4 w-4`} />,
+      name: "Face-Model",
+      link: "/dashboard/face-model",
+      icon: <IconFaceId className={`${pathname.endsWith("face-model") ? "text-cyan-500" : "text-neutral-500 dark:text-white"} h-4 w-4`} />,
     },
     {
       name: "Packs",

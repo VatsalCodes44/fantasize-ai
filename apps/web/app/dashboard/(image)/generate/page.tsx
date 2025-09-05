@@ -1,44 +1,22 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card
-} from "@/components/ui/card";
-import * as React from "react"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea";
-import { ShineBorder } from "@/components/magicui/shine-border";
+import PrismaClient from "@repo/db/client";
+import { auth } from "@clerk/nextjs/server";
+import GenerateImage from "@/components/manualComponents/GenerateImage";
 
-export default function ShineBorderDemo() {
+export default async function () {
+  const {userId} = await auth()
+  if (!userId) return <div>Please sign in to generate images.</div>
+  const models = await PrismaClient.model.findMany({
+    where: {
+      userId: userId,
+      trainingStatus: "generated"
+    }, select: {
+      id: true,
+      name: true
+    }
+  })
   return (
-    <div className="flex justify-center mt-20">
-      <Card className="relative h-fit overflow-hidden max-w-xl w-full">
-        <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
-        <div className="p-4">
-          <Select>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a fruit" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Fruits</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          <Textarea placeholder="Fantasize yourself..." />
-        </div>
-      </Card>
+    <div className="flex justify-center pt-20">
+      <GenerateImage models={models} />
     </div>
   );
 }
