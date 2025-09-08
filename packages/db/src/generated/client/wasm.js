@@ -150,6 +150,19 @@ exports.Prisma.OutputImagesScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.OutputVideosScalarFieldEnum = {
+  id: 'id',
+  videoUrl: 'videoUrl',
+  imageUrl: 'imageUrl',
+  prompt: 'prompt',
+  videoType: 'videoType',
+  status: 'status',
+  generateAudio: 'generateAudio',
+  userId: 'userId',
+  falAiRequestId: 'falAiRequestId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.PacksScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -222,9 +235,15 @@ exports.OutputImagesStatusEnum = exports.$Enums.OutputImagesStatusEnum = {
   Failed: 'Failed'
 };
 
+exports.VideoTypeEnum = exports.$Enums.VideoTypeEnum = {
+  TextToVideo: 'TextToVideo',
+  ImageToVideo: 'ImageToVideo'
+};
+
 exports.Prisma.ModelName = {
   Model: 'Model',
   OutputImages: 'OutputImages',
+  OutputVideos: 'OutputVideos',
   Packs: 'Packs',
   PackPrompts: 'PackPrompts'
 };

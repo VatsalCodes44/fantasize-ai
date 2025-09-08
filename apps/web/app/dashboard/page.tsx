@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 
 function page() {
-    redirect('/dashboard/generate')
+    redirect('/dashboard/image/generate')
   return (
     <div></div>
   )

@@ -8,8 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { ShineBorder } from "@/components/magicui/shine-border";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 import { Textarea } from "../ui/textarea";
@@ -80,7 +78,7 @@ export default function GenerateImage({models}: {models: models[]}) {
           </div>
         </CardContent>
         <CardFooter className="p-4 border-t border-border [.border-t]:pt-4">
-           <Button disabled={model === "" || prompt === "" || numOfImages === null} className="w-full mt-8" onClick={async () => {
+           <Button disabled={prompt === "" || numOfImages === null} className="w-full mt-8" onClick={async () => {
                 const res = axios.post(BACKEND_URL+"/api/ai/generate", {
                   prompt,
                   modelId: model,

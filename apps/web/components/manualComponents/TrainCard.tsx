@@ -19,7 +19,6 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
@@ -42,7 +41,7 @@ export function TrainCard() {
   const [eyeColor, setEyeColor] = useState("")
   const [age, setAge] = useState(0)
   const [bald, setBald] = useState(false)
-  console.log(modelName,type,ethinicity,eyeColor,age,bald, files.length)
+//   console.log(modelName,type,ethinicity,eyeColor,age,bald, files.length)
 
 
   return (

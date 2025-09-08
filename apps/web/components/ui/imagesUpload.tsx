@@ -314,7 +314,7 @@ const secondaryVariant = {
   },
 };
 
-export const FileUpload = ({
+export const ImagesUpload = ({
   onChange,
   maxFiles = 30,
   minFiles = 5, // Added min files parameter
@@ -364,7 +364,7 @@ export const FileUpload = ({
     multiple: true,
     noClick: true,
     accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.webp', '.svg']
+      'image/*': ['.jpeg', '.jpg', '.png', '.webp', '.svg']
     },
     onDrop: handleFileChange,
     onDropRejected: (rejections) => {

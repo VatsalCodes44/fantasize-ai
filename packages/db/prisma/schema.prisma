@@ -53,7 +53,7 @@ model Model {
 
 model OutputImages {
   id              String   @id @default(uuid())
-  imageUrl        String   @default("")
+  imageUrl        String[] @default([])
   prompt          String
   status          OutputImagesStatusEnum    @default(Pending)
   userId          String
@@ -61,6 +61,20 @@ model OutputImages {
   falAiRequestId  String?
   createdAt       DateTime    @default(now())
   model           Model    @relation(fields:[modelId], references:[id])
+  // user            User     @relation(fields:[userId], references:[id])
+}
+
+model OutputVideos {
+  id              String    @id @default(uuid())
+  videoUrl        String  @default("")
+  imageUrl        String?   
+  prompt          String
+  videoType       VideoTypeEnum
+  status          OutputImagesStatusEnum    @default(Pending)
+  generateAudio   Boolean
+  userId          String
+  falAiRequestId  String?
+  createdAt       DateTime    @default(now())
   // user            User     @relation(fields:[userId], references:[id])
 }
 
@@ -122,4 +136,9 @@ enum OutputImagesStatusEnum {
   Pending
   generated 
   Failed
+}
+
+enum VideoTypeEnum {
+  TextToVideo
+  ImageToVideo
 }
