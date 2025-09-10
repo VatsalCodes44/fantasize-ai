@@ -122,28 +122,6 @@ async function verifyWebhookSignature(requestId: string, userId: string, timesta
     }
 }
 
-
-// export async function POST (req: NextRequest) {
-
-    
-//     const images: {url:string, width: number, height: number, "content/type": string} []= body.payload.images;
-//     const dbRequests = await Promise.all(images.map((image)=>{
-//         return PrismaClient.outputImages.updateMany({
-//             where: {
-//                 falAiRequestId: request_id,
-//             },
-//             data: {
-//                 status: "generated",
-//                 imageUrl: {
-//                     push: image.url
-//                 },
-//                 createdAt: new Date()
-//             }
-//         })
-//     }))
-    
-// }
-
 export async function POST (req: NextRequest) {
         const arrayBuffer = await req.arrayBuffer(); // raw bytes
     const bodyBuffer = Buffer.from(arrayBuffer); // convert to Node Buffer
@@ -172,14 +150,14 @@ export async function POST (req: NextRequest) {
         },{status:422})
     }
     const request_id: string = body.request_id;
-    const tensor_path: string = body.diffusers_lora_file.url;
-    await PrismaClient.model.updateMany({
+    const videoUrl: string = body.video.url;
+    await PrismaClient.outputVideos.updateMany({
             where: {
             falAiRequestId: request_id,
         },
         data: {
-            trainingStatus: "generated",
-            tensorPath: tensor_path
+            status: "generated",
+            videoUrl
         }
     })
     return NextResponse.json({

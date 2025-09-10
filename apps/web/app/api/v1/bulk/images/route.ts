@@ -17,7 +17,11 @@ export async function GET(req: NextRequest) {
         },
         orderBy: { createdAt: "desc" },
         skip: parseInt(offset),
-        take: parseInt(limit)
+        take: parseInt(limit),
+        select: {
+            imageUrl: true,
+            createdAt: true
+        }
     })
 
     return NextResponse.json({

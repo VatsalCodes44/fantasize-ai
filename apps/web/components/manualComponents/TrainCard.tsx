@@ -169,7 +169,7 @@ export function TrainCard() {
         </CardContent>
         <CardFooter className="p-4 border-t border-border [.border-t]:pt-4">
           <Button disabled={modelName === "" || ethinicity === "" || eyeColor === "" || type === "" || age === 0 || files.length < 5} onClick={async () => {
-            const res = await axios.get(`${BACKEND_URL}/api/pre-signed-url`);
+            const res = await axios.get(`${BACKEND_URL}/pre-signed-url/zip`);
             const presignedUrl = res.data.url;
             const key: string = res.data.Key;
 
@@ -189,9 +189,8 @@ export function TrainCard() {
                 }
             })
 
-
             
-            const res3 = await axios.post(BACKEND_URL+"/api/ai/training", {
+            const res3 = await axios.post(BACKEND_URL+"/ai/training", {
                 name: modelName,
                 age,
                 type,

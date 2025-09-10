@@ -103,7 +103,7 @@ export function Packs({ cards, models }: { cards: Card[]; models: Model[] }) {
               <button disabled={!model} className="my-6 px-4 py-2 rounded-full bg-green-500 text-white font-bold w-full hover:cursor-pointer hover:bg-green-600
               disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-green-300 disabled:bg-green-300"
               onClick={async () => {
-                const res = axios.post(`${BACKEND_URL}/api/ai/generate/pack`,{
+                const res = axios.post(`${BACKEND_URL}/ai/generate/pack`,{
                   modelId: model,
                   packId: card.id
                 })

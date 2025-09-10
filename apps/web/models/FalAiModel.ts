@@ -15,7 +15,7 @@ export class FalAiModel {
               loras: [{path: tensorPath, scale: 1}],
               num_images
             },
-            // webhookUrl: `${process.env.WEKHOOK_URL}/api/fal-ai/webhook/image`
+            webhookUrl: "https://fantasize-ai.vatsalmahajan.in/api/v2/webhook/image"
         });
         return {request_id, response_url};
     }
@@ -25,7 +25,7 @@ export class FalAiModel {
         input: {
           images_data_url: zipUrl,
         },
-        // webhookUrl: `${process.env.WEKHOOK_URL}/api/fal-ai/webhook/train`,
+        webhookUrl: "https://fantasize-ai.vatsalmahajan.in/api/v2/webhook/train",
         
       });
       return {request_id, response_url}
@@ -39,7 +39,7 @@ export class FalAiModel {
           generate_audio: generateAudio,
           image_url: imageUrl,
         },
-        // webhookUrl: "https://optional.webhook.url/for/results",
+        webhookUrl: "https://fantasize-ai.vatsalmahajan.in/api/v2/webhook/video",
       });
       return {request_id,};
     }
@@ -52,7 +52,7 @@ export class FalAiModel {
           resolution,
           enhance_prompt: true
         },
-        // webhookUrl: "https://optional.webhook.url/for/results",
+        webhookUrl: "https://fantasize-ai.vatsalmahajan.in/api/v2/webhook/video",
       });
       return {request_id,};
     }

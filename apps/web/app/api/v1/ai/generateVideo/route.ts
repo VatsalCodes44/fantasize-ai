@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { generateImage, generateVideo } from "@repo/common/types";
+import { generateVideo } from "@repo/common/types";
 import PrismaClient from "@repo/db/client";
 import { FalAiModel } from "models/FalAiModel";
 import { NextRequest, NextResponse } from "next/server";
@@ -10,6 +10,7 @@ export async function POST(req: NextRequest) {
     const parsedBody = generateVideo.safeParse(await req.json())
     const {userId} = await auth()
     if (!parsedBody.success || !userId) {
+        console.log(parsedBody.error)
         return NextResponse.json({
                 message: "Incorrect Inputs"
             },{
@@ -18,14 +19,16 @@ export async function POST(req: NextRequest) {
         )
     }
 
-    const {prompt, imageUrl, resolution, generateAudio} = parsedBody.data;
+    const {prompt, imageName, resolution, generateAudio} = parsedBody.data;
+
+    const imageUrl = "https://my-ai-generator.s3.us-east-1.amazonaws.com/" + imageName
     
     let requestId = ""
-    if (imageUrl) {
-        const {request_id} = await falAiModel.imageToVideo(prompt, resolution, generateAudio == "true" ? true : false, imageUrl)
+    if (imageName) {
+        const {request_id} = await falAiModel.imageToVideo(prompt, resolution, generateAudio, imageUrl)
         requestId = request_id
     } else {
-        const {request_id} = await falAiModel.textToVideo(prompt, resolution, generateAudio == "true" ? true : false)
+        const {request_id} = await falAiModel.textToVideo(prompt, resolution, generateAudio)
         requestId = request_id
     }
 
@@ -34,8 +37,8 @@ export async function POST(req: NextRequest) {
             userId, 
             prompt, 
             falAiRequestId: requestId,
-            videoType: imageUrl ? "ImageToVideo" : "TextToVideo",
-            generateAudio: generateAudio == "true" ? true : false
+            videoType: imageName ? "ImageToVideo" : "TextToVideo",
+            generateAudio
         }
     })
      

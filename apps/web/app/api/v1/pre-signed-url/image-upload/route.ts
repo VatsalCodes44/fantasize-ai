@@ -15,7 +15,7 @@ const s3Client = new S3Client({
 export async function GET(req: NextRequest) {
   try {
     console.log("Generating presigned URL...");
-    const Key = `imagesVeo3/${Date.now()}_${Math.random()}`;
+    const Key = `images/${Date.now()}_${Math.random()}`;
     const presignedUrl = await getSignedUrl(
       s3Client,
       new PutObjectCommand({

@@ -1,35 +1,35 @@
-import { cn } from "@/lib/utils";
-import React, { useRef, useState } from "react";
+"use client";
+
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { IconUpload, IconX } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
+import { IconUpload, IconX } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
 
-const mainVariant = {
-  initial: { x: 0, y: 0 },
-  animate: { x: 20, y: -20, opacity: 0.9 },
-};
+// Animation variants
+const mainVariant = { initial: { x: 0, y: 0 }, animate: { x: 20, y: -20, opacity: 0.9 } };
+const secondaryVariant = { initial: { opacity: 0 }, animate: { opacity: 1 } };
 
-const secondaryVariant = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-};
-
-export const ImageUpload = ({
-  onChange,
-}: {
-  onChange: (file: File | null) => void;
-}) => {
+export const ImageUpload = ({ onChange }: { onChange: (file: File | null) => void }) => {
   const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = (newFiles: File[]) => {
-    const imageFile = newFiles.find((f) => f.type.startsWith("image/"));
-    if (!imageFile) {
-      setError("Please upload a valid image (JPEG, PNG, GIF, etc.)");
+  // Generate preview URL
+  useEffect(() => {
+    if (!file) return setPreview(null);
+    const url = URL.createObjectURL(file);
+    setPreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [file]);
+
+  // Handle file selection
+  const handleFileChange = (imageFile?: File) => {
+    if (!imageFile || !imageFile.type.startsWith("image/")) {
+      setError("Please upload a valid image (JPEG, PNG, WEBP, SVG).");
       return;
     }
-
     setError("");
     setFile(imageFile);
     onChange(imageFile);
@@ -37,24 +37,22 @@ export const ImageUpload = ({
 
   const removeFile = () => {
     setFile(null);
-    onChange(null);
     setError("");
+    onChange(null);
   };
 
-  const handleClick = () => {
-    fileInputRef.current?.click();
-  };
+  const handleClick = () => fileInputRef.current?.click();
 
   const { getRootProps, isDragActive } = useDropzone({
     multiple: false,
     noClick: true,
-    accept: {
-      "image/*": [".jpeg", ".jpg", ".png", ".webp", ".svg"],
+    accept: { "image/*": [".jpeg", ".jpg", ".png", ".webp", ".svg"] },
+    onDrop: (acceptedFiles) => {
+      if (acceptedFiles.length > 0) {
+        handleFileChange(acceptedFiles[0]);
+      }
     },
-    onDrop: handleFileChange,
-    onDropRejected: () => {
-      setError("Invalid file type. Please upload an image.");
-    },
+    onDropRejected: () => setError("Invalid file type. Please upload an image."),
   });
 
   return (
@@ -66,11 +64,15 @@ export const ImageUpload = ({
       >
         <input
           ref={fileInputRef}
-          id="single-image-upload"
           type="file"
           accept="image/*"
           multiple={false}
-          onChange={(e) => handleFileChange(Array.from(e.target.files || []))}
+          onChange={(e) => {
+            const selectedFile = e.target.files?.[0];
+            if (selectedFile !== undefined) {
+              handleFileChange(selectedFile);
+            }
+          }}
           className="hidden"
         />
 
@@ -82,7 +84,6 @@ export const ImageUpload = ({
           <p className="relative z-20 font-sans font-bold text-neutral-700 dark:text-neutral-300 text-base">
             Upload Image
           </p>
-
           {error && (
             <motion.p
               initial={{ opacity: 0, y: -10 }}
@@ -98,8 +99,7 @@ export const ImageUpload = ({
               <motion.div
                 layoutId="single-image-preview"
                 className={cn(
-                  "relative group bg-white dark:bg-neutral-900 rounded-md p-3",
-                  "shadow-sm hover:shadow-md transition-shadow"
+                  "relative group bg-white dark:bg-neutral-900 rounded-md p-3 shadow-sm hover:shadow-md transition-shadow"
                 )}
               >
                 <button
@@ -109,23 +109,17 @@ export const ImageUpload = ({
                     e.preventDefault();
                     removeFile();
                   }}
-                  className="absolute -top-2 -right-2 z-50 bg-red-500 text-white p-1 rounded-full "
+                  className="absolute -top-2 -right-2 z-50 bg-red-500 text-white p-1 rounded-full"
                 >
                   <IconX className="h-3 w-3" />
                 </button>
 
-                <div className="relative h-40 w-full rounded-md overflow-hidden bg-gray-100 dark:bg-neutral-800">
-                  <img
-                    src={URL.createObjectURL(file)}
-                    alt={file.name}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative h-40 max-h-56 w-full rounded-md overflow-hidden bg-gray-100 dark:bg-neutral-800">
+                  {preview && <img src={preview} alt={file.name} className="w-full h-full object-cover" />}
                 </div>
 
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-neutral-600 dark:text-neutral-400 truncate">
-                    {file.name}
-                  </span>
+                  <span className="text-xs text-neutral-600 dark:text-neutral-400 truncate">{file.name}</span>
                   <span className="text-xs text-neutral-500 dark:text-neutral-500">
                     {(file.size / (1024 * 1024)).toFixed(2)} MB
                   </span>
@@ -154,9 +148,7 @@ export const ImageUpload = ({
                   ) : (
                     <div className="flex flex-col items-center">
                       <IconUpload className="h-6 w-6 text-neutral-600 dark:text-neutral-300 mb-1" />
-                      <span className="text-xs text-neutral-500">
-                        Click to upload
-                      </span>
+                      <span className="text-xs text-neutral-500">Click to upload</span>
                     </div>
                   )}
                 </motion.div>
@@ -174,6 +166,7 @@ export const ImageUpload = ({
   );
 };
 
+// Optional grid background
 export function GridPattern() {
   const columns = 41;
   const rows = 11;
