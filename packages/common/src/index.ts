@@ -36,7 +36,7 @@ export const generateImageFromPack = z.object({
 
 export const generateVideo = z.object({
     prompt: z.string(),
-    imageUrl: z.string().optional(),
+    imageName: z.string().optional(),
     resolution: z.enum(["720p", "1080p"]),
-    generateAudio: z.enum(["true","false"])
+    generateAudio: z.boolean()
 })
