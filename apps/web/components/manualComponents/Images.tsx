@@ -6,6 +6,7 @@ import { Skeleton } from "../ui/skeleton"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { BACKEND_URL } from "@/app/config"
+import Image from "next/image"
 
 type Image = { imageUrl: string[]; createdAt: Date }
 
@@ -55,7 +56,7 @@ export function Images() {
               className="relative"
               style={{ width: 310, height: 230 }}
             >
-              <img
+              <Image
                 src={url}
                 alt="Generated Image"
                 onClick={() => router.push(url)}
