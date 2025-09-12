@@ -159,7 +159,11 @@ export async function POST (req: NextRequest) {
             message: "error occured"
         },{status:422})
     }
-    const tensor_path: string = body.diffusers_lora_file.url;
+    const tensor_path: string | undefined = body.payload?.diffusers_lora_file?.url;
+    if (!tensor_path) {
+        return NextResponse.json({ message: "No tensor file in payload" }, { status: 422 });
+    }
+
     await PrismaClient.model.updateMany({
             where: {
             falAiRequestId: request_id,

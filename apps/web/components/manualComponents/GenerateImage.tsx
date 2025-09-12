@@ -79,7 +79,8 @@ export default function GenerateImage({models}: {models: models[]}) {
         </CardContent>
         <CardFooter className="p-4 border-t border-border [.border-t]:pt-4">
            <Button disabled={prompt === "" || numOfImages === null} className="w-full mt-8" onClick={async () => {
-                const res = axios.post(BACKEND_URL+"/ai/generate", {
+            alert("image generated")
+                const res = await axios.post(BACKEND_URL+"/ai/generate", {
                   prompt,
                   modelId: model,
                   num: numOfImages
