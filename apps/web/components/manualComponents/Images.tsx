@@ -71,7 +71,7 @@ export function Images() {
       </div>
 
       <div
-        className={`${buttonDisabled ? "hidden" : ""
+        className={`${buttonDisabled ||myImages.length == 0 ? "hidden" : ""
         } flex justify-center`}
       >
         <Button
