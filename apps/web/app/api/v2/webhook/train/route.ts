@@ -123,27 +123,6 @@ async function verifyWebhookSignature(requestId: string, userId: string, timesta
 }
 
 
-// export async function POST (req: NextRequest) {
-
-    
-//     const images: {url:string, width: number, height: number, "content/type": string} []= body.payload.images;
-//     const dbRequests = await Promise.all(images.map((image)=>{
-//         return PrismaClient.outputImages.updateMany({
-//             where: {
-//                 falAiRequestId: request_id,
-//             },
-//             data: {
-//                 status: "generated",
-//                 imageUrl: {
-//                     push: image.url
-//                 },
-//                 createdAt: new Date()
-//             }
-//         })
-//     }))
-    
-// }
-
 export async function POST (req: NextRequest) {
         const arrayBuffer = await req.arrayBuffer(); // raw bytes
     const bodyBuffer = Buffer.from(arrayBuffer); // convert to Node Buffer
@@ -162,7 +141,7 @@ export async function POST (req: NextRequest) {
     );
 
     const body = JSON.parse(Buffer.from(arrayBuffer).toString("utf-8"));
-    
+    console.log(body)
     if (!isValid) {
         return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
     }

@@ -142,6 +142,7 @@ export async function POST (req: NextRequest) {
 
     const body = JSON.parse(Buffer.from(arrayBuffer).toString("utf-8"));
 
+    console.log(body)
 
     if (!isValid) {
         return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
