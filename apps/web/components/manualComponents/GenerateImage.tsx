@@ -24,6 +24,8 @@ export default function GenerateImage({models}: {models: models[]}) {
     const [model, setModel] = React.useState("")
     const [numOfImages, setNumOfImages] = React.useState<number | null>(null)
     const [prompt, setPrompt] = React.useState("")
+    const [disabled, setDisabled] = React.useState(false)
+    
   return (
     <Card className="p-0 max-w-xl relative overflow-hidden w-full">
       <ShineBorder shineColor={["#2f0874" ,"#872d9b", "#e903f9", "#08f9fb", "#068fe0"]} />
@@ -78,13 +80,15 @@ export default function GenerateImage({models}: {models: models[]}) {
           </div>
         </CardContent>
         <CardFooter className="p-4 border-t border-border [.border-t]:pt-4">
-           <Button disabled={prompt === "" || numOfImages === null} className="w-full mt-8" onClick={async () => {
-            alert("image generated")
-                const res = await axios.post(BACKEND_URL+"/ai/generate", {
-                  prompt,
-                  modelId: model,
-                  num: numOfImages
-                })
+           <Button disabled={disabled || prompt === "" || numOfImages === null} className="w-full mt-8" onClick={async () => {
+              setDisabled(true)
+              alert("image generated")
+              const res = await axios.post(BACKEND_URL+"/ai/generate", {
+                prompt,
+                modelId: model,
+                num: numOfImages
+              })
+              setDisabled(false)
             }}>
              Generate
             </Button>
