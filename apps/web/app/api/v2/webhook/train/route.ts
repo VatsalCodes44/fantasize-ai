@@ -145,12 +145,20 @@ export async function POST (req: NextRequest) {
     if (!isValid) {
         return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
     }
+    const request_id: string = body.request_id;
     if (body.status=="ERROR") {
+        const dbRequests = await PrismaClient.model.updateMany({
+            where : {
+                falAiRequestId: requestId
+            }, 
+            data : {
+                trainingStatus: "Failed"
+            }
+        })
         return NextResponse.json({
             message: "error occured"
         },{status:422})
     }
-    const request_id: string = body.request_id;
     const tensor_path: string = body.diffusers_lora_file.url;
     await PrismaClient.model.updateMany({
             where: {

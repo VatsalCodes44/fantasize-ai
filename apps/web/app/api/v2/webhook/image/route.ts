@@ -147,12 +147,20 @@ export async function POST (req: NextRequest) {
     if (!isValid) {
         return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
     }
+    const request_id: string = body.request_id;
     if (body.status=="ERROR") {
+        const dbRequests = await PrismaClient.outputImages.updateMany({
+            where : {
+                falAiRequestId: requestId
+            }, 
+            data : {
+                status: "Failed"
+            }
+        })
         return NextResponse.json({
             message: "error occured"
         },{status:422})
     }
-    const request_id: string = body.request_id;
     const images: {url:string, width: number, height: number, "content/type": string} []= body.payload.images;
     const dbRequests = await Promise.all(images.map((image)=>{
         return PrismaClient.outputImages.updateMany({

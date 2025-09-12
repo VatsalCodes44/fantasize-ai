@@ -145,6 +145,14 @@ export async function POST (req: NextRequest) {
         return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
     }
     if (body.status=="ERROR") {
+        const dbRequests = await PrismaClient.outputVideos.updateMany({
+            where : {
+                falAiRequestId: requestId
+            }, 
+            data : {
+                status: "Failed"
+            }
+        }) 
         return NextResponse.json({
             message: "error occured"
         },{status:422})

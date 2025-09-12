@@ -4,8 +4,6 @@ import PrismaClient from "@repo/db/client";
 import { FalAiModel } from "models/FalAiModel";
 import { NextRequest, NextResponse } from "next/server";
 
-const falAiModel = new FalAiModel();
-
 export async function POST(req: NextRequest) {
     const parsedBody = generateImage.safeParse(await req.json())
     const {userId} = await auth()

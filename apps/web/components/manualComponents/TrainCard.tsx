@@ -41,6 +41,7 @@ export function TrainCard() {
   const [eyeColor, setEyeColor] = useState("")
   const [age, setAge] = useState(0)
   const [bald, setBald] = useState(false)
+  const [disabled, setDisabled] = useState(false)
 //   console.log(modelName,type,ethinicity,eyeColor,age,bald, files.length)
 
 
@@ -168,7 +169,8 @@ export function TrainCard() {
             </div>
         </CardContent>
         <CardFooter className="p-4 border-t border-border [.border-t]:pt-4">
-          <Button disabled={modelName === "" || ethinicity === "" || eyeColor === "" || type === "" || age === 0 || files.length < 5} onClick={async () => {
+          <Button disabled={disabled || modelName === "" || ethinicity === "" || eyeColor === "" || type === "" || age === 0 || files.length < 5} onClick={async () => {
+            setDisabled(true)
             const res = await axios.get(`${BACKEND_URL}/pre-signed-url/zip`);
             const presignedUrl = res.data.url;
             const key: string = res.data.Key;
@@ -202,6 +204,8 @@ export function TrainCard() {
                 updatedAt: new Date()
             })
 
+            alert("It may take 10 - 15 mins to train face model")
+            setDisabled(false)
 
           }} className="w-full hover:cursor-pointer">Generate</Button>
         </CardFooter>
