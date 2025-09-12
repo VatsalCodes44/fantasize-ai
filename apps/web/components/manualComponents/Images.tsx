@@ -56,7 +56,7 @@ export function Images() {
               className="relative"
               style={{ width: 310, height: 230 }}
             >
-              <Image
+              <img
                 src={url}
                 alt="Generated Image"
                 onClick={() => router.push(url)}
@@ -71,8 +71,7 @@ export function Images() {
       </div>
 
       <div
-        className={`${
-          myImages.length <= 15 || buttonDisabled ? "hidden" : ""
+        className={`${buttonDisabled ? "hidden" : ""
         } flex justify-center`}
       >
         <Button
@@ -84,7 +83,7 @@ export function Images() {
             )
             setMyImages((p) => [...p!, ...res.data.images])
             setOffset((p) => p + limit)
-            if (res.data.images.length < limit) {
+            if (res.data.images.length == 0) {
               setButtonDisabled(true)
             }
           }}
@@ -95,7 +94,7 @@ export function Images() {
 
       <div
         className={`${
-          myImages != null ? "hidden" : ""
+          myImages.length != 0 ? "hidden" : ""
         } text-center py-40 text-gray-500 text-lg font-semibold`}
       >
         No Images generated yet

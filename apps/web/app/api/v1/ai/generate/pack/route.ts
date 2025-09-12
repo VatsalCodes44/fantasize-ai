@@ -44,12 +44,18 @@ export async function POST(req: NextRequest) {
 
     const results = await Promise.all(packPrompts.map(async (packPrompt) => {
         const prompt = packPrompt.prompt
-        const {request_id, response_url} = await falAiModel.generateImage(prompt,model.tensorPath!, 1)
+        let modifiedPrompt = ""
+        if (model.bald) {
+            modifiedPrompt = `${model.age}-year-old ${model.ethinicity} bald ${model.type} with ${model.eyeColor}, ${prompt}`
+        } else {
+            modifiedPrompt = `${model.age}-year-old ${model.ethinicity} ${model.type} with ${model.eyeColor}, ${prompt}`
+        }
+        const {request_id, response_url} = await falAiModel.generateImage(modifiedPrompt,model.tensorPath!, 1)
     
         return PrismaClient.outputImages.create({
             data: {
                 userId, 
-                prompt, 
+                prompt: modifiedPrompt, 
                 modelId, 
                 falAiRequestId: request_id
             }

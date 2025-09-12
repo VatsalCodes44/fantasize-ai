@@ -23,7 +23,6 @@ export async function GET(req: NextRequest) {
             createdAt: true
         }
     })
-
     return NextResponse.json({
         images: imagesData
     })

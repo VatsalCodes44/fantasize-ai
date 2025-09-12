@@ -34,18 +34,18 @@ export async function POST(req: NextRequest) {
     }
 
     const falAiModel = new FalAiModel();
-    const {request_id, response_url} = await falAiModel.generateImage(prompt,model.tensorPath, num)
     let modifiedPrompt = ""
     if (model.bald) {
         modifiedPrompt = `${model.age}-year-old ${model.ethinicity} bald ${model.type} with ${model.eyeColor}, ${prompt}`
     } else {
         modifiedPrompt = `${model.age}-year-old ${model.ethinicity} ${model.type} with ${model.eyeColor}, ${prompt}`
     }
+    const {request_id, response_url} = await falAiModel.generateImage(modifiedPrompt, model.tensorPath, num)
 
     const data = await PrismaClient.outputImages.create({
         data: {
             userId, 
-            prompt, 
+            prompt: modifiedPrompt, 
             modelId, 
             falAiRequestId: request_id
         }

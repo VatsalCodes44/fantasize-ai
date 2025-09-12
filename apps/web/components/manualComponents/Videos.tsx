@@ -27,7 +27,6 @@ export function Videos() {
             <div className="mx-auto">
                 <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6`}>
                     {Array(12).fill(0).map((_,index) => {
-                        console.log(index)
                         return (
                             <div key={index} className="">
                                 <Skeleton className="w-[320px] h-[180px]" />
@@ -53,18 +52,18 @@ export function Videos() {
                 })}
             </div>
 
-            <div className={`${myVideos.length <= 15 || buttonDisabled ? "hidden" : "" } flex justify-center`}>
+            <div className={`${buttonDisabled || myVideos.length==0 ? "hidden" : "" } flex justify-center`}>
                 <Button variant="outline" className="mt-4" onClick={async () => {
                     const res = await axios.get(`${BACKEND_URL}/bulk/videos?limit=${limit}&offset=${offset}`)
                     setMyVideos(p => [...p!, ...res.data.videos])
                     setOffset(p=>p+limit)
-                    if (res.data.images.length < limit) {
+                    if (res.data.videos.length < limit) {
                         setButtonDisabled(true)
                     }
                 }}>Load More</Button>
             </div>
-            <div className={`${myVideos != null ? "hidden" : ""} text-center py-40 text-gray-500 text-lg font-semibold`}>
-                No Images generated yet
+            <div className={`${myVideos.length != 0 ? "hidden" : ""} text-center py-40 text-gray-500 text-lg font-semibold`}>
+                No Videos generated yet
             </div>
         </div>
     )
