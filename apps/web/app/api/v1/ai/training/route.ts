@@ -42,19 +42,17 @@ export async function POST(req: NextRequest) {
         const {name, type, age, ethinicity, bald, eyeColor, key, createdAt, updatedAt} = parsedBody.data
         const zipUrl = `https://${process.env.bucket}.s3.amazonaws.com/${key}`
 
-        // const falAiModel = new FalAiModel();
-        // const {request_id, response_url} = await falAiModel.trainModel(zipUrl)
-        console.log("--------------------------------------------------------------------------------")
+        const falAiModel = new FalAiModel();
+        const {request_id, response_url} = await falAiModel.trainModel(zipUrl)
         console.log("route.ts",{
             name, type, age, ethinicity, bald, eyeColor, zipUrl, createdAt, updatedAt, userId,
-            // falAiRequestId: request_id,
-            // response_url
+            falAiRequestId: request_id,
+            response_url
         })
-        console.log("--------------------------------------------------------------------------------")
         const model = await prismaClient.model.create({
             data: {
                 name, type, age, ethinicity, bald: bald == "true" ? true : false, eyeColor, zipUrl, createdAt, updatedAt, userId,
-                // falAiRequestId: request_id
+                falAiRequestId: request_id
             }
         })
     }  catch (error: any) {
