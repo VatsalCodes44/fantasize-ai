@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
 
         const event = JSON.parse(body)
 
+        console.log(body)
         if (event.event === "payment.captured") {
             const payment = event.payload.payment.entity;
             const order = await PrismaClient.orders.update({
