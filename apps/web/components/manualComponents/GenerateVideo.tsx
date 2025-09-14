@@ -102,7 +102,7 @@ export default function GenerateVideo({models}: {models: models[]}) {
                 resolution,
                 generateAudio: audio
               })
-
+              alert("Your video is being generated. This process may take a few minutes. Please do not click the button again until the video is ready.");
             }            
           }}>
             Generate

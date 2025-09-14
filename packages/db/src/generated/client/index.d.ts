@@ -19,6 +19,16 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Model = $Result.DefaultSelection<Prisma.$ModelPayload>
 /**
+ * Model FAITokenAccount
+ * 
+ */
+export type FAITokenAccount = $Result.DefaultSelection<Prisma.$FAITokenAccountPayload>
+/**
+ * Model orders
+ * 
+ */
+export type orders = $Result.DefaultSelection<Prisma.$ordersPayload>
+/**
  * Model OutputImages
  * 
  */
@@ -101,6 +111,15 @@ export const OutputImagesStatusEnum: {
 export type OutputImagesStatusEnum = (typeof OutputImagesStatusEnum)[keyof typeof OutputImagesStatusEnum]
 
 
+export const PaymentStatusEnum: {
+  Pending: 'Pending',
+  Completed: 'Completed',
+  Failed: 'Failed'
+};
+
+export type PaymentStatusEnum = (typeof PaymentStatusEnum)[keyof typeof PaymentStatusEnum]
+
+
 export const VideoTypeEnum: {
   TextToVideo: 'TextToVideo',
   ImageToVideo: 'ImageToVideo'
@@ -129,6 +148,10 @@ export const EyeColorEnum: typeof $Enums.EyeColorEnum
 export type OutputImagesStatusEnum = $Enums.OutputImagesStatusEnum
 
 export const OutputImagesStatusEnum: typeof $Enums.OutputImagesStatusEnum
+
+export type PaymentStatusEnum = $Enums.PaymentStatusEnum
+
+export const PaymentStatusEnum: typeof $Enums.PaymentStatusEnum
 
 export type VideoTypeEnum = $Enums.VideoTypeEnum
 
@@ -261,6 +284,26 @@ export class PrismaClient<
     * ```
     */
   get model(): Prisma.ModelDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fAITokenAccount`: Exposes CRUD operations for the **FAITokenAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FAITokenAccounts
+    * const fAITokenAccounts = await prisma.fAITokenAccount.findMany()
+    * ```
+    */
+  get fAITokenAccount(): Prisma.FAITokenAccountDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.orders`: Exposes CRUD operations for the **orders** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Orders
+    * const orders = await prisma.orders.findMany()
+    * ```
+    */
+  get orders(): Prisma.ordersDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.outputImages`: Exposes CRUD operations for the **OutputImages** model.
@@ -742,6 +785,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Model: 'Model',
+    FAITokenAccount: 'FAITokenAccount',
+    orders: 'orders',
     OutputImages: 'OutputImages',
     OutputVideos: 'OutputVideos',
     Packs: 'Packs',
@@ -764,7 +809,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "model" | "outputImages" | "outputVideos" | "packs" | "packPrompts"
+      modelProps: "model" | "fAITokenAccount" | "orders" | "outputImages" | "outputVideos" | "packs" | "packPrompts"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -839,6 +884,154 @@ export namespace Prisma {
           count: {
             args: Prisma.ModelCountArgs<ExtArgs>
             result: $Utils.Optional<ModelCountAggregateOutputType> | number
+          }
+        }
+      }
+      FAITokenAccount: {
+        payload: Prisma.$FAITokenAccountPayload<ExtArgs>
+        fields: Prisma.FAITokenAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FAITokenAccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FAITokenAccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.FAITokenAccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FAITokenAccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload>
+          }
+          findMany: {
+            args: Prisma.FAITokenAccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload>[]
+          }
+          create: {
+            args: Prisma.FAITokenAccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload>
+          }
+          createMany: {
+            args: Prisma.FAITokenAccountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FAITokenAccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload>[]
+          }
+          delete: {
+            args: Prisma.FAITokenAccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload>
+          }
+          update: {
+            args: Prisma.FAITokenAccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.FAITokenAccountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FAITokenAccountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FAITokenAccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload>[]
+          }
+          upsert: {
+            args: Prisma.FAITokenAccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FAITokenAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.FAITokenAccountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFAITokenAccount>
+          }
+          groupBy: {
+            args: Prisma.FAITokenAccountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FAITokenAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FAITokenAccountCountArgs<ExtArgs>
+            result: $Utils.Optional<FAITokenAccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      orders: {
+        payload: Prisma.$ordersPayload<ExtArgs>
+        fields: Prisma.ordersFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ordersFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ordersFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload>
+          }
+          findFirst: {
+            args: Prisma.ordersFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ordersFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload>
+          }
+          findMany: {
+            args: Prisma.ordersFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload>[]
+          }
+          create: {
+            args: Prisma.ordersCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload>
+          }
+          createMany: {
+            args: Prisma.ordersCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ordersCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload>[]
+          }
+          delete: {
+            args: Prisma.ordersDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload>
+          }
+          update: {
+            args: Prisma.ordersUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload>
+          }
+          deleteMany: {
+            args: Prisma.ordersDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ordersUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ordersUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload>[]
+          }
+          upsert: {
+            args: Prisma.ordersUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ordersPayload>
+          }
+          aggregate: {
+            args: Prisma.OrdersAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOrders>
+          }
+          groupBy: {
+            args: Prisma.ordersGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OrdersGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ordersCountArgs<ExtArgs>
+            result: $Utils.Optional<OrdersCountAggregateOutputType> | number
           }
         }
       }
@@ -1231,6 +1424,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     model?: ModelOmit
+    fAITokenAccount?: FAITokenAccountOmit
+    orders?: ordersOmit
     outputImages?: OutputImagesOmit
     outputVideos?: OutputVideosOmit
     packs?: PacksOmit
@@ -2616,6 +2811,2124 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ModelInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FAITokenAccount
+   */
+
+  export type AggregateFAITokenAccount = {
+    _count: FAITokenAccountCountAggregateOutputType | null
+    _avg: FAITokenAccountAvgAggregateOutputType | null
+    _sum: FAITokenAccountSumAggregateOutputType | null
+    _min: FAITokenAccountMinAggregateOutputType | null
+    _max: FAITokenAccountMaxAggregateOutputType | null
+  }
+
+  export type FAITokenAccountAvgAggregateOutputType = {
+    FAI: number | null
+  }
+
+  export type FAITokenAccountSumAggregateOutputType = {
+    FAI: number | null
+  }
+
+  export type FAITokenAccountMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    FAI: number | null
+  }
+
+  export type FAITokenAccountMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    FAI: number | null
+  }
+
+  export type FAITokenAccountCountAggregateOutputType = {
+    id: number
+    userId: number
+    FAI: number
+    _all: number
+  }
+
+
+  export type FAITokenAccountAvgAggregateInputType = {
+    FAI?: true
+  }
+
+  export type FAITokenAccountSumAggregateInputType = {
+    FAI?: true
+  }
+
+  export type FAITokenAccountMinAggregateInputType = {
+    id?: true
+    userId?: true
+    FAI?: true
+  }
+
+  export type FAITokenAccountMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    FAI?: true
+  }
+
+  export type FAITokenAccountCountAggregateInputType = {
+    id?: true
+    userId?: true
+    FAI?: true
+    _all?: true
+  }
+
+  export type FAITokenAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FAITokenAccount to aggregate.
+     */
+    where?: FAITokenAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FAITokenAccounts to fetch.
+     */
+    orderBy?: FAITokenAccountOrderByWithRelationInput | FAITokenAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FAITokenAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FAITokenAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FAITokenAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FAITokenAccounts
+    **/
+    _count?: true | FAITokenAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FAITokenAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FAITokenAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FAITokenAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FAITokenAccountMaxAggregateInputType
+  }
+
+  export type GetFAITokenAccountAggregateType<T extends FAITokenAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateFAITokenAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFAITokenAccount[P]>
+      : GetScalarType<T[P], AggregateFAITokenAccount[P]>
+  }
+
+
+
+
+  export type FAITokenAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FAITokenAccountWhereInput
+    orderBy?: FAITokenAccountOrderByWithAggregationInput | FAITokenAccountOrderByWithAggregationInput[]
+    by: FAITokenAccountScalarFieldEnum[] | FAITokenAccountScalarFieldEnum
+    having?: FAITokenAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FAITokenAccountCountAggregateInputType | true
+    _avg?: FAITokenAccountAvgAggregateInputType
+    _sum?: FAITokenAccountSumAggregateInputType
+    _min?: FAITokenAccountMinAggregateInputType
+    _max?: FAITokenAccountMaxAggregateInputType
+  }
+
+  export type FAITokenAccountGroupByOutputType = {
+    id: string
+    userId: string
+    FAI: number
+    _count: FAITokenAccountCountAggregateOutputType | null
+    _avg: FAITokenAccountAvgAggregateOutputType | null
+    _sum: FAITokenAccountSumAggregateOutputType | null
+    _min: FAITokenAccountMinAggregateOutputType | null
+    _max: FAITokenAccountMaxAggregateOutputType | null
+  }
+
+  type GetFAITokenAccountGroupByPayload<T extends FAITokenAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FAITokenAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FAITokenAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FAITokenAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], FAITokenAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FAITokenAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    FAI?: boolean
+  }, ExtArgs["result"]["fAITokenAccount"]>
+
+  export type FAITokenAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    FAI?: boolean
+  }, ExtArgs["result"]["fAITokenAccount"]>
+
+  export type FAITokenAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    FAI?: boolean
+  }, ExtArgs["result"]["fAITokenAccount"]>
+
+  export type FAITokenAccountSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    FAI?: boolean
+  }
+
+  export type FAITokenAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "FAI", ExtArgs["result"]["fAITokenAccount"]>
+
+  export type $FAITokenAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FAITokenAccount"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      FAI: number
+    }, ExtArgs["result"]["fAITokenAccount"]>
+    composites: {}
+  }
+
+  type FAITokenAccountGetPayload<S extends boolean | null | undefined | FAITokenAccountDefaultArgs> = $Result.GetResult<Prisma.$FAITokenAccountPayload, S>
+
+  type FAITokenAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FAITokenAccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FAITokenAccountCountAggregateInputType | true
+    }
+
+  export interface FAITokenAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FAITokenAccount'], meta: { name: 'FAITokenAccount' } }
+    /**
+     * Find zero or one FAITokenAccount that matches the filter.
+     * @param {FAITokenAccountFindUniqueArgs} args - Arguments to find a FAITokenAccount
+     * @example
+     * // Get one FAITokenAccount
+     * const fAITokenAccount = await prisma.fAITokenAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FAITokenAccountFindUniqueArgs>(args: SelectSubset<T, FAITokenAccountFindUniqueArgs<ExtArgs>>): Prisma__FAITokenAccountClient<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FAITokenAccount that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FAITokenAccountFindUniqueOrThrowArgs} args - Arguments to find a FAITokenAccount
+     * @example
+     * // Get one FAITokenAccount
+     * const fAITokenAccount = await prisma.fAITokenAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FAITokenAccountFindUniqueOrThrowArgs>(args: SelectSubset<T, FAITokenAccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FAITokenAccountClient<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FAITokenAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FAITokenAccountFindFirstArgs} args - Arguments to find a FAITokenAccount
+     * @example
+     * // Get one FAITokenAccount
+     * const fAITokenAccount = await prisma.fAITokenAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FAITokenAccountFindFirstArgs>(args?: SelectSubset<T, FAITokenAccountFindFirstArgs<ExtArgs>>): Prisma__FAITokenAccountClient<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FAITokenAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FAITokenAccountFindFirstOrThrowArgs} args - Arguments to find a FAITokenAccount
+     * @example
+     * // Get one FAITokenAccount
+     * const fAITokenAccount = await prisma.fAITokenAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FAITokenAccountFindFirstOrThrowArgs>(args?: SelectSubset<T, FAITokenAccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__FAITokenAccountClient<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FAITokenAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FAITokenAccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FAITokenAccounts
+     * const fAITokenAccounts = await prisma.fAITokenAccount.findMany()
+     * 
+     * // Get first 10 FAITokenAccounts
+     * const fAITokenAccounts = await prisma.fAITokenAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fAITokenAccountWithIdOnly = await prisma.fAITokenAccount.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FAITokenAccountFindManyArgs>(args?: SelectSubset<T, FAITokenAccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FAITokenAccount.
+     * @param {FAITokenAccountCreateArgs} args - Arguments to create a FAITokenAccount.
+     * @example
+     * // Create one FAITokenAccount
+     * const FAITokenAccount = await prisma.fAITokenAccount.create({
+     *   data: {
+     *     // ... data to create a FAITokenAccount
+     *   }
+     * })
+     * 
+     */
+    create<T extends FAITokenAccountCreateArgs>(args: SelectSubset<T, FAITokenAccountCreateArgs<ExtArgs>>): Prisma__FAITokenAccountClient<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FAITokenAccounts.
+     * @param {FAITokenAccountCreateManyArgs} args - Arguments to create many FAITokenAccounts.
+     * @example
+     * // Create many FAITokenAccounts
+     * const fAITokenAccount = await prisma.fAITokenAccount.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FAITokenAccountCreateManyArgs>(args?: SelectSubset<T, FAITokenAccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FAITokenAccounts and returns the data saved in the database.
+     * @param {FAITokenAccountCreateManyAndReturnArgs} args - Arguments to create many FAITokenAccounts.
+     * @example
+     * // Create many FAITokenAccounts
+     * const fAITokenAccount = await prisma.fAITokenAccount.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FAITokenAccounts and only return the `id`
+     * const fAITokenAccountWithIdOnly = await prisma.fAITokenAccount.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FAITokenAccountCreateManyAndReturnArgs>(args?: SelectSubset<T, FAITokenAccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FAITokenAccount.
+     * @param {FAITokenAccountDeleteArgs} args - Arguments to delete one FAITokenAccount.
+     * @example
+     * // Delete one FAITokenAccount
+     * const FAITokenAccount = await prisma.fAITokenAccount.delete({
+     *   where: {
+     *     // ... filter to delete one FAITokenAccount
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FAITokenAccountDeleteArgs>(args: SelectSubset<T, FAITokenAccountDeleteArgs<ExtArgs>>): Prisma__FAITokenAccountClient<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FAITokenAccount.
+     * @param {FAITokenAccountUpdateArgs} args - Arguments to update one FAITokenAccount.
+     * @example
+     * // Update one FAITokenAccount
+     * const fAITokenAccount = await prisma.fAITokenAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FAITokenAccountUpdateArgs>(args: SelectSubset<T, FAITokenAccountUpdateArgs<ExtArgs>>): Prisma__FAITokenAccountClient<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FAITokenAccounts.
+     * @param {FAITokenAccountDeleteManyArgs} args - Arguments to filter FAITokenAccounts to delete.
+     * @example
+     * // Delete a few FAITokenAccounts
+     * const { count } = await prisma.fAITokenAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FAITokenAccountDeleteManyArgs>(args?: SelectSubset<T, FAITokenAccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FAITokenAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FAITokenAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FAITokenAccounts
+     * const fAITokenAccount = await prisma.fAITokenAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FAITokenAccountUpdateManyArgs>(args: SelectSubset<T, FAITokenAccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FAITokenAccounts and returns the data updated in the database.
+     * @param {FAITokenAccountUpdateManyAndReturnArgs} args - Arguments to update many FAITokenAccounts.
+     * @example
+     * // Update many FAITokenAccounts
+     * const fAITokenAccount = await prisma.fAITokenAccount.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FAITokenAccounts and only return the `id`
+     * const fAITokenAccountWithIdOnly = await prisma.fAITokenAccount.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FAITokenAccountUpdateManyAndReturnArgs>(args: SelectSubset<T, FAITokenAccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FAITokenAccount.
+     * @param {FAITokenAccountUpsertArgs} args - Arguments to update or create a FAITokenAccount.
+     * @example
+     * // Update or create a FAITokenAccount
+     * const fAITokenAccount = await prisma.fAITokenAccount.upsert({
+     *   create: {
+     *     // ... data to create a FAITokenAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FAITokenAccount we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FAITokenAccountUpsertArgs>(args: SelectSubset<T, FAITokenAccountUpsertArgs<ExtArgs>>): Prisma__FAITokenAccountClient<$Result.GetResult<Prisma.$FAITokenAccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FAITokenAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FAITokenAccountCountArgs} args - Arguments to filter FAITokenAccounts to count.
+     * @example
+     * // Count the number of FAITokenAccounts
+     * const count = await prisma.fAITokenAccount.count({
+     *   where: {
+     *     // ... the filter for the FAITokenAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends FAITokenAccountCountArgs>(
+      args?: Subset<T, FAITokenAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FAITokenAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FAITokenAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FAITokenAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FAITokenAccountAggregateArgs>(args: Subset<T, FAITokenAccountAggregateArgs>): Prisma.PrismaPromise<GetFAITokenAccountAggregateType<T>>
+
+    /**
+     * Group by FAITokenAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FAITokenAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FAITokenAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FAITokenAccountGroupByArgs['orderBy'] }
+        : { orderBy?: FAITokenAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FAITokenAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFAITokenAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FAITokenAccount model
+   */
+  readonly fields: FAITokenAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FAITokenAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FAITokenAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FAITokenAccount model
+   */
+  interface FAITokenAccountFieldRefs {
+    readonly id: FieldRef<"FAITokenAccount", 'String'>
+    readonly userId: FieldRef<"FAITokenAccount", 'String'>
+    readonly FAI: FieldRef<"FAITokenAccount", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FAITokenAccount findUnique
+   */
+  export type FAITokenAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * Filter, which FAITokenAccount to fetch.
+     */
+    where: FAITokenAccountWhereUniqueInput
+  }
+
+  /**
+   * FAITokenAccount findUniqueOrThrow
+   */
+  export type FAITokenAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * Filter, which FAITokenAccount to fetch.
+     */
+    where: FAITokenAccountWhereUniqueInput
+  }
+
+  /**
+   * FAITokenAccount findFirst
+   */
+  export type FAITokenAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * Filter, which FAITokenAccount to fetch.
+     */
+    where?: FAITokenAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FAITokenAccounts to fetch.
+     */
+    orderBy?: FAITokenAccountOrderByWithRelationInput | FAITokenAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FAITokenAccounts.
+     */
+    cursor?: FAITokenAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FAITokenAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FAITokenAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FAITokenAccounts.
+     */
+    distinct?: FAITokenAccountScalarFieldEnum | FAITokenAccountScalarFieldEnum[]
+  }
+
+  /**
+   * FAITokenAccount findFirstOrThrow
+   */
+  export type FAITokenAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * Filter, which FAITokenAccount to fetch.
+     */
+    where?: FAITokenAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FAITokenAccounts to fetch.
+     */
+    orderBy?: FAITokenAccountOrderByWithRelationInput | FAITokenAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FAITokenAccounts.
+     */
+    cursor?: FAITokenAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FAITokenAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FAITokenAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FAITokenAccounts.
+     */
+    distinct?: FAITokenAccountScalarFieldEnum | FAITokenAccountScalarFieldEnum[]
+  }
+
+  /**
+   * FAITokenAccount findMany
+   */
+  export type FAITokenAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * Filter, which FAITokenAccounts to fetch.
+     */
+    where?: FAITokenAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FAITokenAccounts to fetch.
+     */
+    orderBy?: FAITokenAccountOrderByWithRelationInput | FAITokenAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FAITokenAccounts.
+     */
+    cursor?: FAITokenAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FAITokenAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FAITokenAccounts.
+     */
+    skip?: number
+    distinct?: FAITokenAccountScalarFieldEnum | FAITokenAccountScalarFieldEnum[]
+  }
+
+  /**
+   * FAITokenAccount create
+   */
+  export type FAITokenAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * The data needed to create a FAITokenAccount.
+     */
+    data: XOR<FAITokenAccountCreateInput, FAITokenAccountUncheckedCreateInput>
+  }
+
+  /**
+   * FAITokenAccount createMany
+   */
+  export type FAITokenAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FAITokenAccounts.
+     */
+    data: FAITokenAccountCreateManyInput | FAITokenAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FAITokenAccount createManyAndReturn
+   */
+  export type FAITokenAccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * The data used to create many FAITokenAccounts.
+     */
+    data: FAITokenAccountCreateManyInput | FAITokenAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FAITokenAccount update
+   */
+  export type FAITokenAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * The data needed to update a FAITokenAccount.
+     */
+    data: XOR<FAITokenAccountUpdateInput, FAITokenAccountUncheckedUpdateInput>
+    /**
+     * Choose, which FAITokenAccount to update.
+     */
+    where: FAITokenAccountWhereUniqueInput
+  }
+
+  /**
+   * FAITokenAccount updateMany
+   */
+  export type FAITokenAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FAITokenAccounts.
+     */
+    data: XOR<FAITokenAccountUpdateManyMutationInput, FAITokenAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which FAITokenAccounts to update
+     */
+    where?: FAITokenAccountWhereInput
+    /**
+     * Limit how many FAITokenAccounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FAITokenAccount updateManyAndReturn
+   */
+  export type FAITokenAccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * The data used to update FAITokenAccounts.
+     */
+    data: XOR<FAITokenAccountUpdateManyMutationInput, FAITokenAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which FAITokenAccounts to update
+     */
+    where?: FAITokenAccountWhereInput
+    /**
+     * Limit how many FAITokenAccounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FAITokenAccount upsert
+   */
+  export type FAITokenAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * The filter to search for the FAITokenAccount to update in case it exists.
+     */
+    where: FAITokenAccountWhereUniqueInput
+    /**
+     * In case the FAITokenAccount found by the `where` argument doesn't exist, create a new FAITokenAccount with this data.
+     */
+    create: XOR<FAITokenAccountCreateInput, FAITokenAccountUncheckedCreateInput>
+    /**
+     * In case the FAITokenAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FAITokenAccountUpdateInput, FAITokenAccountUncheckedUpdateInput>
+  }
+
+  /**
+   * FAITokenAccount delete
+   */
+  export type FAITokenAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+    /**
+     * Filter which FAITokenAccount to delete.
+     */
+    where: FAITokenAccountWhereUniqueInput
+  }
+
+  /**
+   * FAITokenAccount deleteMany
+   */
+  export type FAITokenAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FAITokenAccounts to delete
+     */
+    where?: FAITokenAccountWhereInput
+    /**
+     * Limit how many FAITokenAccounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FAITokenAccount without action
+   */
+  export type FAITokenAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FAITokenAccount
+     */
+    select?: FAITokenAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FAITokenAccount
+     */
+    omit?: FAITokenAccountOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model orders
+   */
+
+  export type AggregateOrders = {
+    _count: OrdersCountAggregateOutputType | null
+    _avg: OrdersAvgAggregateOutputType | null
+    _sum: OrdersSumAggregateOutputType | null
+    _min: OrdersMinAggregateOutputType | null
+    _max: OrdersMaxAggregateOutputType | null
+  }
+
+  export type OrdersAvgAggregateOutputType = {
+    amount: number | null
+    productId: number | null
+    tokenIncrement: number | null
+  }
+
+  export type OrdersSumAggregateOutputType = {
+    amount: number | null
+    productId: number | null
+    tokenIncrement: number | null
+  }
+
+  export type OrdersMinAggregateOutputType = {
+    id: string | null
+    amount: number | null
+    userId: string | null
+    username: string | null
+    productId: number | null
+    productName: string | null
+    email: string | null
+    tokenIncrement: number | null
+    razorpayOrderId: string | null
+    receipt: string | null
+    status: $Enums.PaymentStatusEnum | null
+  }
+
+  export type OrdersMaxAggregateOutputType = {
+    id: string | null
+    amount: number | null
+    userId: string | null
+    username: string | null
+    productId: number | null
+    productName: string | null
+    email: string | null
+    tokenIncrement: number | null
+    razorpayOrderId: string | null
+    receipt: string | null
+    status: $Enums.PaymentStatusEnum | null
+  }
+
+  export type OrdersCountAggregateOutputType = {
+    id: number
+    amount: number
+    userId: number
+    username: number
+    productId: number
+    productName: number
+    email: number
+    tokenIncrement: number
+    razorpayOrderId: number
+    receipt: number
+    status: number
+    _all: number
+  }
+
+
+  export type OrdersAvgAggregateInputType = {
+    amount?: true
+    productId?: true
+    tokenIncrement?: true
+  }
+
+  export type OrdersSumAggregateInputType = {
+    amount?: true
+    productId?: true
+    tokenIncrement?: true
+  }
+
+  export type OrdersMinAggregateInputType = {
+    id?: true
+    amount?: true
+    userId?: true
+    username?: true
+    productId?: true
+    productName?: true
+    email?: true
+    tokenIncrement?: true
+    razorpayOrderId?: true
+    receipt?: true
+    status?: true
+  }
+
+  export type OrdersMaxAggregateInputType = {
+    id?: true
+    amount?: true
+    userId?: true
+    username?: true
+    productId?: true
+    productName?: true
+    email?: true
+    tokenIncrement?: true
+    razorpayOrderId?: true
+    receipt?: true
+    status?: true
+  }
+
+  export type OrdersCountAggregateInputType = {
+    id?: true
+    amount?: true
+    userId?: true
+    username?: true
+    productId?: true
+    productName?: true
+    email?: true
+    tokenIncrement?: true
+    razorpayOrderId?: true
+    receipt?: true
+    status?: true
+    _all?: true
+  }
+
+  export type OrdersAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which orders to aggregate.
+     */
+    where?: ordersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of orders to fetch.
+     */
+    orderBy?: ordersOrderByWithRelationInput | ordersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ordersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` orders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned orders
+    **/
+    _count?: true | OrdersCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OrdersAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OrdersSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OrdersMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OrdersMaxAggregateInputType
+  }
+
+  export type GetOrdersAggregateType<T extends OrdersAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrders]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOrders[P]>
+      : GetScalarType<T[P], AggregateOrders[P]>
+  }
+
+
+
+
+  export type ordersGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ordersWhereInput
+    orderBy?: ordersOrderByWithAggregationInput | ordersOrderByWithAggregationInput[]
+    by: OrdersScalarFieldEnum[] | OrdersScalarFieldEnum
+    having?: ordersScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OrdersCountAggregateInputType | true
+    _avg?: OrdersAvgAggregateInputType
+    _sum?: OrdersSumAggregateInputType
+    _min?: OrdersMinAggregateInputType
+    _max?: OrdersMaxAggregateInputType
+  }
+
+  export type OrdersGroupByOutputType = {
+    id: string
+    amount: number
+    userId: string
+    username: string
+    productId: number
+    productName: string
+    email: string
+    tokenIncrement: number
+    razorpayOrderId: string
+    receipt: string | null
+    status: $Enums.PaymentStatusEnum
+    _count: OrdersCountAggregateOutputType | null
+    _avg: OrdersAvgAggregateOutputType | null
+    _sum: OrdersSumAggregateOutputType | null
+    _min: OrdersMinAggregateOutputType | null
+    _max: OrdersMaxAggregateOutputType | null
+  }
+
+  type GetOrdersGroupByPayload<T extends ordersGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OrdersGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OrdersGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OrdersGroupByOutputType[P]>
+            : GetScalarType<T[P], OrdersGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ordersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    amount?: boolean
+    userId?: boolean
+    username?: boolean
+    productId?: boolean
+    productName?: boolean
+    email?: boolean
+    tokenIncrement?: boolean
+    razorpayOrderId?: boolean
+    receipt?: boolean
+    status?: boolean
+  }, ExtArgs["result"]["orders"]>
+
+  export type ordersSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    amount?: boolean
+    userId?: boolean
+    username?: boolean
+    productId?: boolean
+    productName?: boolean
+    email?: boolean
+    tokenIncrement?: boolean
+    razorpayOrderId?: boolean
+    receipt?: boolean
+    status?: boolean
+  }, ExtArgs["result"]["orders"]>
+
+  export type ordersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    amount?: boolean
+    userId?: boolean
+    username?: boolean
+    productId?: boolean
+    productName?: boolean
+    email?: boolean
+    tokenIncrement?: boolean
+    razorpayOrderId?: boolean
+    receipt?: boolean
+    status?: boolean
+  }, ExtArgs["result"]["orders"]>
+
+  export type ordersSelectScalar = {
+    id?: boolean
+    amount?: boolean
+    userId?: boolean
+    username?: boolean
+    productId?: boolean
+    productName?: boolean
+    email?: boolean
+    tokenIncrement?: boolean
+    razorpayOrderId?: boolean
+    receipt?: boolean
+    status?: boolean
+  }
+
+  export type ordersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "userId" | "username" | "productId" | "productName" | "email" | "tokenIncrement" | "razorpayOrderId" | "receipt" | "status", ExtArgs["result"]["orders"]>
+
+  export type $ordersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "orders"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      amount: number
+      userId: string
+      username: string
+      productId: number
+      productName: string
+      email: string
+      tokenIncrement: number
+      razorpayOrderId: string
+      receipt: string | null
+      status: $Enums.PaymentStatusEnum
+    }, ExtArgs["result"]["orders"]>
+    composites: {}
+  }
+
+  type ordersGetPayload<S extends boolean | null | undefined | ordersDefaultArgs> = $Result.GetResult<Prisma.$ordersPayload, S>
+
+  type ordersCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ordersFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OrdersCountAggregateInputType | true
+    }
+
+  export interface ordersDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['orders'], meta: { name: 'orders' } }
+    /**
+     * Find zero or one Orders that matches the filter.
+     * @param {ordersFindUniqueArgs} args - Arguments to find a Orders
+     * @example
+     * // Get one Orders
+     * const orders = await prisma.orders.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ordersFindUniqueArgs>(args: SelectSubset<T, ordersFindUniqueArgs<ExtArgs>>): Prisma__ordersClient<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Orders that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ordersFindUniqueOrThrowArgs} args - Arguments to find a Orders
+     * @example
+     * // Get one Orders
+     * const orders = await prisma.orders.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ordersFindUniqueOrThrowArgs>(args: SelectSubset<T, ordersFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ordersClient<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Orders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ordersFindFirstArgs} args - Arguments to find a Orders
+     * @example
+     * // Get one Orders
+     * const orders = await prisma.orders.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ordersFindFirstArgs>(args?: SelectSubset<T, ordersFindFirstArgs<ExtArgs>>): Prisma__ordersClient<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Orders that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ordersFindFirstOrThrowArgs} args - Arguments to find a Orders
+     * @example
+     * // Get one Orders
+     * const orders = await prisma.orders.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ordersFindFirstOrThrowArgs>(args?: SelectSubset<T, ordersFindFirstOrThrowArgs<ExtArgs>>): Prisma__ordersClient<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Orders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ordersFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Orders
+     * const orders = await prisma.orders.findMany()
+     * 
+     * // Get first 10 Orders
+     * const orders = await prisma.orders.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const ordersWithIdOnly = await prisma.orders.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ordersFindManyArgs>(args?: SelectSubset<T, ordersFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Orders.
+     * @param {ordersCreateArgs} args - Arguments to create a Orders.
+     * @example
+     * // Create one Orders
+     * const Orders = await prisma.orders.create({
+     *   data: {
+     *     // ... data to create a Orders
+     *   }
+     * })
+     * 
+     */
+    create<T extends ordersCreateArgs>(args: SelectSubset<T, ordersCreateArgs<ExtArgs>>): Prisma__ordersClient<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Orders.
+     * @param {ordersCreateManyArgs} args - Arguments to create many Orders.
+     * @example
+     * // Create many Orders
+     * const orders = await prisma.orders.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ordersCreateManyArgs>(args?: SelectSubset<T, ordersCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Orders and returns the data saved in the database.
+     * @param {ordersCreateManyAndReturnArgs} args - Arguments to create many Orders.
+     * @example
+     * // Create many Orders
+     * const orders = await prisma.orders.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Orders and only return the `id`
+     * const ordersWithIdOnly = await prisma.orders.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ordersCreateManyAndReturnArgs>(args?: SelectSubset<T, ordersCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Orders.
+     * @param {ordersDeleteArgs} args - Arguments to delete one Orders.
+     * @example
+     * // Delete one Orders
+     * const Orders = await prisma.orders.delete({
+     *   where: {
+     *     // ... filter to delete one Orders
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ordersDeleteArgs>(args: SelectSubset<T, ordersDeleteArgs<ExtArgs>>): Prisma__ordersClient<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Orders.
+     * @param {ordersUpdateArgs} args - Arguments to update one Orders.
+     * @example
+     * // Update one Orders
+     * const orders = await prisma.orders.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ordersUpdateArgs>(args: SelectSubset<T, ordersUpdateArgs<ExtArgs>>): Prisma__ordersClient<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Orders.
+     * @param {ordersDeleteManyArgs} args - Arguments to filter Orders to delete.
+     * @example
+     * // Delete a few Orders
+     * const { count } = await prisma.orders.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ordersDeleteManyArgs>(args?: SelectSubset<T, ordersDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Orders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ordersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Orders
+     * const orders = await prisma.orders.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ordersUpdateManyArgs>(args: SelectSubset<T, ordersUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Orders and returns the data updated in the database.
+     * @param {ordersUpdateManyAndReturnArgs} args - Arguments to update many Orders.
+     * @example
+     * // Update many Orders
+     * const orders = await prisma.orders.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Orders and only return the `id`
+     * const ordersWithIdOnly = await prisma.orders.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ordersUpdateManyAndReturnArgs>(args: SelectSubset<T, ordersUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Orders.
+     * @param {ordersUpsertArgs} args - Arguments to update or create a Orders.
+     * @example
+     * // Update or create a Orders
+     * const orders = await prisma.orders.upsert({
+     *   create: {
+     *     // ... data to create a Orders
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Orders we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ordersUpsertArgs>(args: SelectSubset<T, ordersUpsertArgs<ExtArgs>>): Prisma__ordersClient<$Result.GetResult<Prisma.$ordersPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Orders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ordersCountArgs} args - Arguments to filter Orders to count.
+     * @example
+     * // Count the number of Orders
+     * const count = await prisma.orders.count({
+     *   where: {
+     *     // ... the filter for the Orders we want to count
+     *   }
+     * })
+    **/
+    count<T extends ordersCountArgs>(
+      args?: Subset<T, ordersCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OrdersCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Orders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrdersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OrdersAggregateArgs>(args: Subset<T, OrdersAggregateArgs>): Prisma.PrismaPromise<GetOrdersAggregateType<T>>
+
+    /**
+     * Group by Orders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ordersGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ordersGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ordersGroupByArgs['orderBy'] }
+        : { orderBy?: ordersGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ordersGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrdersGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the orders model
+   */
+  readonly fields: ordersFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for orders.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ordersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the orders model
+   */
+  interface ordersFieldRefs {
+    readonly id: FieldRef<"orders", 'String'>
+    readonly amount: FieldRef<"orders", 'Int'>
+    readonly userId: FieldRef<"orders", 'String'>
+    readonly username: FieldRef<"orders", 'String'>
+    readonly productId: FieldRef<"orders", 'Int'>
+    readonly productName: FieldRef<"orders", 'String'>
+    readonly email: FieldRef<"orders", 'String'>
+    readonly tokenIncrement: FieldRef<"orders", 'Int'>
+    readonly razorpayOrderId: FieldRef<"orders", 'String'>
+    readonly receipt: FieldRef<"orders", 'String'>
+    readonly status: FieldRef<"orders", 'PaymentStatusEnum'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * orders findUnique
+   */
+  export type ordersFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * Filter, which orders to fetch.
+     */
+    where: ordersWhereUniqueInput
+  }
+
+  /**
+   * orders findUniqueOrThrow
+   */
+  export type ordersFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * Filter, which orders to fetch.
+     */
+    where: ordersWhereUniqueInput
+  }
+
+  /**
+   * orders findFirst
+   */
+  export type ordersFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * Filter, which orders to fetch.
+     */
+    where?: ordersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of orders to fetch.
+     */
+    orderBy?: ordersOrderByWithRelationInput | ordersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for orders.
+     */
+    cursor?: ordersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` orders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of orders.
+     */
+    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[]
+  }
+
+  /**
+   * orders findFirstOrThrow
+   */
+  export type ordersFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * Filter, which orders to fetch.
+     */
+    where?: ordersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of orders to fetch.
+     */
+    orderBy?: ordersOrderByWithRelationInput | ordersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for orders.
+     */
+    cursor?: ordersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` orders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of orders.
+     */
+    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[]
+  }
+
+  /**
+   * orders findMany
+   */
+  export type ordersFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * Filter, which orders to fetch.
+     */
+    where?: ordersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of orders to fetch.
+     */
+    orderBy?: ordersOrderByWithRelationInput | ordersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing orders.
+     */
+    cursor?: ordersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` orders.
+     */
+    skip?: number
+    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[]
+  }
+
+  /**
+   * orders create
+   */
+  export type ordersCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * The data needed to create a orders.
+     */
+    data: XOR<ordersCreateInput, ordersUncheckedCreateInput>
+  }
+
+  /**
+   * orders createMany
+   */
+  export type ordersCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many orders.
+     */
+    data: ordersCreateManyInput | ordersCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * orders createManyAndReturn
+   */
+  export type ordersCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * The data used to create many orders.
+     */
+    data: ordersCreateManyInput | ordersCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * orders update
+   */
+  export type ordersUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * The data needed to update a orders.
+     */
+    data: XOR<ordersUpdateInput, ordersUncheckedUpdateInput>
+    /**
+     * Choose, which orders to update.
+     */
+    where: ordersWhereUniqueInput
+  }
+
+  /**
+   * orders updateMany
+   */
+  export type ordersUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update orders.
+     */
+    data: XOR<ordersUpdateManyMutationInput, ordersUncheckedUpdateManyInput>
+    /**
+     * Filter which orders to update
+     */
+    where?: ordersWhereInput
+    /**
+     * Limit how many orders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * orders updateManyAndReturn
+   */
+  export type ordersUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * The data used to update orders.
+     */
+    data: XOR<ordersUpdateManyMutationInput, ordersUncheckedUpdateManyInput>
+    /**
+     * Filter which orders to update
+     */
+    where?: ordersWhereInput
+    /**
+     * Limit how many orders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * orders upsert
+   */
+  export type ordersUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * The filter to search for the orders to update in case it exists.
+     */
+    where: ordersWhereUniqueInput
+    /**
+     * In case the orders found by the `where` argument doesn't exist, create a new orders with this data.
+     */
+    create: XOR<ordersCreateInput, ordersUncheckedCreateInput>
+    /**
+     * In case the orders was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ordersUpdateInput, ordersUncheckedUpdateInput>
+  }
+
+  /**
+   * orders delete
+   */
+  export type ordersDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
+    /**
+     * Filter which orders to delete.
+     */
+    where: ordersWhereUniqueInput
+  }
+
+  /**
+   * orders deleteMany
+   */
+  export type ordersDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which orders to delete
+     */
+    where?: ordersWhereInput
+    /**
+     * Limit how many orders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * orders without action
+   */
+  export type ordersDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the orders
+     */
+    select?: ordersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the orders
+     */
+    omit?: ordersOmit<ExtArgs> | null
   }
 
 
@@ -6957,6 +9270,32 @@ export namespace Prisma {
   export type ModelScalarFieldEnum = (typeof ModelScalarFieldEnum)[keyof typeof ModelScalarFieldEnum]
 
 
+  export const FAITokenAccountScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    FAI: 'FAI'
+  };
+
+  export type FAITokenAccountScalarFieldEnum = (typeof FAITokenAccountScalarFieldEnum)[keyof typeof FAITokenAccountScalarFieldEnum]
+
+
+  export const OrdersScalarFieldEnum: {
+    id: 'id',
+    amount: 'amount',
+    userId: 'userId',
+    username: 'username',
+    productId: 'productId',
+    productName: 'productName',
+    email: 'email',
+    tokenIncrement: 'tokenIncrement',
+    razorpayOrderId: 'razorpayOrderId',
+    receipt: 'receipt',
+    status: 'status'
+  };
+
+  export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
+
+
   export const OutputImagesScalarFieldEnum: {
     id: 'id',
     imageUrl: 'imageUrl',
@@ -7143,6 +9482,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'PaymentStatusEnum'
+   */
+  export type EnumPaymentStatusEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatusEnum'>
+    
+
+
+  /**
+   * Reference to a field of type 'PaymentStatusEnum[]'
+   */
+  export type ListEnumPaymentStatusEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatusEnum[]'>
+    
+
+
+  /**
    * Reference to a field of type 'OutputImagesStatusEnum'
    */
   export type EnumOutputImagesStatusEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OutputImagesStatusEnum'>
@@ -7297,6 +9650,134 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Model"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Model"> | Date | string
     zipUrl?: StringWithAggregatesFilter<"Model"> | string
+  }
+
+  export type FAITokenAccountWhereInput = {
+    AND?: FAITokenAccountWhereInput | FAITokenAccountWhereInput[]
+    OR?: FAITokenAccountWhereInput[]
+    NOT?: FAITokenAccountWhereInput | FAITokenAccountWhereInput[]
+    id?: StringFilter<"FAITokenAccount"> | string
+    userId?: StringFilter<"FAITokenAccount"> | string
+    FAI?: IntFilter<"FAITokenAccount"> | number
+  }
+
+  export type FAITokenAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    FAI?: SortOrder
+  }
+
+  export type FAITokenAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: FAITokenAccountWhereInput | FAITokenAccountWhereInput[]
+    OR?: FAITokenAccountWhereInput[]
+    NOT?: FAITokenAccountWhereInput | FAITokenAccountWhereInput[]
+    FAI?: IntFilter<"FAITokenAccount"> | number
+  }, "id" | "userId">
+
+  export type FAITokenAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    FAI?: SortOrder
+    _count?: FAITokenAccountCountOrderByAggregateInput
+    _avg?: FAITokenAccountAvgOrderByAggregateInput
+    _max?: FAITokenAccountMaxOrderByAggregateInput
+    _min?: FAITokenAccountMinOrderByAggregateInput
+    _sum?: FAITokenAccountSumOrderByAggregateInput
+  }
+
+  export type FAITokenAccountScalarWhereWithAggregatesInput = {
+    AND?: FAITokenAccountScalarWhereWithAggregatesInput | FAITokenAccountScalarWhereWithAggregatesInput[]
+    OR?: FAITokenAccountScalarWhereWithAggregatesInput[]
+    NOT?: FAITokenAccountScalarWhereWithAggregatesInput | FAITokenAccountScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FAITokenAccount"> | string
+    userId?: StringWithAggregatesFilter<"FAITokenAccount"> | string
+    FAI?: IntWithAggregatesFilter<"FAITokenAccount"> | number
+  }
+
+  export type ordersWhereInput = {
+    AND?: ordersWhereInput | ordersWhereInput[]
+    OR?: ordersWhereInput[]
+    NOT?: ordersWhereInput | ordersWhereInput[]
+    id?: StringFilter<"orders"> | string
+    amount?: IntFilter<"orders"> | number
+    userId?: StringFilter<"orders"> | string
+    username?: StringFilter<"orders"> | string
+    productId?: IntFilter<"orders"> | number
+    productName?: StringFilter<"orders"> | string
+    email?: StringFilter<"orders"> | string
+    tokenIncrement?: IntFilter<"orders"> | number
+    razorpayOrderId?: StringFilter<"orders"> | string
+    receipt?: StringNullableFilter<"orders"> | string | null
+    status?: EnumPaymentStatusEnumFilter<"orders"> | $Enums.PaymentStatusEnum
+  }
+
+  export type ordersOrderByWithRelationInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    userId?: SortOrder
+    username?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    email?: SortOrder
+    tokenIncrement?: SortOrder
+    razorpayOrderId?: SortOrder
+    receipt?: SortOrderInput | SortOrder
+    status?: SortOrder
+  }
+
+  export type ordersWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    razorpayOrderId?: string
+    AND?: ordersWhereInput | ordersWhereInput[]
+    OR?: ordersWhereInput[]
+    NOT?: ordersWhereInput | ordersWhereInput[]
+    amount?: IntFilter<"orders"> | number
+    userId?: StringFilter<"orders"> | string
+    username?: StringFilter<"orders"> | string
+    productId?: IntFilter<"orders"> | number
+    productName?: StringFilter<"orders"> | string
+    email?: StringFilter<"orders"> | string
+    tokenIncrement?: IntFilter<"orders"> | number
+    receipt?: StringNullableFilter<"orders"> | string | null
+    status?: EnumPaymentStatusEnumFilter<"orders"> | $Enums.PaymentStatusEnum
+  }, "id" | "razorpayOrderId">
+
+  export type ordersOrderByWithAggregationInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    userId?: SortOrder
+    username?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    email?: SortOrder
+    tokenIncrement?: SortOrder
+    razorpayOrderId?: SortOrder
+    receipt?: SortOrderInput | SortOrder
+    status?: SortOrder
+    _count?: ordersCountOrderByAggregateInput
+    _avg?: ordersAvgOrderByAggregateInput
+    _max?: ordersMaxOrderByAggregateInput
+    _min?: ordersMinOrderByAggregateInput
+    _sum?: ordersSumOrderByAggregateInput
+  }
+
+  export type ordersScalarWhereWithAggregatesInput = {
+    AND?: ordersScalarWhereWithAggregatesInput | ordersScalarWhereWithAggregatesInput[]
+    OR?: ordersScalarWhereWithAggregatesInput[]
+    NOT?: ordersScalarWhereWithAggregatesInput | ordersScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"orders"> | string
+    amount?: IntWithAggregatesFilter<"orders"> | number
+    userId?: StringWithAggregatesFilter<"orders"> | string
+    username?: StringWithAggregatesFilter<"orders"> | string
+    productId?: IntWithAggregatesFilter<"orders"> | number
+    productName?: StringWithAggregatesFilter<"orders"> | string
+    email?: StringWithAggregatesFilter<"orders"> | string
+    tokenIncrement?: IntWithAggregatesFilter<"orders"> | number
+    razorpayOrderId?: StringWithAggregatesFilter<"orders"> | string
+    receipt?: StringNullableWithAggregatesFilter<"orders"> | string | null
+    status?: EnumPaymentStatusEnumWithAggregatesFilter<"orders"> | $Enums.PaymentStatusEnum
   }
 
   export type OutputImagesWhereInput = {
@@ -7688,6 +10169,146 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     zipUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FAITokenAccountCreateInput = {
+    id?: string
+    userId: string
+    FAI?: number
+  }
+
+  export type FAITokenAccountUncheckedCreateInput = {
+    id?: string
+    userId: string
+    FAI?: number
+  }
+
+  export type FAITokenAccountUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    FAI?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FAITokenAccountUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    FAI?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FAITokenAccountCreateManyInput = {
+    id?: string
+    userId: string
+    FAI?: number
+  }
+
+  export type FAITokenAccountUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    FAI?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FAITokenAccountUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    FAI?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ordersCreateInput = {
+    id?: string
+    amount: number
+    userId: string
+    username: string
+    productId: number
+    productName: string
+    email: string
+    tokenIncrement: number
+    razorpayOrderId: string
+    receipt?: string | null
+    status?: $Enums.PaymentStatusEnum
+  }
+
+  export type ordersUncheckedCreateInput = {
+    id?: string
+    amount: number
+    userId: string
+    username: string
+    productId: number
+    productName: string
+    email: string
+    tokenIncrement: number
+    razorpayOrderId: string
+    receipt?: string | null
+    status?: $Enums.PaymentStatusEnum
+  }
+
+  export type ordersUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    productId?: IntFieldUpdateOperationsInput | number
+    productName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tokenIncrement?: IntFieldUpdateOperationsInput | number
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    receipt?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPaymentStatusEnumFieldUpdateOperationsInput | $Enums.PaymentStatusEnum
+  }
+
+  export type ordersUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    productId?: IntFieldUpdateOperationsInput | number
+    productName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tokenIncrement?: IntFieldUpdateOperationsInput | number
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    receipt?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPaymentStatusEnumFieldUpdateOperationsInput | $Enums.PaymentStatusEnum
+  }
+
+  export type ordersCreateManyInput = {
+    id?: string
+    amount: number
+    userId: string
+    username: string
+    productId: number
+    productName: string
+    email: string
+    tokenIncrement: number
+    razorpayOrderId: string
+    receipt?: string | null
+    status?: $Enums.PaymentStatusEnum
+  }
+
+  export type ordersUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    productId?: IntFieldUpdateOperationsInput | number
+    productName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tokenIncrement?: IntFieldUpdateOperationsInput | number
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    receipt?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPaymentStatusEnumFieldUpdateOperationsInput | $Enums.PaymentStatusEnum
+  }
+
+  export type ordersUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    productId?: IntFieldUpdateOperationsInput | number
+    productName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tokenIncrement?: IntFieldUpdateOperationsInput | number
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    receipt?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumPaymentStatusEnumFieldUpdateOperationsInput | $Enums.PaymentStatusEnum
   }
 
   export type OutputImagesCreateInput = {
@@ -8250,6 +10871,103 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type FAITokenAccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    FAI?: SortOrder
+  }
+
+  export type FAITokenAccountAvgOrderByAggregateInput = {
+    FAI?: SortOrder
+  }
+
+  export type FAITokenAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    FAI?: SortOrder
+  }
+
+  export type FAITokenAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    FAI?: SortOrder
+  }
+
+  export type FAITokenAccountSumOrderByAggregateInput = {
+    FAI?: SortOrder
+  }
+
+  export type EnumPaymentStatusEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaymentStatusEnum | EnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PaymentStatusEnum[] | ListEnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaymentStatusEnum[] | ListEnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaymentStatusEnumFilter<$PrismaModel> | $Enums.PaymentStatusEnum
+  }
+
+  export type ordersCountOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    userId?: SortOrder
+    username?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    email?: SortOrder
+    tokenIncrement?: SortOrder
+    razorpayOrderId?: SortOrder
+    receipt?: SortOrder
+    status?: SortOrder
+  }
+
+  export type ordersAvgOrderByAggregateInput = {
+    amount?: SortOrder
+    productId?: SortOrder
+    tokenIncrement?: SortOrder
+  }
+
+  export type ordersMaxOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    userId?: SortOrder
+    username?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    email?: SortOrder
+    tokenIncrement?: SortOrder
+    razorpayOrderId?: SortOrder
+    receipt?: SortOrder
+    status?: SortOrder
+  }
+
+  export type ordersMinOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    userId?: SortOrder
+    username?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    email?: SortOrder
+    tokenIncrement?: SortOrder
+    razorpayOrderId?: SortOrder
+    receipt?: SortOrder
+    status?: SortOrder
+  }
+
+  export type ordersSumOrderByAggregateInput = {
+    amount?: SortOrder
+    productId?: SortOrder
+    tokenIncrement?: SortOrder
+  }
+
+  export type EnumPaymentStatusEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaymentStatusEnum | EnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PaymentStatusEnum[] | ListEnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaymentStatusEnum[] | ListEnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaymentStatusEnumWithAggregatesFilter<$PrismaModel> | $Enums.PaymentStatusEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPaymentStatusEnumFilter<$PrismaModel>
+    _max?: NestedEnumPaymentStatusEnumFilter<$PrismaModel>
+  }
+
   export type EnumOutputImagesStatusEnumFilter<$PrismaModel = never> = {
     equals?: $Enums.OutputImagesStatusEnum | EnumOutputImagesStatusEnumFieldRefInput<$PrismaModel>
     in?: $Enums.OutputImagesStatusEnum[] | ListEnumOutputImagesStatusEnumFieldRefInput<$PrismaModel>
@@ -8516,6 +11234,10 @@ export namespace Prisma {
     update?: OutputImagesUpdateWithWhereUniqueWithoutModelInput | OutputImagesUpdateWithWhereUniqueWithoutModelInput[]
     updateMany?: OutputImagesUpdateManyWithWhereWithoutModelInput | OutputImagesUpdateManyWithWhereWithoutModelInput[]
     deleteMany?: OutputImagesScalarWhereInput | OutputImagesScalarWhereInput[]
+  }
+
+  export type EnumPaymentStatusEnumFieldUpdateOperationsInput = {
+    set?: $Enums.PaymentStatusEnum
   }
 
   export type OutputImagesCreateimageUrlInput = {
@@ -8820,6 +11542,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPaymentStatusEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaymentStatusEnum | EnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PaymentStatusEnum[] | ListEnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaymentStatusEnum[] | ListEnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaymentStatusEnumFilter<$PrismaModel> | $Enums.PaymentStatusEnum
+  }
+
+  export type NestedEnumPaymentStatusEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaymentStatusEnum | EnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PaymentStatusEnum[] | ListEnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaymentStatusEnum[] | ListEnumPaymentStatusEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaymentStatusEnumWithAggregatesFilter<$PrismaModel> | $Enums.PaymentStatusEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPaymentStatusEnumFilter<$PrismaModel>
+    _max?: NestedEnumPaymentStatusEnumFilter<$PrismaModel>
   }
 
   export type NestedEnumOutputImagesStatusEnumFilter<$PrismaModel = never> = {

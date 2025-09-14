@@ -158,7 +158,10 @@ export async function POST (req: NextRequest) {
         },{status:422})
     }
     const request_id: string = body.request_id;
-    const videoUrl: string = body.video.url;
+    const videoUrl: string | undefined = body.payload?.video?.url;
+    if (!videoUrl) {
+        return NextResponse.json({ message: "No video URL in payload" }, { status: 422 });
+    }
     await PrismaClient.outputVideos.updateMany({
             where: {
             falAiRequestId: request_id,

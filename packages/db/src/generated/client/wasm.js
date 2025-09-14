@@ -139,6 +139,26 @@ exports.Prisma.ModelScalarFieldEnum = {
   zipUrl: 'zipUrl'
 };
 
+exports.Prisma.FAITokenAccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  FAI: 'FAI'
+};
+
+exports.Prisma.OrdersScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  userId: 'userId',
+  username: 'username',
+  productId: 'productId',
+  productName: 'productName',
+  email: 'email',
+  tokenIncrement: 'tokenIncrement',
+  razorpayOrderId: 'razorpayOrderId',
+  receipt: 'receipt',
+  status: 'status'
+};
+
 exports.Prisma.OutputImagesScalarFieldEnum = {
   id: 'id',
   imageUrl: 'imageUrl',
@@ -229,6 +249,12 @@ exports.ModelTrainingStatusEnum = exports.$Enums.ModelTrainingStatusEnum = {
   Failed: 'Failed'
 };
 
+exports.PaymentStatusEnum = exports.$Enums.PaymentStatusEnum = {
+  Pending: 'Pending',
+  Completed: 'Completed',
+  Failed: 'Failed'
+};
+
 exports.OutputImagesStatusEnum = exports.$Enums.OutputImagesStatusEnum = {
   Pending: 'Pending',
   generated: 'generated',
@@ -242,6 +268,8 @@ exports.VideoTypeEnum = exports.$Enums.VideoTypeEnum = {
 
 exports.Prisma.ModelName = {
   Model: 'Model',
+  FAITokenAccount: 'FAITokenAccount',
+  orders: 'orders',
   OutputImages: 'OutputImages',
   OutputVideos: 'OutputVideos',
   Packs: 'Packs',

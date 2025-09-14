@@ -82,10 +82,10 @@ export default function GenerateImage({models}: {models: models[]}) {
         <CardFooter className="p-4 border-t border-border [.border-t]:pt-4">
            <Button disabled={disabled || prompt === "" || numOfImages === null} className="w-full mt-8" onClick={async () => {
               setDisabled(true)
-              alert("image generated")
+              alert("Your image is being generated. This process may take a few seconds. Please wait and avoid clicking the button again until the image is ready.");
               const res = await axios.post(BACKEND_URL+"/ai/generate", {
                 prompt,
-                modelId: model,
+                modelId: model == "" ? undefined : model,
                 num: numOfImages
               })
               setDisabled(false)

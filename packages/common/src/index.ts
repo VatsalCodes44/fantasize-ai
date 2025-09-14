@@ -25,7 +25,7 @@ export const trainModel = z.object({
 
 export const generateImage = z.object({
     prompt: z.string(),
-    modelId: z.string(),
+    modelId: z.string().optional(),
     num: z.number()
 })
 
@@ -39,4 +39,8 @@ export const generateVideo = z.object({
     imageName: z.string().optional(),
     resolution: z.enum(["720p", "1080p"]),
     generateAudio: z.boolean()
+})
+
+export const razorpayBody = z.object({
+    variantId: z.number()
 })

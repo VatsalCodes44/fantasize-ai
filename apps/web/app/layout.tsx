@@ -15,6 +15,7 @@ import './globals.css'
 import { ThemeProvider } from "next-themes";
 import { ModeToggle } from "@/components/ui/ToggleMode";
 import { IconArrowLeft } from "@tabler/icons-react";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

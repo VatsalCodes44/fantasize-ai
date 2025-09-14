@@ -8,11 +8,11 @@ export class FalAiModel {
       });
     }
 
-    public async generateImage(prompt: string, tensorPath: string, num_images: number) {
+    public async generateImage(prompt: string, num_images: number, tensorPath?: string,) {
         const {request_id, response_url} = await fal.queue.submit("fal-ai/flux-lora", {
             input: {
               prompt,
-              loras: [{path: tensorPath, scale: 1}],
+              loras: tensorPath ? [{path: tensorPath, scale: 1}] : undefined,
               num_images
             },
             webhookUrl: "https://fantasize-ai.vatsalmahajan.in/api/v2/webhook/image"

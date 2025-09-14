@@ -4,6 +4,8 @@ import PrismaClient from "@repo/db/client";
 import { FalAiModel } from "models/FalAiModel";
 import { NextRequest, NextResponse } from "next/server";
 
+
+
 export async function POST(req: NextRequest) {
     const parsedBody = generateImage.safeParse(await req.json())
     const {userId} = await auth()
@@ -16,6 +18,25 @@ export async function POST(req: NextRequest) {
         )
     }
     const {prompt, modelId, num} = parsedBody.data;
+
+    if (!modelId){
+        const falAiModel = new FalAiModel();
+        const {request_id, response_url} = await falAiModel.generateImage(prompt, num)
+
+        const data = await PrismaClient.outputImages.create({
+            data: {
+                userId, 
+                prompt, 
+                modelId: modelId!, 
+                falAiRequestId: request_id
+            }
+        })
+        
+        return NextResponse.json({
+            message: "request sucessful"
+        })
+    }
+
 
     const model = await PrismaClient.model.findUnique({
         where: {
@@ -38,13 +59,13 @@ export async function POST(req: NextRequest) {
     } else {
         modifiedPrompt = `${model.age}-year-old ${model.ethinicity} ${model.type} with ${model.eyeColor}, ${prompt}`
     }
-    const {request_id, response_url} = await falAiModel.generateImage(modifiedPrompt, model.tensorPath, num)
+    const {request_id, response_url} = await falAiModel.generateImage(modifiedPrompt, num, model.tensorPath)
 
     const data = await PrismaClient.outputImages.create({
         data: {
             userId, 
             prompt: modifiedPrompt, 
-            modelId, 
+            modelId: modelId!, 
             falAiRequestId: request_id
         }
     })

@@ -204,7 +204,7 @@ export function TrainCard() {
                 updatedAt: new Date()
             })
 
-            alert("It may take 10 - 15 mins to train face model")
+            alert("The face model is being trained and may take 10–15 minutes to complete. Please wait until it is ready before pressing the button again.");
             setDisabled(false)
 
           }} className="w-full hover:cursor-pointer">Generate</Button>

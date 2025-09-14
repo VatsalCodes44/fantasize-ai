@@ -51,6 +51,26 @@ model Model {
 //   model     Model    @relation(fields:[modelId], references:[id] )
 // }
 
+model FAITokenAccount {
+  id                 String                   @id @default(uuid())
+  userId             String                   @unique
+  FAI                Int                      @default(0)
+}
+
+model orders {
+  id                 String                   @id @default(uuid())
+  amount             Int
+  userId             String
+  username              String
+  productId          Int
+  productName        String
+  email              String
+  tokenIncrement     Int
+  razorpayOrderId    String                   @unique
+  receipt            String?
+  status             PaymentStatusEnum   @default(Pending)
+}
+
 model OutputImages {
   id              String   @id @default(uuid())
   imageUrl        String[] @default([])
@@ -135,6 +155,12 @@ enum EyeColorEnum {
 enum OutputImagesStatusEnum {
   Pending
   generated 
+  Failed
+}
+
+enum PaymentStatusEnum {
+  Pending
+  Completed 
   Failed
 }
 
