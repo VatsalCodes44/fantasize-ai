@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
         request_id: string,
 
     }[] =  await Promise.all(prompts.map(async prompt => {
-        return falAiModel.generateImage(prompt.prompt, parsedBody.data.modelId,1)
+        return falAiModel.generateImage(prompt.prompt,1, parsedBody.data.modelId)
     }))
 
     const images = PrismaClient.outputImages.createManyAndReturn({
