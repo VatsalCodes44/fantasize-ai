@@ -7,8 +7,24 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export async function POST(req: NextRequest) {
+    
     const parsedBody = generateImage.safeParse(await req.json())
     const {userId} = await auth()
+    const balance = await PrismaClient.fAITokenAccount.findUnique({
+        where: {
+            userId: userId!
+        }
+    })
+    if (!balance) {
+        return NextResponse.json({
+          message: "Account not found"
+        }, { status: 402 });
+    }
+    if (balance.FAI < 1) {
+          return NextResponse.json({
+            message: "Not enough FAI tokens"
+          }, {status: 402})
+        }
     if (!parsedBody.success || !userId) {
         return NextResponse.json({
                 message: "Incorrect Inputs"
@@ -67,6 +83,19 @@ export async function POST(req: NextRequest) {
             prompt: modifiedPrompt, 
             modelId: modelId!, 
             falAiRequestId: request_id
+        }
+    })
+    await PrismaClient.fAITokenAccount.update({
+        where: {
+            userId
+        }, 
+        data: {
+            FAI: {
+                decrement: 1
+            },
+            PendingTokens: {
+                increment: 1
+            }
         }
     })
      

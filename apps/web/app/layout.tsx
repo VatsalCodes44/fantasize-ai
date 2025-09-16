@@ -13,7 +13,7 @@ import {
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from "next-themes";
-import { ModeToggle } from "@/components/ui/ToggleMode";
+import { ModeToggle } from "@/components/ui/ModeToggle";
 import { IconArrowLeft } from "@tabler/icons-react";
 import Script from "next/script";
 

@@ -7,7 +7,7 @@ import { TrainCard } from "@/components/manualComponents/TrainCard"
 import { Pricing } from "@/components/ui/pricing-homepage";
 import { FlipWords } from "@/components/ui/flip-words";
 
-import { ModeToggle } from "@/components/ui/ToggleMode"
+import { ModeToggle } from "@/components/ui/ModeToggle"
 
 export default () => {
   // const projects = [

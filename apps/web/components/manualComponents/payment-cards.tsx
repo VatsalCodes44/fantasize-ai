@@ -184,7 +184,7 @@ export const PaymentCard = ({
                     <CardFooter className="absolute bottom-0 w-full px-0 pb-4">
                       <div className={clicked ? "cursor-not-allowed" : ""}>
                         <Button 
-                        disabled={clicked}
+                        // disabled={clicked}
                         onClick={async () => {
                           setClicked(true);
 

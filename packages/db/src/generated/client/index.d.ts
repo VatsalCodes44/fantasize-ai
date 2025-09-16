@@ -2828,56 +2828,66 @@ export namespace Prisma {
 
   export type FAITokenAccountAvgAggregateOutputType = {
     FAI: number | null
+    PendingTokens: number | null
   }
 
   export type FAITokenAccountSumAggregateOutputType = {
     FAI: number | null
+    PendingTokens: number | null
   }
 
   export type FAITokenAccountMinAggregateOutputType = {
     id: string | null
     userId: string | null
     FAI: number | null
+    PendingTokens: number | null
   }
 
   export type FAITokenAccountMaxAggregateOutputType = {
     id: string | null
     userId: string | null
     FAI: number | null
+    PendingTokens: number | null
   }
 
   export type FAITokenAccountCountAggregateOutputType = {
     id: number
     userId: number
     FAI: number
+    PendingTokens: number
     _all: number
   }
 
 
   export type FAITokenAccountAvgAggregateInputType = {
     FAI?: true
+    PendingTokens?: true
   }
 
   export type FAITokenAccountSumAggregateInputType = {
     FAI?: true
+    PendingTokens?: true
   }
 
   export type FAITokenAccountMinAggregateInputType = {
     id?: true
     userId?: true
     FAI?: true
+    PendingTokens?: true
   }
 
   export type FAITokenAccountMaxAggregateInputType = {
     id?: true
     userId?: true
     FAI?: true
+    PendingTokens?: true
   }
 
   export type FAITokenAccountCountAggregateInputType = {
     id?: true
     userId?: true
     FAI?: true
+    PendingTokens?: true
     _all?: true
   }
 
@@ -2971,6 +2981,7 @@ export namespace Prisma {
     id: string
     userId: string
     FAI: number
+    PendingTokens: number
     _count: FAITokenAccountCountAggregateOutputType | null
     _avg: FAITokenAccountAvgAggregateOutputType | null
     _sum: FAITokenAccountSumAggregateOutputType | null
@@ -2996,27 +3007,31 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     FAI?: boolean
+    PendingTokens?: boolean
   }, ExtArgs["result"]["fAITokenAccount"]>
 
   export type FAITokenAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
     FAI?: boolean
+    PendingTokens?: boolean
   }, ExtArgs["result"]["fAITokenAccount"]>
 
   export type FAITokenAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
     FAI?: boolean
+    PendingTokens?: boolean
   }, ExtArgs["result"]["fAITokenAccount"]>
 
   export type FAITokenAccountSelectScalar = {
     id?: boolean
     userId?: boolean
     FAI?: boolean
+    PendingTokens?: boolean
   }
 
-  export type FAITokenAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "FAI", ExtArgs["result"]["fAITokenAccount"]>
+  export type FAITokenAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "FAI" | "PendingTokens", ExtArgs["result"]["fAITokenAccount"]>
 
   export type $FAITokenAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FAITokenAccount"
@@ -3025,6 +3040,7 @@ export namespace Prisma {
       id: string
       userId: string
       FAI: number
+      PendingTokens: number
     }, ExtArgs["result"]["fAITokenAccount"]>
     composites: {}
   }
@@ -3451,6 +3467,7 @@ export namespace Prisma {
     readonly id: FieldRef<"FAITokenAccount", 'String'>
     readonly userId: FieldRef<"FAITokenAccount", 'String'>
     readonly FAI: FieldRef<"FAITokenAccount", 'Int'>
+    readonly PendingTokens: FieldRef<"FAITokenAccount", 'Int'>
   }
     
 
@@ -9273,7 +9290,8 @@ export namespace Prisma {
   export const FAITokenAccountScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    FAI: 'FAI'
+    FAI: 'FAI',
+    PendingTokens: 'PendingTokens'
   };
 
   export type FAITokenAccountScalarFieldEnum = (typeof FAITokenAccountScalarFieldEnum)[keyof typeof FAITokenAccountScalarFieldEnum]
@@ -9659,12 +9677,14 @@ export namespace Prisma {
     id?: StringFilter<"FAITokenAccount"> | string
     userId?: StringFilter<"FAITokenAccount"> | string
     FAI?: IntFilter<"FAITokenAccount"> | number
+    PendingTokens?: IntFilter<"FAITokenAccount"> | number
   }
 
   export type FAITokenAccountOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
     FAI?: SortOrder
+    PendingTokens?: SortOrder
   }
 
   export type FAITokenAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -9674,12 +9694,14 @@ export namespace Prisma {
     OR?: FAITokenAccountWhereInput[]
     NOT?: FAITokenAccountWhereInput | FAITokenAccountWhereInput[]
     FAI?: IntFilter<"FAITokenAccount"> | number
+    PendingTokens?: IntFilter<"FAITokenAccount"> | number
   }, "id" | "userId">
 
   export type FAITokenAccountOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     FAI?: SortOrder
+    PendingTokens?: SortOrder
     _count?: FAITokenAccountCountOrderByAggregateInput
     _avg?: FAITokenAccountAvgOrderByAggregateInput
     _max?: FAITokenAccountMaxOrderByAggregateInput
@@ -9694,6 +9716,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"FAITokenAccount"> | string
     userId?: StringWithAggregatesFilter<"FAITokenAccount"> | string
     FAI?: IntWithAggregatesFilter<"FAITokenAccount"> | number
+    PendingTokens?: IntWithAggregatesFilter<"FAITokenAccount"> | number
   }
 
   export type ordersWhereInput = {
@@ -10175,42 +10198,49 @@ export namespace Prisma {
     id?: string
     userId: string
     FAI?: number
+    PendingTokens?: number
   }
 
   export type FAITokenAccountUncheckedCreateInput = {
     id?: string
     userId: string
     FAI?: number
+    PendingTokens?: number
   }
 
   export type FAITokenAccountUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     FAI?: IntFieldUpdateOperationsInput | number
+    PendingTokens?: IntFieldUpdateOperationsInput | number
   }
 
   export type FAITokenAccountUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     FAI?: IntFieldUpdateOperationsInput | number
+    PendingTokens?: IntFieldUpdateOperationsInput | number
   }
 
   export type FAITokenAccountCreateManyInput = {
     id?: string
     userId: string
     FAI?: number
+    PendingTokens?: number
   }
 
   export type FAITokenAccountUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     FAI?: IntFieldUpdateOperationsInput | number
+    PendingTokens?: IntFieldUpdateOperationsInput | number
   }
 
   export type FAITokenAccountUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     FAI?: IntFieldUpdateOperationsInput | number
+    PendingTokens?: IntFieldUpdateOperationsInput | number
   }
 
   export type ordersCreateInput = {
@@ -10875,26 +10905,31 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     FAI?: SortOrder
+    PendingTokens?: SortOrder
   }
 
   export type FAITokenAccountAvgOrderByAggregateInput = {
     FAI?: SortOrder
+    PendingTokens?: SortOrder
   }
 
   export type FAITokenAccountMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     FAI?: SortOrder
+    PendingTokens?: SortOrder
   }
 
   export type FAITokenAccountMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     FAI?: SortOrder
+    PendingTokens?: SortOrder
   }
 
   export type FAITokenAccountSumOrderByAggregateInput = {
     FAI?: SortOrder
+    PendingTokens?: SortOrder
   }
 
   export type EnumPaymentStatusEnumFilter<$PrismaModel = never> = {

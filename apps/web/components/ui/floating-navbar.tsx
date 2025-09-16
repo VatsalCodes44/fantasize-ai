@@ -9,12 +9,15 @@ import {
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { IconFaceId, IconPhoto, IconStack, IconTextCaption } from '@tabler/icons-react';
+import { PlusIcon, VideoIcon } from "lucide-react";
 
 
 
 export const FloatingNav = ({
+  FAIs,
   className,
 }: {
+  FAIs: number,
   className?: string;
 }) => {
   const pathname = usePathname();
@@ -185,6 +188,20 @@ export const FloatingNav = ({
             <span className="hidden sm:block text-sm">{navItem.name}</span>
           </a>
         )})}
+        <div
+          className={cn(
+            `text-sm dark:text-neutral-50 text-neutral-800 relative items-center flex space-x-1` 
+          )}
+        >
+          <div className="flex justify-center border rounded-full border-black dark:border-white">
+            <span className="px-2">
+              {FAIs} FAIs
+            </span>
+            <a href="/pricing" className="flex justify-center items-center bg-black dark:bg-white text-cyan-500 rounded-r-full px-1 hover:cursor-pointer">
+              <PlusIcon className="size-5 stroke-3" />
+            </a>
+          </div>
+        </div>
       </motion.div>
     </AnimatePresence>
   );

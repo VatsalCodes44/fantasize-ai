@@ -55,6 +55,7 @@ model FAITokenAccount {
   id                 String                   @id @default(uuid())
   userId             String                   @unique
   FAI                Int                      @default(0)
+  PendingTokens      Int                      @default(0)
 }
 
 model orders {

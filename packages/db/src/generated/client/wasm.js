@@ -142,7 +142,8 @@ exports.Prisma.ModelScalarFieldEnum = {
 exports.Prisma.FAITokenAccountScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  FAI: 'FAI'
+  FAI: 'FAI',
+  PendingTokens: 'PendingTokens'
 };
 
 exports.Prisma.OrdersScalarFieldEnum = {

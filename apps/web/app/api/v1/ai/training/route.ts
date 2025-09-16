@@ -14,7 +14,21 @@ export async function POST(req: NextRequest) {
         }
         const body = await req.json()
         const parsedBody = trainModel.safeParse(body);
-
+        const balance = await prismaClient.fAITokenAccount.findUnique({
+            where: {
+                    userId: userId!
+                }
+        })
+        if (!balance) {
+        return NextResponse.json({
+            message: "Account not found"
+        }, { status: 402 });
+        }
+        if (balance.FAI < 20) {
+          return NextResponse.json({
+            message: "Not enough FAI tokens"
+          }, {status: 402})
+        }
         console.log(body)
 
         if (!parsedBody.success) {

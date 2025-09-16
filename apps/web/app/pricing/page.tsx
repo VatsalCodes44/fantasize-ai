@@ -65,11 +65,6 @@ export default async () => {
         <PaymentCard/>
       </div>
       </div>
-
-      
-      <div className="">
-        hi
-      </div>
       <div className="mt-10 pt-8 border-t-2 rounded-3xl h-80">
         <div className="grid grid-cols-2 gap-4 p-4 md:p-8 lg:p-10">
           <div className="col-span-1 flex justify-center">

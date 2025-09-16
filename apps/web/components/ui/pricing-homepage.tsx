@@ -101,7 +101,7 @@ export const Pricing = ({
       {variants.map((variant,idx) => {
         return (
           <a key={idx}
-            href=""
+            href="/pricing"
             className="relative group block p-2 h-full w-full"
             onMouseEnter={() => setHoveredIndex(variant.id)}
             onMouseLeave={() => setHoveredIndex(null)}

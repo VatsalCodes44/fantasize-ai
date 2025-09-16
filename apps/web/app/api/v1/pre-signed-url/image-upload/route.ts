@@ -2,6 +2,8 @@ import { S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { NextRequest, NextResponse } from "next/server";
+import PrismaClient from "@repo/db/client";
+import { auth } from "@clerk/nextjs/server";
 
 // Initialize S3 client - USE YOUR EXACT ENV VARIABLE NAMES
 const s3Client = new S3Client({
@@ -14,6 +16,22 @@ const s3Client = new S3Client({
 
 export async function GET(req: NextRequest) {
   try {
+    const {userId} = await auth()
+    const balance = await PrismaClient.fAITokenAccount.findUnique({
+      where: {
+          userId: userId!
+      }
+    })
+    if (!balance) {
+      return NextResponse.json({
+        message: "Account not found"
+      }, { status: 402 });
+    }
+    if (balance.FAI < 8 ) {
+        return NextResponse.json({
+          message: "Not enough FAI tokens"
+        }, {status: 402})
+    }
     console.log("Generating presigned URL...");
     const Key = `images/${Date.now()}_${Math.random()}`;
     const presignedUrl = await getSignedUrl(
