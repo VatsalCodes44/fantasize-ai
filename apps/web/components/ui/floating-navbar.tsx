@@ -2,14 +2,12 @@
 import React, { JSX, useEffect, useRef, useState } from "react";
 import {
   motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
+  AnimatePresence
 } from "motion/react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { IconFaceId, IconPhoto, IconStack, IconTextCaption } from '@tabler/icons-react';
-import { PlusIcon, VideoIcon } from "lucide-react";
+import { IconBrandYoutube, IconFaceId, IconPhoto, IconStack, IconTextCaption } from '@tabler/icons-react';
+import { PlusIcon } from "lucide-react";
 
 
 
@@ -151,7 +149,7 @@ export const FloatingNav = ({
       {
         name: "Videos",
         link: "/dashboard/video/videos",
-        icon: <IconFaceId className={`${pathname.endsWith("face-model") ? "text-cyan-500" : "text-neutral-500 dark:text-white"} h-4 w-4`} />,
+        icon: <IconBrandYoutube className={`${pathname.endsWith("face-model") ? "text-cyan-500" : "text-neutral-500 dark:text-white"} h-4 w-4`} />,
       }
     ]
   }

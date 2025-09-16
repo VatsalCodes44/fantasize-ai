@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
                     FAI: order.tokenIncrement
                 }
             })
-            await sendEmail(order.email,"Order Confirmation - Fantasize AI",
+            sendEmail(order.email,"Order Confirmation - Fantasize AI",
                 `Hello ${order.username},
 
                 Your order has been successfully completed.
@@ -94,10 +94,13 @@ export async function POST(req: NextRequest) {
                     <b>Team Fantasize AI</b></p>
                     </div>
                 `
-            );
+            ).catch ((err) => {
+                return NextResponse.json({ success: true }, { status: 200 });
+            })
+            return NextResponse.json({ success: true }, { status: 200 });
         }
 
-        if (event.event === "payment.failed") {
+        else if (event.event === "payment.failed") {
             const payment = event.payload.payment.entity;
 
             // Update order status in DB
@@ -106,7 +109,7 @@ export async function POST(req: NextRequest) {
                 data: { status: "Failed" },
             });
             // Send failure notification email
-            await sendEmail(order.email,"Payment Failed - Fantasize AI",
+            sendEmail(order.email,"Payment Failed - Fantasize AI",
             `Hello ${order.username},
 
             We regret to inform you that your recent payment attempt was not successful.
@@ -142,9 +145,15 @@ export async function POST(req: NextRequest) {
                 <b>Team Fantasize AI</b></p>
             </div>
             `,
-            );
+            ).catch((err) => {
+                console.log(err)
+                return NextResponse.json({ success: true }, { status: 200 });
+            })
+            return NextResponse.json({ success: true }, { status: 200 });
         }
-
+        else {
+            return NextResponse.json({ success: true }, { status: 200 });
+        }
 
     } catch (err) {
         console.error(err)
