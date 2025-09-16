@@ -124,56 +124,87 @@ async function verifyWebhookSignature(requestId: string, userId: string, timesta
 
 
 export async function POST (req: NextRequest) {
+    try {
+
         const arrayBuffer = await req.arrayBuffer(); // raw bytes
-    const bodyBuffer = Buffer.from(arrayBuffer); // convert to Node Buffer
-
-    const requestId = req.headers.get("x-fal-webhook-request-id");
-    const userId = req.headers.get("x-fal-webhook-user-id");
-    const timeStamp = req.headers.get("x-fal-webhook-timestamp");
-    const webhookSignature = req.headers.get("x-fal-webhook-signature");
-
-    const isValid = await verifyWebhookSignature(
-    requestId!,
-    userId!,
-    timeStamp!,
-    webhookSignature!,
-    bodyBuffer
-    );
-
-    const body = JSON.parse(Buffer.from(arrayBuffer).toString("utf-8"));
-    console.log(body)
-    if (!isValid) {
-        return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
-    }
-    const request_id: string = body.request_id;
-    if (body.status=="ERROR") {
-        const dbRequests = await PrismaClient.model.updateMany({
-            where : {
-                falAiRequestId: requestId
+        const bodyBuffer = Buffer.from(arrayBuffer); // convert to Node Buffer
+    
+        const requestId = req.headers.get("x-fal-webhook-request-id");
+        const userId = req.headers.get("x-fal-webhook-user-id");
+        const timeStamp = req.headers.get("x-fal-webhook-timestamp");
+        const webhookSignature = req.headers.get("x-fal-webhook-signature");
+    
+        const isValid = await verifyWebhookSignature(
+        requestId!,
+        userId!,
+        timeStamp!,
+        webhookSignature!,
+        bodyBuffer
+        );
+    
+        const body = JSON.parse(Buffer.from(arrayBuffer).toString("utf-8"));
+        console.log(body)
+        if (!isValid) {
+            return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
+        }
+        const request_id: string = body.request_id;
+        if (body.status=="ERROR") {
+            const dbRequests = await PrismaClient.model.updateManyAndReturn({
+                where : {
+                    falAiRequestId: requestId
+                }, 
+                data : {
+                    trainingStatus: "Failed"
+                }
+            })
+            const updateBalance = await PrismaClient.fAITokenAccount.update({
+                where: {
+                    userId: dbRequests[0]?.userId
+                }, 
+                data: {
+                    PendingTokens: {
+                        decrement: 8
+                    },
+                    FAI: {
+                        increment: 8
+                    }
+                }
+            })
+            return NextResponse.json({
+                message: "error occured"
+            },{status:422})
+        }
+        const tensor_path: string | undefined = body.payload?.diffusers_lora_file?.url;
+        if (!tensor_path) {
+            return NextResponse.json({ message: "No tensor file in payload" }, { status: 422 });
+        }
+    
+        const dbRequest = await PrismaClient.model.updateManyAndReturn({
+                where: {
+                falAiRequestId: request_id,
+            },
+            data: {
+                trainingStatus: "generated",
+                tensorPath: tensor_path
+            }
+        })
+        const updateBalance = await PrismaClient.fAITokenAccount.update({
+            where: {
+                userId: dbRequest[0]?.userId
             }, 
-            data : {
-                trainingStatus: "Failed"
+            data: {
+                PendingTokens: {
+                    decrement: 8
+                }
             }
         })
         return NextResponse.json({
-            message: "error occured"
-        },{status:422})
+            message: "web hook recieved"
+        })
+    } catch (err) {
+        console.log(err);
+        return NextResponse.json({
+            message: "something went wrong"
+        })
     }
-    const tensor_path: string | undefined = body.payload?.diffusers_lora_file?.url;
-    if (!tensor_path) {
-        return NextResponse.json({ message: "No tensor file in payload" }, { status: 422 });
-    }
-
-    await PrismaClient.model.updateMany({
-            where: {
-            falAiRequestId: request_id,
-        },
-        data: {
-            trainingStatus: "generated",
-            tensorPath: tensor_path
-        }
-    })
-    return NextResponse.json({
-        message: "web hook recieved"
-    })
 }

@@ -3,11 +3,10 @@ import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-b
 import { GridBackground } from "@/components/manualComponents/GridBackground";
 import { HowTOGenerateImage } from "@/components/manualComponents/HowTOGenerateImage";
 import { HowTOGenerateVideo } from "@/components/manualComponents/HowToGenerateVideo";
-import { TrainCard } from "@/components/manualComponents/TrainCard"
 import { Pricing } from "@/components/ui/pricing-homepage";
 import { FlipWords } from "@/components/ui/flip-words";
-
 import { ModeToggle } from "@/components/ui/ModeToggle"
+import Footer from "@/components/ui/Footer";
 
 export default () => {
   // const projects = [
@@ -130,17 +129,11 @@ export default () => {
         </div>
         <Pricing/>
       </div>
-      <div className="mt-10 pt-8 border-t-2 rounded-3xl h-80">
-          <div className="grid grid-cols-2 gap-4 p-4 md:p-8 lg:p-10">
-            <div className="col-span-1 flex justify-center">
-              <img src="/fantasizelogo.png" className="relative left-3 h-20 w-20" alt="" />
-              <div className="flex justify-center items-center text-3xl pb-2 font-semibold">
-                <AuroraText speed={1} colors={["#2f0874" ,"#872d9b", "#e903f9", "#08f9fb", "#068fe0"]}>Fantasize Ai</AuroraText>
-              </div>
-            </div>
-            <div></div>
-          </div>
-        </div>
+      
+      <div className=" pt-4 border-t-2 rounded-3xl h-80">
+        <Footer />
+      </div>
+
     </div>
   )
 }

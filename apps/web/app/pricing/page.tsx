@@ -1,9 +1,14 @@
 import { AuroraText } from "@/components/magicui/aurora-text";
 import { PaymentCard } from "@/components/manualComponents/payment-cards";
+import Footer from "@/components/ui/Footer";
+import { ModeToggle } from "@/components/ui/ModeToggle";
 
 export default async () => {
   return (
     <div className="">
+      <div className="fixed bottom-8 right-8 lg:bottom-12 lg:right-12 z-50">
+        <ModeToggle/>
+      </div>
       <div className="relative ">
         {/* Logo + Brand */}
         <div className="col-span-1 flex justify-center">
@@ -65,16 +70,8 @@ export default async () => {
         <PaymentCard/>
       </div>
       </div>
-      <div className="mt-10 pt-8 border-t-2 rounded-3xl h-80">
-        <div className="grid grid-cols-2 gap-4 p-4 md:p-8 lg:p-10">
-          <div className="col-span-1 flex justify-center">
-            <img src="/fantasizelogo.png" className="relative left-3 h-20 w-20" alt="" />
-            <div className="flex justify-center items-center text-3xl pb-2 font-semibold">
-              <AuroraText speed={1} colors={["#2f0874" ,"#872d9b", "#e903f9", "#08f9fb", "#068fe0"]}>Fantasize Ai</AuroraText>
-            </div>
-          </div>
-          <div></div>
-        </div>
+      <div className=" pt-4 border-t-2 rounded-3xl h-80">
+        <Footer />
       </div>
     </div>
   )

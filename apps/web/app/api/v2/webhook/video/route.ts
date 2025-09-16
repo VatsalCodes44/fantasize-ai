@@ -123,55 +123,85 @@ async function verifyWebhookSignature(requestId: string, userId: string, timesta
 }
 
 export async function POST (req: NextRequest) {
+    try {
         const arrayBuffer = await req.arrayBuffer(); // raw bytes
-    const bodyBuffer = Buffer.from(arrayBuffer); // convert to Node Buffer
-
-    const requestId = req.headers.get("x-fal-webhook-request-id");
-    const userId = req.headers.get("x-fal-webhook-user-id");
-    const timeStamp = req.headers.get("x-fal-webhook-timestamp");
-    const webhookSignature = req.headers.get("x-fal-webhook-signature");
-
-    const isValid = await verifyWebhookSignature(
-    requestId!,
-    userId!,
-    timeStamp!,
-    webhookSignature!,
-    bodyBuffer
-    );
-
-    const body = JSON.parse(Buffer.from(arrayBuffer).toString("utf-8"));
-    console.log(body)
-    if (!isValid) {
-        return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
-    }
-    if (body.status=="ERROR") {
-        const dbRequests = await PrismaClient.outputVideos.updateMany({
-            where : {
-                falAiRequestId: requestId
-            }, 
-            data : {
-                status: "Failed"
-            }
-        }) 
-        return NextResponse.json({
-            message: "error occured"
-        },{status:422})
-    }
-    const request_id: string = body.request_id;
-    const videoUrl: string | undefined = body.payload?.video?.url;
-    if (!videoUrl) {
-        return NextResponse.json({ message: "No video URL in payload" }, { status: 422 });
-    }
-    await PrismaClient.outputVideos.updateMany({
-            where: {
-            falAiRequestId: request_id,
-        },
-        data: {
-            status: "generated",
-            videoUrl
+        const bodyBuffer = Buffer.from(arrayBuffer); // convert to Node Buffer
+    
+        const requestId = req.headers.get("x-fal-webhook-request-id");
+        const userId = req.headers.get("x-fal-webhook-user-id");
+        const timeStamp = req.headers.get("x-fal-webhook-timestamp");
+        const webhookSignature = req.headers.get("x-fal-webhook-signature");
+    
+        const isValid = await verifyWebhookSignature(
+        requestId!,
+        userId!,
+        timeStamp!,
+        webhookSignature!,
+        bodyBuffer
+        );
+    
+        const body = JSON.parse(Buffer.from(arrayBuffer).toString("utf-8"));
+        console.log(body)
+        if (!isValid) {
+            return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
         }
-    })
-    return NextResponse.json({
-        message: "web hook recieved"
-    })
+        if (body.status=="ERROR") {
+            const dbRequests = await PrismaClient.outputVideos.updateManyAndReturn({
+                where : {
+                    falAiRequestId: requestId
+                }, 
+                data : {
+                    status: "Failed"
+                }
+            }) 
+            const updateBalance = await PrismaClient.fAITokenAccount.update({
+                where: {
+                    userId: dbRequests[0]?.userId
+                }, 
+                data: {
+                    PendingTokens: {
+                        decrement: 8
+                    },
+                    FAI: {
+                        increment: 8
+                    }
+                }
+            })
+            return NextResponse.json({
+                message: "error occured"
+            },{status:422})
+        }
+        const request_id: string = body.request_id;
+        const videoUrl: string | undefined = body.payload?.video?.url;
+        if (!videoUrl) {
+            return NextResponse.json({ message: "No video URL in payload" }, { status: 422 });
+        }
+        const dbRequest = await PrismaClient.outputVideos.updateManyAndReturn({
+            where: {
+                falAiRequestId: request_id,
+            },
+            data: {
+                status: "generated",
+                videoUrl
+            }
+        })
+        const updateBalance = await PrismaClient.fAITokenAccount.update({
+            where: {
+                userId: dbRequest[0]?.userId
+            }, 
+            data: {
+                PendingTokens: {
+                    decrement: dbRequest[0]?.generateAudio ? 10:8
+                }
+            }
+        })
+        return NextResponse.json({
+            message: "web hook recieved"
+        })
+    } catch (err) {
+        console.log(err);
+        return NextResponse.json({
+            message: "something went wrong"
+        })
+    }
 }
