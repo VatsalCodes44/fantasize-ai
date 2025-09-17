@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
                 data: {
                     userId, 
                     prompt, 
-                    modelId: modelId!, 
+                    modelId: null, 
                     falAiRequestId: request_id
                 }
             })

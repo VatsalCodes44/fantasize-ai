@@ -77,10 +77,10 @@ model OutputImages {
   prompt         String
   status         OutputImagesStatusEnum @default(Pending)
   userId         String
-  modelId        String
+  modelId        String?
   falAiRequestId String?
   createdAt      DateTime               @default(now())
-  model          Model                  @relation(fields: [modelId], references: [id])
+  model          Model?                 @relation(fields: [modelId], references: [id])
   // user            User     @relation(fields:[userId], references:[id])
 }
 

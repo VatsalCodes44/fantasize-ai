@@ -5102,7 +5102,7 @@ export namespace Prisma {
     prompt: string
     status: $Enums.OutputImagesStatusEnum
     userId: string
-    modelId: string
+    modelId: string | null
     falAiRequestId: string | null
     createdAt: Date
     _count: OutputImagesCountAggregateOutputType | null
@@ -5133,7 +5133,7 @@ export namespace Prisma {
     modelId?: boolean
     falAiRequestId?: boolean
     createdAt?: boolean
-    model?: boolean | ModelDefaultArgs<ExtArgs>
+    model?: boolean | OutputImages$modelArgs<ExtArgs>
   }, ExtArgs["result"]["outputImages"]>
 
   export type OutputImagesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5145,7 +5145,7 @@ export namespace Prisma {
     modelId?: boolean
     falAiRequestId?: boolean
     createdAt?: boolean
-    model?: boolean | ModelDefaultArgs<ExtArgs>
+    model?: boolean | OutputImages$modelArgs<ExtArgs>
   }, ExtArgs["result"]["outputImages"]>
 
   export type OutputImagesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5157,7 +5157,7 @@ export namespace Prisma {
     modelId?: boolean
     falAiRequestId?: boolean
     createdAt?: boolean
-    model?: boolean | ModelDefaultArgs<ExtArgs>
+    model?: boolean | OutputImages$modelArgs<ExtArgs>
   }, ExtArgs["result"]["outputImages"]>
 
   export type OutputImagesSelectScalar = {
@@ -5173,19 +5173,19 @@ export namespace Prisma {
 
   export type OutputImagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "prompt" | "status" | "userId" | "modelId" | "falAiRequestId" | "createdAt", ExtArgs["result"]["outputImages"]>
   export type OutputImagesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    model?: boolean | ModelDefaultArgs<ExtArgs>
+    model?: boolean | OutputImages$modelArgs<ExtArgs>
   }
   export type OutputImagesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    model?: boolean | ModelDefaultArgs<ExtArgs>
+    model?: boolean | OutputImages$modelArgs<ExtArgs>
   }
   export type OutputImagesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    model?: boolean | ModelDefaultArgs<ExtArgs>
+    model?: boolean | OutputImages$modelArgs<ExtArgs>
   }
 
   export type $OutputImagesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OutputImages"
     objects: {
-      model: Prisma.$ModelPayload<ExtArgs>
+      model: Prisma.$ModelPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5193,7 +5193,7 @@ export namespace Prisma {
       prompt: string
       status: $Enums.OutputImagesStatusEnum
       userId: string
-      modelId: string
+      modelId: string | null
       falAiRequestId: string | null
       createdAt: Date
     }, ExtArgs["result"]["outputImages"]>
@@ -5590,7 +5590,7 @@ export namespace Prisma {
    */
   export interface Prisma__OutputImagesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    model<T extends ModelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModelDefaultArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    model<T extends OutputImages$modelArgs<ExtArgs> = {}>(args?: Subset<T, OutputImages$modelArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6021,6 +6021,25 @@ export namespace Prisma {
      * Limit how many OutputImages to delete.
      */
     limit?: number
+  }
+
+  /**
+   * OutputImages.model
+   */
+  export type OutputImages$modelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Model
+     */
+    select?: ModelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Model
+     */
+    omit?: ModelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModelInclude<ExtArgs> | null
+    where?: ModelWhereInput
   }
 
   /**
@@ -9812,10 +9831,10 @@ export namespace Prisma {
     prompt?: StringFilter<"OutputImages"> | string
     status?: EnumOutputImagesStatusEnumFilter<"OutputImages"> | $Enums.OutputImagesStatusEnum
     userId?: StringFilter<"OutputImages"> | string
-    modelId?: StringFilter<"OutputImages"> | string
+    modelId?: StringNullableFilter<"OutputImages"> | string | null
     falAiRequestId?: StringNullableFilter<"OutputImages"> | string | null
     createdAt?: DateTimeFilter<"OutputImages"> | Date | string
-    model?: XOR<ModelScalarRelationFilter, ModelWhereInput>
+    model?: XOR<ModelNullableScalarRelationFilter, ModelWhereInput> | null
   }
 
   export type OutputImagesOrderByWithRelationInput = {
@@ -9824,7 +9843,7 @@ export namespace Prisma {
     prompt?: SortOrder
     status?: SortOrder
     userId?: SortOrder
-    modelId?: SortOrder
+    modelId?: SortOrderInput | SortOrder
     falAiRequestId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     model?: ModelOrderByWithRelationInput
@@ -9839,10 +9858,10 @@ export namespace Prisma {
     prompt?: StringFilter<"OutputImages"> | string
     status?: EnumOutputImagesStatusEnumFilter<"OutputImages"> | $Enums.OutputImagesStatusEnum
     userId?: StringFilter<"OutputImages"> | string
-    modelId?: StringFilter<"OutputImages"> | string
+    modelId?: StringNullableFilter<"OutputImages"> | string | null
     falAiRequestId?: StringNullableFilter<"OutputImages"> | string | null
     createdAt?: DateTimeFilter<"OutputImages"> | Date | string
-    model?: XOR<ModelScalarRelationFilter, ModelWhereInput>
+    model?: XOR<ModelNullableScalarRelationFilter, ModelWhereInput> | null
   }, "id">
 
   export type OutputImagesOrderByWithAggregationInput = {
@@ -9851,7 +9870,7 @@ export namespace Prisma {
     prompt?: SortOrder
     status?: SortOrder
     userId?: SortOrder
-    modelId?: SortOrder
+    modelId?: SortOrderInput | SortOrder
     falAiRequestId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: OutputImagesCountOrderByAggregateInput
@@ -9868,7 +9887,7 @@ export namespace Prisma {
     prompt?: StringWithAggregatesFilter<"OutputImages"> | string
     status?: EnumOutputImagesStatusEnumWithAggregatesFilter<"OutputImages"> | $Enums.OutputImagesStatusEnum
     userId?: StringWithAggregatesFilter<"OutputImages"> | string
-    modelId?: StringWithAggregatesFilter<"OutputImages"> | string
+    modelId?: StringNullableWithAggregatesFilter<"OutputImages"> | string | null
     falAiRequestId?: StringNullableWithAggregatesFilter<"OutputImages"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"OutputImages"> | Date | string
   }
@@ -10349,7 +10368,7 @@ export namespace Prisma {
     userId: string
     falAiRequestId?: string | null
     createdAt?: Date | string
-    model: ModelCreateNestedOneWithoutOutputImagesInput
+    model?: ModelCreateNestedOneWithoutOutputImagesInput
   }
 
   export type OutputImagesUncheckedCreateInput = {
@@ -10358,7 +10377,7 @@ export namespace Prisma {
     prompt: string
     status?: $Enums.OutputImagesStatusEnum
     userId: string
-    modelId: string
+    modelId?: string | null
     falAiRequestId?: string | null
     createdAt?: Date | string
   }
@@ -10371,7 +10390,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    model?: ModelUpdateOneRequiredWithoutOutputImagesNestedInput
+    model?: ModelUpdateOneWithoutOutputImagesNestedInput
   }
 
   export type OutputImagesUncheckedUpdateInput = {
@@ -10380,7 +10399,7 @@ export namespace Prisma {
     prompt?: StringFieldUpdateOperationsInput | string
     status?: EnumOutputImagesStatusEnumFieldUpdateOperationsInput | $Enums.OutputImagesStatusEnum
     userId?: StringFieldUpdateOperationsInput | string
-    modelId?: StringFieldUpdateOperationsInput | string
+    modelId?: NullableStringFieldUpdateOperationsInput | string | null
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10391,7 +10410,7 @@ export namespace Prisma {
     prompt: string
     status?: $Enums.OutputImagesStatusEnum
     userId: string
-    modelId: string
+    modelId?: string | null
     falAiRequestId?: string | null
     createdAt?: Date | string
   }
@@ -10412,7 +10431,7 @@ export namespace Prisma {
     prompt?: StringFieldUpdateOperationsInput | string
     status?: EnumOutputImagesStatusEnumFieldUpdateOperationsInput | $Enums.OutputImagesStatusEnum
     userId?: StringFieldUpdateOperationsInput | string
-    modelId?: StringFieldUpdateOperationsInput | string
+    modelId?: NullableStringFieldUpdateOperationsInput | string | null
     falAiRequestId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11010,9 +11029,9 @@ export namespace Prisma {
     not?: NestedEnumOutputImagesStatusEnumFilter<$PrismaModel> | $Enums.OutputImagesStatusEnum
   }
 
-  export type ModelScalarRelationFilter = {
-    is?: ModelWhereInput
-    isNot?: ModelWhereInput
+  export type ModelNullableScalarRelationFilter = {
+    is?: ModelWhereInput | null
+    isNot?: ModelWhereInput | null
   }
 
   export type OutputImagesCountOrderByAggregateInput = {
@@ -11294,10 +11313,12 @@ export namespace Prisma {
     set?: $Enums.OutputImagesStatusEnum
   }
 
-  export type ModelUpdateOneRequiredWithoutOutputImagesNestedInput = {
+  export type ModelUpdateOneWithoutOutputImagesNestedInput = {
     create?: XOR<ModelCreateWithoutOutputImagesInput, ModelUncheckedCreateWithoutOutputImagesInput>
     connectOrCreate?: ModelCreateOrConnectWithoutOutputImagesInput
     upsert?: ModelUpsertWithoutOutputImagesInput
+    disconnect?: ModelWhereInput | boolean
+    delete?: ModelWhereInput | boolean
     connect?: ModelWhereUniqueInput
     update?: XOR<XOR<ModelUpdateToOneWithWhereWithoutOutputImagesInput, ModelUpdateWithoutOutputImagesInput>, ModelUncheckedUpdateWithoutOutputImagesInput>
   }
@@ -11685,7 +11706,7 @@ export namespace Prisma {
     prompt?: StringFilter<"OutputImages"> | string
     status?: EnumOutputImagesStatusEnumFilter<"OutputImages"> | $Enums.OutputImagesStatusEnum
     userId?: StringFilter<"OutputImages"> | string
-    modelId?: StringFilter<"OutputImages"> | string
+    modelId?: StringNullableFilter<"OutputImages"> | string | null
     falAiRequestId?: StringNullableFilter<"OutputImages"> | string | null
     createdAt?: DateTimeFilter<"OutputImages"> | Date | string
   }
