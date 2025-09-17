@@ -123,93 +123,102 @@ async function verifyWebhookSignature(requestId: string, userId: string, timesta
 }
 
 
-export async function POST (req: NextRequest) {
-    try {
+export async function POST(req: NextRequest) {
+  try {
+    const arrayBuffer = await req.arrayBuffer();
+    const bodyBuffer = Buffer.from(arrayBuffer);
 
-        const arrayBuffer = await req.arrayBuffer(); // raw bytes
-        const bodyBuffer = Buffer.from(arrayBuffer); // convert to Node Buffer
-    
-        const requestId = req.headers.get("x-fal-webhook-request-id");
-        const userId = req.headers.get("x-fal-webhook-user-id");
-        const timeStamp = req.headers.get("x-fal-webhook-timestamp");
-        const webhookSignature = req.headers.get("x-fal-webhook-signature");
-    
-        const isValid = await verifyWebhookSignature(
-        requestId!,
-        userId!,
-        timeStamp!,
-        webhookSignature!,
-        bodyBuffer
-        );
-    
-        const body = JSON.parse(Buffer.from(arrayBuffer).toString("utf-8"));
-    
-        console.log(body)
-    
-        if (!isValid) {
-            return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
-        }
-        const request_id: string = body.request_id;
-        if (body.status=="ERROR") {
-            const dbRequests = await PrismaClient.outputImages.updateManyAndReturn({
-                where : {
-                    falAiRequestId: requestId
-                }, 
-                data : {
-                    status: "Failed"
-                }
-            })
-            const updateBalance = await PrismaClient.fAITokenAccount.update({
-                where: {
-                    userId: dbRequests[0]?.userId
-                }, 
-                data: {
-                    PendingTokens: {
-                        decrement: 1
-                    },
-                    FAI: {
-                        increment: 1
-                    }
-                }
-            })
-            
-            return NextResponse.json({
-                message: "error occured"
-            },{status:422})
-        }
-        const images: {url:string, width: number, height: number, "content/type": string} []= body.payload.images;
-        const dbRequests = await Promise.all(images.map((image)=>{
-            return PrismaClient.outputImages.updateManyAndReturn({
-                where: {
-                    falAiRequestId: request_id,
-                },
-                data: {
-                    status: "generated",
-                    imageUrl: {
-                        push: image.url
-                    },
-                    createdAt: new Date()
-                }
-            })
-        }))
-        const updateBalance = await PrismaClient.fAITokenAccount.update({
-            where: {
-                userId: dbRequests[0]?.[0]?.userId
-            }, 
-            data: {
-                PendingTokens: {
-                    decrement: 1
-                }
-            }
-        })
-        return NextResponse.json({
-            message: "web hook recieved"
-        })
-    } catch (err) {
-        console.log(err);
-        return NextResponse.json({
-            message: "something went wrong"
-        })
+    const requestId = req.headers.get("x-fal-webhook-request-id");
+    const userId = req.headers.get("x-fal-webhook-user-id");
+    const timestamp = req.headers.get("x-fal-webhook-timestamp");
+    const signature = req.headers.get("x-fal-webhook-signature");
 
+    const isValid = await verifyWebhookSignature(
+      requestId!,
+      userId!,
+      timestamp!,
+      signature!,
+      bodyBuffer
+    );
+
+    const body = JSON.parse(bodyBuffer.toString("utf-8"));
+    console.log(body);
+
+    if (!isValid) {
+      return NextResponse.json(
+        { message: "Invalid signature" },
+        { status: 401 }
+      );
     }
+
+    const request_id: string = body.request_id;
+
+    // Handle error status
+    if (body.status === "ERROR") {
+      const firstRecord = await PrismaClient.outputImages.findFirst({
+        where: { falAiRequestId: request_id },
+      });
+
+      if (firstRecord) {
+        await PrismaClient.outputImages.updateMany({
+          where: { falAiRequestId: request_id },
+          data: { status: "Failed" },
+        });
+
+        await PrismaClient.fAITokenAccount.update({
+          where: { userId: firstRecord.userId },
+          data: {
+            PendingTokens: { decrement: 1 },
+            FAI: { increment: 1 },
+          },
+        });
+      }
+
+      return NextResponse.json({ message: "error occurred" }, { status: 422 });
+    }
+
+    // Handle success case
+    const images: {
+      url: string;
+      width: number;
+      height: number;
+      "content/type": string;
+    }[] = body.payload.images;
+
+    const firstRecord = await PrismaClient.outputImages.findFirst({
+      where: { falAiRequestId: request_id },
+    });
+
+    if (!firstRecord) {
+      return NextResponse.json(
+        { message: "No matching output image record found" },
+        { status: 404 }
+      );
+    }
+
+    await Promise.all(
+      images.map((image) =>
+        PrismaClient.outputImages.updateMany({
+          where: { falAiRequestId: request_id },
+          data: {
+            status: "generated",
+            imageUrl: { push: image.url },
+            createdAt: new Date(),
+          },
+        })
+      )
+    );
+
+    await PrismaClient.fAITokenAccount.update({
+      where: { userId: firstRecord.userId },
+      data: {
+        PendingTokens: { decrement: 1 },
+      },
+    });
+
+    return NextResponse.json({ message: "webhook received" });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ message: "something went wrong" });
+  }
 }
