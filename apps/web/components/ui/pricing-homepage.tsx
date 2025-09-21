@@ -140,7 +140,7 @@ export const Pricing = ({
                         <span className=" text-black dark:text-white">₹{variant.amount}</span>
                         <span className="text-xs">{variant.discountLabel}</span>
                         </div>
-                        <h2 className="text-xl font-bold py-2">5 FAI Tokens</h2>
+                        <h2 className="text-xl font-bold py-2">{variant.FAIs} FAI Tokens</h2>
                         <h2 className="text-lg font-semibold pt-2 pb-1">Pros ✅</h2>
                         <div className="text-sm">
                           {variant.Pros.map((pro, idx) => {
