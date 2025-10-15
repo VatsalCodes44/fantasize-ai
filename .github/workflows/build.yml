@@ -1,6 +1,6 @@
 name: Build suceed on pr
 on:
-  pull_request:
+  push:
     branches:
       - main
 jobs:
@@ -20,7 +20,7 @@ jobs:
 
       - name: generate prisma client
         run: cd db/packages && npx prisma generate && cd ../..
-        
+
       - name: Build the project
         run: npm run build
 
