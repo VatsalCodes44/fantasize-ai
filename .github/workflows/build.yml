@@ -16,10 +16,10 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: generate prisma client
-        run: cd db/packages && npx prisma generate && cd ../..
+        run: cd packages/db && npx prisma generate && cd ../..
 
       - name: Build the project
         run: npm run build
