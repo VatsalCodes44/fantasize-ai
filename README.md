@@ -135,19 +135,4 @@ Learn more about the power of Turborepo:
 - [Configuration Options](https://turborepo.com/docs/reference/configuration)
 - [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
 
-Fixes #v
-
-Changes:
-- Synced all locale files with current en-US structure
-- Replaced deprecated `SubmitSaveAllSettings` key with `SaveAccountDetails` across all languages
-- Updated `Settings` context in AccountView to consistently display "My Account" equivalent
-- Removed outdated keys consistently from all locale files
-
-I have verified that this pull request:
-
-* [x] has no linting errors (`npm run lint`)
-* [x] has no test errors (`npm run test`)
-* [x] is from a uniquely-named feature branch and is up to date with the `develop` branch.
-* [x] is descriptively named and links to an issue number, i.e. `Fixes #3510`
-* [x] meets the standards outlined in the [accessibility guidelines](https://github.com/processing/p5.js-web-editor/blob/develop/contributor_docs/accessibility.md)
 
