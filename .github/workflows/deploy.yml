@@ -29,6 +29,13 @@ jobs:
             file: ./Dockerfile
             push: true
             tags: vatsalcodes44/fantasize-ai:latest
+            build-args: |
+              NEXT_PUBLIC_CLERK_SIGN_IN_URL=${{ vars.NEXT_PUBLIC_CLERK_SIGN_IN_URL }}
+              NEXT_PUBLIC_CLERK_SIGN_UP_URL=${{ vars.NEXT_PUBLIC_CLERK_SIGN_UP_URL }}
+              NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=${{ vars.NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL }}
+              NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=${{ vars.NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL }}
+              NEXT_PUBLIC_RAZORPAY_KEY_ID=${{ vars.NEXT_PUBLIC_RAZORPAY_KEY_ID }}
+              NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ vars.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
         
         - name: verify pushed image
           run: vatsalcodes44/fantasize-ai:latest
@@ -43,4 +50,19 @@ jobs:
                 sudo docker pull vatsalcodes44/fantasize-ai:latest
                 sudo docker stop fantasize-ai || true
                 sudo docker rm fantasize-ai || true
-                sudo docker run -d --name fantasize-ai -p 3005:3000 vatsalcodes44/fantasize-ai:latest
+                sudo docker run -d \
+                  --name fantasize-ai \
+                  -p 3005:3000 \
+                  -e FAL_KEY="${{ secrets.FAL_KEY }}" \
+                  -e accessKeyId="${{ secrets.accessKeyId }}" \
+                  -e secretAccessKey="${{ secrets.secretAccessKey }}" \
+                  -e bucket="${{ secrets.bucket }}" \
+                  -e AWS_REGION="${{ secrets.AWS_REGION }}" \
+                  -e endpoint="${{ secrets.endpoint }}" \
+                  -e CLERK_SECRET_KEY="${{ secrets.CLERK_SECRET_KEY }}" \
+                  -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+                  -e RazorpaySecret="${{ secrets.RazorpaySecret }}" \
+                  -e razorpayWebhookSecret="${{ secrets.razorpayWebhookSecret }}" \
+                  -e EMAIL_USER="${{ secrets.EMAIL_USER }}" \
+                  -e EMAIL_PASS="${{ secrets.EMAIL_PASS }}" \
+                  vatsalcodes44/fantasize-ai:latest
