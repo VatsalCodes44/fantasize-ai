@@ -27,13 +27,6 @@ COPY --from=base /app/out/full/ .
 
 RUN cd packages/db && npx prisma generate && cd ../..
 
-ENV NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in \
-    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up \
-    NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/dashboard \
-    NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/dashboard \
-    NEXT_PUBLIC_RAZORPAY_KEY_ID=rzp_live_RGs6MXJOHelIFw \
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsudmF0c2FsbWFoYWphbi5pbiQ
-
 RUN npm run build
 
 
