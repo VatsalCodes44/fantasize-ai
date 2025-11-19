@@ -38,7 +38,7 @@ jobs:
               NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ vars.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
         
         - name: verify pushed image
-          run: vatsalcodes44/fantasize-ai:latest
+          run: docker pull vatsalcodes44/fantasize-ai:latest
 
         - name: Deploy to EC2
           uses: appleboy/ssh-action@master
