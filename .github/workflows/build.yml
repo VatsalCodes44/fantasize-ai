@@ -1,34 +1,24 @@
-name: Build suceed on pr
+name: Build on push
+
 on:
   push:
-    branches:
+    branches: 
       - main
-jobs:
-  build:
-    name: Build the project
-    runs-on: ubuntu-latest
-    env:
-        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_live_Y2xlcmsudmF0c2FsbWFoYWphbi5pbiQ
-        NEXT_PUBLIC_CLERK_SIGN_IN_URL: /sign-in
-        NEXT_PUBLIC_CLERK_SIGN_UP_URL: /sign-up
-        NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL: /dashboard
-        NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL: /dashboard
-        NEXT_PUBLIC_RAZORPAY_KEY_ID: rzp_live_RGs6MXJOHelIFw
-    steps:
-      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
+jobs:
+  buildProject: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the repo
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with: 
+          node-version: '23.10.0'
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
 
-      - name: generate prisma client
-        run: cd packages/db && npx prisma generate && cd ../..
-
-      - name: Build the project
+      - name: Build
         run: npm run build
-    
-
