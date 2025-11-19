@@ -11,6 +11,3 @@ cd ../..
 # Build the Next.js app
 cd apps/web
 npm run build
-
-# Start Next.js production server
-next start
