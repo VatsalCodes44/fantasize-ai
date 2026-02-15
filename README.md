@@ -1,5 +1,5 @@
-
 # Fantasize AI
+![Landing](https://raw.githubusercontent.com/VatsalCodes44/fantasize-ai/refs/heads/main/apps/web/public/landing.png)
 
 > AI-powered image and video generation platform built with modern web technologies
 
@@ -27,28 +27,32 @@ Fantasize AI is a comprehensive AI-powered content generation platform that enab
   - AI-powered image generation with customizable prompts
   - Multiple style and parameter controls
   - Real-time generation status
+  ![Generate Tab](https://raw.githubusercontent.com/VatsalCodes44/fantasize-ai/refs/heads/main/apps/web/public/generateTab.png)
   
 - **Face-Model Tab**
   - Upload and train custom face models
   - Manage multiple face models
   - Use trained models in generations
+  ![Face-Model](https://raw.githubusercontent.com/VatsalCodes44/fantasize-ai/refs/heads/main/apps/web/public/face-model.png)
   
 - **Packs Tab**
   - Purchase token packs via Razorpay
   - Multiple pricing tiers
   - Instant credit top-up
+  ![Landing](https://raw.githubusercontent.com/VatsalCodes44/fantasize-ai/refs/heads/main/apps/web/public/packs.png)
   
 - **Images Tab**
   - Gallery view of all generated images
   - Download and share functionality
   - Organized by creation date
+  ![Landing]( https://raw.githubusercontent.com/VatsalCodes44/fantasize-ai/refs/heads/main/apps/web/public/images.png)
 
 #### Video Section (Sidebar Navigation)
 - **Generate Video**
   - Text-to-video generation using Veo 3
   - Customizable video parameters
   - Progress tracking
-  
+  ![Venerate Video](https://raw.githubusercontent.com/VatsalCodes44/fantasize-ai/refs/heads/main/apps/web/public/generateVideo.png)
 - **Videos Gallery**
   - View all generated videos
   - Download and playback controls
