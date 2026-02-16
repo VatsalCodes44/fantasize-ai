@@ -278,153 +278,40 @@ EMAIL_PASS=
 ```
 fantasize-ai/
 ├── apps/
-│   └── web/                          # Main Next.js application
+│   └── web/                          # Next.js application with App Router
 │       ├── app/                      # Next.js App Router
 │       │   ├── page.tsx              # Landing page
 │       │   ├── layout.tsx            # Root layout
 │       │   ├── config.ts             # App configuration
-│       │   │
-│       │   ├── sign-in/              # Authentication routes
-│       │   │   └── [[...sign-in]]/   # Clerk sign-in
-│       │   ├── sign-up/              
-│       │   │   └── [[...sign-up]]/   # Clerk sign-up
-│       │   │
-│       │   ├── pricing/              # Pricing & token packages
-│       │   │   └── page.tsx
-│       │   │
-│       │   ├── dashboard/            # Protected dashboard
-│       │   │   ├── layout.tsx        # Dashboard layout
-│       │   │   ├── page.tsx          # Dashboard home
-│       │   │   │
-│       │   │   ├── image/            # Image generation section
-│       │   │   │   ├── layout.tsx    # Tabs navigation
-│       │   │   │   ├── generate/     # Tab 1: Generate images
-│       │   │   │   ├── face-model/   # Tab 2: Train face models
-│       │   │   │   ├── packs/        # Tab 3: Manage packs
-│       │   │   │   └── images/       # Tab 4: Image gallery
-│       │   │   │
-│       │   │   └── video/            # Video section (Sidebar)
-│       │   │       ├── generate/     # Generate videos
-│       │   │       └── videos/       # Video gallery
-│       │   │
-│       │   └── api/v1/               # API Routes
-│       │       ├── ai/
-│       │       │   ├── generate/         # Image generation (Fal AI)
-│       │       │   ├── generateVideo/    # Video generation (Veo 3)
-│       │       │   └── training/         # Face model training
-│       │       │
-│       │       ├── payment/              # Razorpay integration
-│       │       │   └── route.ts          # Payment processing
-│       │       │
-│       │       ├── pre-signed-url/       # AWS S3 presigned URLs
-│       │       │   ├── image-upload/     # Upload images to S3
-│       │       │   └── zip/              # Download pack as ZIP
-│       │       │
-│       │       ├── bulk/                 # Bulk operations
-│       │       │   ├── images/           # Batch image operations
-│       │       │   └── videos/           # Batch video operations
-│       │       │
-│       │       └── pack/                 # Pack management
-│       │           └── bulk/             # Bulk pack operations
-│       │
+│       │   ├── sign-in/              # Clerk authentication (sign-in)
+│       │   ├── sign-up/              # Clerk authentication (sign-up)
+│       │   ├── pricing/              # Pricing & token packages page
+│       │   ├── dashboard/            # Protected dashboard with image/video sections
+│       │   └── api/v1/               # API routes (AI generation, payments, S3, bulk operations)
 │       ├── components/               # React components
-│       │   ├── ui/                   # Shadcn UI components
-│       │   │   ├── button.tsx
-│       │   │   ├── card.tsx
-│       │   │   ├── dialog.tsx
-│       │   │   ├── input.tsx
-│       │   │   ├── label.tsx
-│       │   │   ├── textarea.tsx
-│       │   │   ├── switch.tsx
-│       │   │   ├── skeleton.tsx
-│       │   │   ├── ThemeProvider.tsx
-│       │   │   ├── ModeToggle.tsx
-│       │   │   ├── Footer.tsx
-│       │   │   └── ...
-│       │   │
-│       │   ├── manualComponents/     # Custom feature components
-│       │   │   ├── GenerateImage.tsx
-│       │   │   ├── GenerateVideo.tsx
-│       │   │   ├── Images.tsx
-│       │   │   ├── Videos.tsx
-│       │   │   ├── Packs.tsx
-│       │   │   ├── DashboardDemo.tsx
-│       │   │   ├── FileUploadDemo.tsx
-│       │   │   └── HowToGenerateVideo.tsx
-│       │   │
-│       │   └── magicui/              # Magic UI effects
-│       │       ├── animated-gradient-text.tsx
-│       │       ├── aurora-text.tsx
-│       │       ├── interactive-hover-button.tsx
-│       │       └── shine-border.tsx
-│       │
+│       │   ├── ui/                   # Shadcn UI components (button, card, dialog, etc.)
+│       │   ├── manualComponents/     # Custom feature components (GenerateImage, Videos, Packs)
+│       │   └── magicui/              # Magic UI effects (animations, gradients, hover effects)
 │       ├── lib/                      # Utility functions
-│       │   └── utils.ts              # Helper utilities
-│       │
-│       ├── models/                   # Type definitions & models
-│       │   └── FalAiModel.ts         # Fal AI types
-│       │
+│       ├── models/                   # TypeScript type definitions
 │       ├── hooks/                    # Custom React hooks
-│       │   └── use-outside-click.tsx
-│       │
-│       ├── public/                   # Static assets
-│       │   ├── fantasizelogo.png
-│       │   ├── fantasizeico.ico
-│       │   ├── FA1-6.jpg             # Feature showcase images
-│       │   ├── vatsal-*.jpg          # Developer profile images
-│       │   ├── HTG-*.png             # Tutorial/guide images
-│       │   ├── prompt-*.png          # Example prompts
-│       │   └── veo.mp4               # Demo video
-│       │
-│       ├── middleware.ts             # Clerk authentication
+│       ├── public/                   # Static assets (logos, images, videos)
+│       ├── middleware.ts             # Clerk authentication middleware
 │       ├── next.config.js            # Next.js configuration
-│       ├── tailwind.config.ts        # Tailwind CSS config
-│       ├── components.json           # Shadcn UI config
-│       ├── tsconfig.json             # TypeScript config
-│       ├── Dockerfile                # Docker container config
-│       └── package.json              # Web app dependencies
-│
-├── packages/                         # Turborepo shared packages
-│   ├── db/                           # Database package
-│   │   ├── prisma/
-│   │   │   ├── schema.prisma         # Database schema
-│   │   │   └── migrations/           # Database migrations
-│   │   ├── src/
-│   │   │   ├── index.ts              # Prisma client exports
-│   │   │   └── generated/client/     # Generated Prisma types
-│   │   ├── .env.example              # Database env template
-│   │   └── package.json
-│   │
-│   ├── ui/                           # Shared UI components
-│   │   ├── src/
-│   │   │   ├── button.tsx
-│   │   │   ├── card.tsx
-│   │   │   └── code.tsx
-│   │   └── package.json
-│   │
-│   ├── typescript-config/            # TypeScript configs
-│   │   ├── base.json                 # Base TS config
-│   │   ├── nextjs.json               # Next.js TS config
-│   │   └── react-library.json        # React library config
-│   │
-│   ├── eslint-config/                # ESLint configurations
-│   │   ├── base.js                   # Base ESLint rules
-│   │   ├── next.js                   # Next.js ESLint
-│   │   └── react-internal.js         # React component rules
-│   │
-│   └── common/                       # Common utilities
-│       ├── src/
-│       │   └── index.ts              # Shared utils/types
+│       ├── tailwind.config.ts        # Tailwind CSS configuration
+│       ├── Dockerfile                # Docker container setup
 │       └── package.json
 │
-├── .github/
-│   └── workflows/                    # CI/CD Pipelines
-│       ├── build.yml                 # Build & test workflow
-│       └── deploy.yml                # Production deployment
+├── packages/                         # Turborepo shared packages
+│   ├── db/                           # Prisma database package (schema, migrations, client)
+│   ├── ui/                           # Shared UI components library
+│   ├── typescript-config/            # Shared TypeScript configurations
+│   ├── eslint-config/                # Shared ESLint rules
+│   └── common/                       # Common utilities and types
 │
+├── .github/workflows/                # CI/CD pipelines (build, test, deploy)
 ├── turbo.json                        # Turborepo configuration
-├── package.json                      # Root dependencies
-├── .npmrc                            # NPM configuration
+├── package.json                      # Root workspace dependencies
 └── README.md                         # Project documentation
 ```
 
