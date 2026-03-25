@@ -371,4 +371,4 @@ For support, email support@fantasize-ai.com.
 
 ---
 
-Made with ❤️ by the Fantasize AI Team
+Made with ❤️ by VatsalCodes44
