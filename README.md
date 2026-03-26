@@ -3,7 +3,9 @@
 
 > AI-powered image and video generation platform built with modern web technologies
 
-### Live link:  https://fantasize-ai.vatsalmahajan.in
+### 🚀 Live Demo
+
+[Visit Fantasize AI](https://fantasize-ai.vatsalmahajan.in)
 
 ## 🎯 Overview
 
