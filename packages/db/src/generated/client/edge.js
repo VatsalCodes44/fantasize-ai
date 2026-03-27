@@ -260,7 +260,11 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
+<<<<<<< HEAD
       "value": "C:\\VatsalCodes\\Projects\\fantasize-ai\\packages\\db\\src\\generated\\client",
+=======
+      "value": "/home/ubuntu/fantasize-ai/packages/db/src/generated/client",
+>>>>>>> 9d6d8bd036e4335dbb5a8dab4817b9e47f1c0eb5
       "fromEnvVar": null
     },
     "config": {
@@ -269,16 +273,33 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
+<<<<<<< HEAD
     "sourceFilePath": "C:\\VatsalCodes\\Projects\\fantasize-ai\\packages\\db\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
     "rootEnvPath": null
+=======
+    "sourceFilePath": "/home/ubuntu/fantasize-ai/packages/db/prisma/schema.prisma",
+    "isCustomOutput": true
+  },
+  "relativeEnvPaths": {
+    "rootEnvPath": "../../../.env",
+    "schemaEnvPath": "../../../.env"
+>>>>>>> 9d6d8bd036e4335dbb5a8dab4817b9e47f1c0eb5
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.19.0",
@@ -296,8 +317,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// model User {\n//   id              String   @id @default(uuid())\n//   username        String  \n//   outputImages    OutputImages[] \n//   model           Model[]\n// }\n\nmodel Model {\n  id             String                  @id @default(uuid())\n  name           String\n  type           ModelTypeEnum\n  age            Int\n  ethinicity     EthinicityEnum\n  bald           Boolean\n  eyeColor       EyeColorEnum\n  userId         String\n  falAiRequestId String?\n  trainingStatus ModelTrainingStatusEnum @default(Pending)\n  images         String[]\n  triggerWord    String?\n  tensorPath     String?\n  createdAt      DateTime                @default(now())\n  updatedAt      DateTime                @updatedAt\n  // user            User        @relation(fields: [userId], references: [id])\n  // trainingImages  TrainingImages[] \n  zipUrl         String\n  outputImages   OutputImages[]\n}\n\n// model TrainingImages {\n//   id        String   @id @default(uuid())\n//   imageUrl  String\n//   modelId   String\n//   model     Model    @relation(fields:[modelId], references:[id] )\n// }\n\nmodel FAITokenAccount {\n  id            String @id @default(uuid())\n  userId        String @unique\n  FAI           Int    @default(0)\n  PendingTokens Int    @default(0)\n}\n\nmodel orders {\n  id              String            @id @default(uuid())\n  amount          Int\n  userId          String\n  username        String\n  productId       Int\n  productName     String\n  email           String\n  tokenIncrement  Int\n  razorpayOrderId String            @unique\n  receipt         String?\n  status          PaymentStatusEnum @default(Pending)\n}\n\nmodel OutputImages {\n  id             String                 @id @default(uuid())\n  imageUrl       String[]               @default([])\n  prompt         String\n  status         OutputImagesStatusEnum @default(Pending)\n  userId         String\n  modelId        String?\n  falAiRequestId String?\n  createdAt      DateTime               @default(now())\n  model          Model?                 @relation(fields: [modelId], references: [id])\n  // user            User     @relation(fields:[userId], references:[id])\n}\n\nmodel OutputVideos {\n  id             String                 @id @default(uuid())\n  videoUrl       String                 @default(\"\")\n  imageUrl       String?\n  prompt         String\n  videoType      VideoTypeEnum\n  status         OutputImagesStatusEnum @default(Pending)\n  generateAudio  Boolean\n  userId         String\n  falAiRequestId String?\n  createdAt      DateTime               @default(now())\n  // user            User     @relation(fields:[userId], references:[id])\n}\n\nmodel Packs {\n  id          String        @id @default(uuid())\n  title       String\n  description String\n  url         String\n  content     String\n  noOfPrompts Int\n  packPrompts PackPrompts[]\n}\n\nmodel PackPrompts {\n  id     String @id @default(uuid())\n  prompt String\n  packId String\n  pack   Packs  @relation(fields: [packId], references: [id], onDelete: Cascade)\n}\n\nenum ModelTrainingStatusEnum {\n  Pending\n  generated\n  Failed\n}\n\nenum ModelTypeEnum {\n  Man\n  Women\n  Couple\n  Dog\n  Cat\n  Other\n}\n\nenum EthinicityEnum {\n  White\n  Black\n  Asian\n  American\n  EastAsian\n  SouthEastAsian\n  SouthAsian\n  MiddleEastern\n  Pacific\n  Hispanic\n}\n\nenum EyeColorEnum {\n  Black\n  Brown\n  Blue\n  Green\n  Hazel\n  Other\n}\n\nenum OutputImagesStatusEnum {\n  Pending\n  generated\n  Failed\n}\n\nenum PaymentStatusEnum {\n  Pending\n  Completed\n  Failed\n}\n\nenum VideoTypeEnum {\n  TextToVideo\n  ImageToVideo\n}\n",
-  "inlineSchemaHash": "459e678d21ccfe0a3e3bfaf6b96be4397ba4cc3ae7c4129ee6c48c1232f7b2ff",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/client\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// model User {\n//   id              String   @id @default(uuid())\n//   username        String  \n//   outputImages    OutputImages[] \n//   model           Model[]\n// }\n\nmodel Model {\n  id             String                  @id @default(uuid())\n  name           String\n  type           ModelTypeEnum\n  age            Int\n  ethinicity     EthinicityEnum\n  bald           Boolean\n  eyeColor       EyeColorEnum\n  userId         String\n  falAiRequestId String?\n  trainingStatus ModelTrainingStatusEnum @default(Pending)\n  images         String[]\n  triggerWord    String?\n  tensorPath     String?\n  createdAt      DateTime                @default(now())\n  updatedAt      DateTime                @updatedAt\n  // user            User        @relation(fields: [userId], references: [id])\n  // trainingImages  TrainingImages[] \n  zipUrl         String\n  outputImages   OutputImages[]\n}\n\n// model TrainingImages {\n//   id        String   @id @default(uuid())\n//   imageUrl  String\n//   modelId   String\n//   model     Model    @relation(fields:[modelId], references:[id] )\n// }\n\nmodel FAITokenAccount {\n  id            String @id @default(uuid())\n  userId        String @unique\n  FAI           Int    @default(0)\n  PendingTokens Int    @default(0)\n}\n\nmodel orders {\n  id              String            @id @default(uuid())\n  amount          Int\n  userId          String\n  username        String\n  productId       Int\n  productName     String\n  email           String\n  tokenIncrement  Int\n  razorpayOrderId String            @unique\n  receipt         String?\n  status          PaymentStatusEnum @default(Pending)\n}\n\nmodel OutputImages {\n  id             String                 @id @default(uuid())\n  imageUrl       String[]               @default([])\n  prompt         String\n  status         OutputImagesStatusEnum @default(Pending)\n  userId         String\n  modelId        String?\n  falAiRequestId String?\n  createdAt      DateTime               @default(now())\n  model          Model?                 @relation(fields: [modelId], references: [id])\n  // user            User     @relation(fields:[userId], references:[id])\n}\n\nmodel OutputVideos {\n  id             String                 @id @default(uuid())\n  videoUrl       String                 @default(\"\")\n  imageUrl       String?\n  prompt         String\n  videoType      VideoTypeEnum\n  status         OutputImagesStatusEnum @default(Pending)\n  generateAudio  Boolean\n  userId         String\n  falAiRequestId String?\n  createdAt      DateTime               @default(now())\n  // user            User     @relation(fields:[userId], references:[id])\n}\n\nmodel Packs {\n  id          String        @id @default(uuid())\n  title       String\n  description String\n  url         String\n  content     String\n  noOfPrompts Int\n  packPrompts PackPrompts[]\n}\n\nmodel PackPrompts {\n  id     String @id @default(uuid())\n  prompt String\n  packId String\n  pack   Packs  @relation(fields: [packId], references: [id], onDelete: Cascade)\n}\n\nenum ModelTrainingStatusEnum {\n  Pending\n  generated\n  Failed\n}\n\nenum ModelTypeEnum {\n  Man\n  Women\n  Couple\n  Dog\n  Cat\n  Other\n}\n\nenum EthinicityEnum {\n  White\n  Black\n  Asian\n  American\n  EastAsian\n  SouthEastAsian\n  SouthAsian\n  MiddleEastern\n  Pacific\n  Hispanic\n}\n\nenum EyeColorEnum {\n  Black\n  Brown\n  Blue\n  Green\n  Hazel\n  Other\n}\n\nenum OutputImagesStatusEnum {\n  Pending\n  generated\n  Failed\n}\n\nenum PaymentStatusEnum {\n  Pending\n  Completed\n  Failed\n}\n\nenum VideoTypeEnum {\n  TextToVideo\n  ImageToVideo\n}\n",
+  "inlineSchemaHash": "b63cfbf40ec45e78f9620e56e1f26c9e0e6936c7a8504f7ac531f83c6af5a798",
   "copyEngine": true
 }
 config.dirname = '/'
