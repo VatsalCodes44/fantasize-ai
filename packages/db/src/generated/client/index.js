@@ -261,11 +261,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-<<<<<<< HEAD
-      "value": "C:\\VatsalCodes\\Projects\\fantasize-ai\\packages\\db\\src\\generated\\client",
-=======
       "value": "/home/ubuntu/fantasize-ai/packages/db/src/generated/client",
->>>>>>> 9d6d8bd036e4335dbb5a8dab4817b9e47f1c0eb5
       "fromEnvVar": null
     },
     "config": {
@@ -287,20 +283,12 @@ const config = {
       }
     ],
     "previewFeatures": [],
-<<<<<<< HEAD
-    "sourceFilePath": "C:\\VatsalCodes\\Projects\\fantasize-ai\\packages\\db\\prisma\\schema.prisma",
-    "isCustomOutput": true
-  },
-  "relativeEnvPaths": {
-    "rootEnvPath": null
-=======
     "sourceFilePath": "/home/ubuntu/fantasize-ai/packages/db/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
     "rootEnvPath": "../../../.env",
     "schemaEnvPath": "../../../.env"
->>>>>>> 9d6d8bd036e4335dbb5a8dab4817b9e47f1c0eb5
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.19.0",
