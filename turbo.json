@@ -17,5 +17,19 @@
       "cache": false,
       "persistent": true
     }
-  }
+  },
+  "globalEnv": [
+    "FAL_KEY",
+    "accessKeyId",
+    "secretAccessKey",
+    "bucket",
+    "AWS_REGION",
+    "endpoint",
+    "CLERK_SECRET_KEY",
+    "DATABASE_URL",
+    "RazorpaySecret",
+    "razorpayWebhookSecret",
+    "EMAIL_USER",
+    "EMAIL_PASS"
+  ]
 }
